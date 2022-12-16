@@ -17,18 +17,18 @@ MonoBehaviour:
     Key: Animations
     Ordinal: 0
     Priority: 0
-    IconType: 2010
+    IconType: 40
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 0
-    BackgroundType: 0
+    BackgroundType: 40
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
-    Key: Audio
+    Key: Audios
     Ordinal: 1
-    Priority: 0
+    Priority: 1
     IconType: 2020
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
