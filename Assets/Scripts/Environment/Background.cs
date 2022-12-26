@@ -19,8 +19,6 @@ public class Background : MonoBehaviour
         _renderer = backgrounds[0].GetComponent<SpriteRenderer>();
 
         size_x = Camera.main.pixelWidth * 0.01f;
-
-        Debug.Log(size_x);
     }
 
 
