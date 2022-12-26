@@ -28,9 +28,18 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             ""id"": ""929596bd-7877-4c3a-ad52-c37d7fffe3c1"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""d77462ba-161a-4f5b-a5f1-4e3328de0a14"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Duck"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e5d5707-b2b0-4dbd-b315-10ea253d28a0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -41,11 +50,22 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4d55828c-b8dc-4385-a3ff-3752f5e5edd6"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""New control scheme"",
-                    ""action"": ""New action"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9258dea3-3421-43c9-85a5-043bdd6956af"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Duck"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -68,7 +88,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Newaction = m_Player.FindAction("New action", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Duck = m_Player.FindAction("Duck", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -128,12 +149,14 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Newaction;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Duck;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Player_Newaction;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Duck => m_Wrapper.m_Player_Duck;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -143,16 +166,22 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Duck.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDuck;
+                @Duck.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDuck;
+                @Duck.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDuck;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Duck.started += instance.OnDuck;
+                @Duck.performed += instance.OnDuck;
+                @Duck.canceled += instance.OnDuck;
             }
         }
     }
@@ -168,6 +197,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnDuck(InputAction.CallbackContext context);
     }
 }

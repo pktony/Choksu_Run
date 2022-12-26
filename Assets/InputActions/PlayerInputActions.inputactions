@@ -6,9 +6,18 @@
             "id": "929596bd-7877-4c3a-ad52-c37d7fffe3c1",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Jump",
                     "type": "Button",
                     "id": "d77462ba-161a-4f5b-a5f1-4e3328de0a14",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Duck",
+                    "type": "Button",
+                    "id": "3e5d5707-b2b0-4dbd-b315-10ea253d28a0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -19,11 +28,22 @@
                 {
                     "name": "",
                     "id": "4d55828c-b8dc-4385-a3ff-3752f5e5edd6",
-                    "path": "",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "New control scheme",
-                    "action": "New action",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9258dea3-3421-43c9-85a5-043bdd6956af",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Duck",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

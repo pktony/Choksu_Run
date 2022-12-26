@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class PlayerSprites : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private Sprite baseSprite;
+    [SerializeField]
+    private RuntimeAnimatorController animatorController;
+
+    private SpriteRenderer spriteRenderer;
+    private Animator anim;
+
+    private void Awake()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void InitializeCharacter()
     {
-        
+        spriteRenderer.sprite = baseSprite;
+        anim.runtimeAnimatorController = animatorController;
     }
 }
