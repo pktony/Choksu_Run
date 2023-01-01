@@ -17,9 +17,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private float jumpForce;
     [SerializeField]
-    private float dieForce_X = 5.0f;
-    [SerializeField]
-    private float dieForce_Y = 5.0f;
+    private float dieForce = 5.0f;
     [SerializeField]
     private float dieTorque = 5.0f;
 
@@ -55,7 +53,6 @@ public class PlayerControl : MonoBehaviour
 
     private void OnDuck(InputAction.CallbackContext context)
     {
-        Debug.Log("Duck");
         if(context.performed)
         {
             Vector2 newScale = Vector2.one - Vector2.up * shrinkMagnitude;
@@ -73,16 +70,18 @@ public class PlayerControl : MonoBehaviour
         {
             if (isGrounded)
             {
-                Debug.Log("Jump");
+                //Debug.Log("Jump");
                 isGrounded = false;
-                rigid.AddForce(jumpForce * Vector3.up, ForceMode2D.Impulse);
+                rigid.velocity = jumpForce * Vector3.up;
+                //rigid.AddForce(jumpForce * Vector3.up, ForceMode2D.Impulse);
             }
         }
         else
         {
             if (jumpCounter < maxJumpNumber)
             {
-                rigid.AddForce(jumpForce * Vector3.up, ForceMode2D.Impulse);
+                rigid.velocity = jumpForce * Vector3.up;
+                //rigid.AddForce(jumpForce * Vector3.up, ForceMode2D.Impulse);
                 jumpCounter++;
             }
         }
@@ -92,7 +91,9 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.collider.CompareTag("Obstacle"))
         {
-            ExertForce();
+            Vector2 forceDir = collision.GetContact(0).normal;
+            ExertForce(forceDir);
+            GameManager.Inst.IsGameOver = true;
             return;
         }
 
@@ -112,21 +113,13 @@ public class PlayerControl : MonoBehaviour
         inputActions.Player.Disable();
     }
 
-    public void ExertForce()
+    public void ExertForce(Vector2 direction)
     {
         DisableAllControl();
         rigid.freezeRotation = false;
-        rigid.AddForce(dieForce_X * -Vector2.right + dieForce_Y * Vector2.up, ForceMode2D.Impulse);
+        rigid.AddForce((direction + Vector2.up) * dieForce, ForceMode2D.Impulse);
         rigid.AddTorque(dieTorque, ForceMode2D.Impulse);
 
         anim.SetTrigger("onDie");
-    }
-
-    private void Update()
-    {//TEST
-        if(Keyboard.current.dKey.wasPressedThisFrame)
-        {
-            ExertForce();
-        }
     }
 }
