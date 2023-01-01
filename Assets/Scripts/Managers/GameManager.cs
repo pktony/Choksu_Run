@@ -1,34 +1,39 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance = null;
-
     [Header("Managers")]
     public UIManager ui;
     public SoundManager sound;
     public ResourceManager resource;
 
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if(Instance != this)
-        {
-            Destroy(gameObject);
-        }
+    [Header("Flags")]
+    private bool isGameOver = false;
 
-        DontDestroyOnLoad(gameObject);
+    private ScoreManager score;
+
+    #region PROPERTY ##########################################################
+    public ScoreManager Score => score;
+
+    public bool IsGameOver
+    {
+        get => isGameOver;
+        set
+        {
+            isGameOver = value;
+            GameOver();
+        }
+    }
+    #endregion
+
+    protected override void Initialize()
+    {
+        score = GetComponent<ScoreManager>();
     }
 
-
-    public void GameOver()
+    private void GameOver()
     {
 
     }
-
-    
 }
