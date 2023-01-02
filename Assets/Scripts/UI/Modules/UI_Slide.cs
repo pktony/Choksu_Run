@@ -16,7 +16,9 @@ namespace UIs
         private RectTransform rect;
 
         private Vector2 panelSize;
+        private Vector2 originalPos;
         private bool isOpen = false;
+        private bool isMoving = false;
 
         private const float ERROR_CORRECTION_NUM = 0.2f;
 
@@ -32,11 +34,13 @@ namespace UIs
 
         public void Slide()
         {
-            StartCoroutine(SlidePanels(openingDiretion));
+            if(!isMoving)
+                StartCoroutine(SlidePanels(openingDiretion));
         }
 
         private IEnumerator SlidePanels(openingDiretion dir)
         {
+            isMoving = true;
             Vector2 newPos = rect.anchoredPosition;
             float boundary = panelSize.x;
 
@@ -44,7 +48,8 @@ namespace UIs
                 newPos + (int)dir * panelSize.x * Vector2.right :
                 newPos + (int)dir * panelSize.y * Vector2.up;
 
-            if (isOpen) destination = Vector2.zero;
+            if (isOpen) destination = originalPos;
+            else originalPos = rect.anchoredPosition;
 
             float timer = 0f;
             //시간 = 거리 / 속력
@@ -58,8 +63,10 @@ namespace UIs
                 timer += Time.unscaledDeltaTime;
                 yield return null;
             }
+            rect.anchoredPosition = destination;
 
             isOpen = !isOpen;
+            isMoving = false;
         }
     }
 }

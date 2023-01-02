@@ -102,7 +102,6 @@ public class PlayerControl : MonoBehaviour
             isGrounded = true;
             jumpCounter = 0;
         }
-
     }
 
     private void DisableAllControl()
