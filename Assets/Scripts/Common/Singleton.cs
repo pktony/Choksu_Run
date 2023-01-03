@@ -52,15 +52,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
     /// </summary>
     /// <param name="scene">해당 씬 데이터</param>
     /// <param name="mode">씬 추가 모드</param>
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Initialize();
-    }
-
-    /// <summary>
-    /// 각종 초기화용 함수. 상속받을 클래스에서 override해서 사용할 것.
-    /// </summary>
-    protected virtual void Initialize()
+    protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
     }
 }

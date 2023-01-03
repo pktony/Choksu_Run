@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
+    //임시
+    UIController_StartScene startScene;
 
-    private void Start()
+    private void Awake()
     {
-        GameManager.Inst.Score.onScoreChange += UpateScore;
+        startScene = FindObjectOfType<UIController_StartScene>();
     }
 
-    private void UpateScore(float score)
+    public void OnLoadStart()
     {
-        scoreText.text = score.ToString("0000000");
+        startScene.MoveLoadingPanel();
+    }
+
+    public void OnLoadComplete()
+    {
+        startScene.MoveLoadingPanel();
     }
 }
