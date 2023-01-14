@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class ObstaclePool : MonoBehaviour
 {
-    public List<GameObject> obstaclePool = new List<GameObject>();
+    private LevelDesign levels;
+
     public GameObject[] obstacles;
+    public List<GameObject> obstaclePool = new List<GameObject>();
     public int count = 1;
 
+    private const float DEFAULT_OBSTACLE_TIME = 1.5f;
 
     private void Awake()
     {
+        levels = GetComponent<LevelDesign>();
+
         for (int i = 0; i < obstacles.Length; i++)
         {
             for (int j = 0; j < count; j++)
@@ -25,7 +30,6 @@ public class ObstaclePool : MonoBehaviour
         StartCoroutine(CreateObstacle());
     }
 
-
     private GameObject SetObstacle(GameObject obj, Transform parent)
     {
         GameObject obstacle = Instantiate(obj, parent);
@@ -37,8 +41,17 @@ public class ObstaclePool : MonoBehaviour
     {
         while (true)
         {
-            obstaclePool[DeactiveObstacle()].SetActive(true);
-            yield return new WaitForSeconds(Random.Range(1.0f, 2.0f));
+            float time = 0f;
+            GameObject obj = obstaclePool[DeactiveObstacle()];
+
+            time = obj.TryGetComponent<Platforms>(out Platforms platform)
+                ? levels.GetTime(platform.ObstacleType)
+                : DEFAULT_OBSTACLE_TIME;
+
+            Debug.Log(platform.ObstacleType);
+            obj.SetActive(true);
+            
+            yield return new WaitForSeconds(time);
         }
     }
 

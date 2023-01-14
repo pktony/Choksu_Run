@@ -11,6 +11,8 @@ public abstract class Platforms : MonoBehaviour
     [SerializeField]
     protected Define.ObstacleType type;
 
+    public Define.ObstacleType ObstacleType => type;
+
     private void Awake()
     {
         startPostion = transform.position;
@@ -20,7 +22,6 @@ public abstract class Platforms : MonoBehaviour
     {
         transform.position = startPostion;
     }
-
 
     private void Update()
     {
