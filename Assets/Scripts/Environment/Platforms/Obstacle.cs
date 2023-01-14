@@ -6,7 +6,7 @@ public class Obstacle : Platforms //장애물 객체의 행동
 {
     protected override void ReturnPool()
     {
-        gameObject.SetActive(false);
+        poolManager.ReturnPooledObject(this.gameObject, type);
     }
 
     protected override bool TouchAction()

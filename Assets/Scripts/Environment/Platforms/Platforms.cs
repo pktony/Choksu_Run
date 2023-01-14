@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Platforms : MonoBehaviour
 {
+    protected PoolingManager poolManager;
+
     [SerializeField]
     protected float speed = 0f;
     private Vector2 startPostion;
@@ -16,6 +18,11 @@ public abstract class Platforms : MonoBehaviour
     private void Awake()
     {
         startPostion = transform.position;
+    }
+
+    private void Start()
+    {
+        poolManager = PoolingManager.Inst;
     }
 
     private void OnDisable()
