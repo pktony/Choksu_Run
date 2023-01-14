@@ -14,6 +14,4 @@ public class LevelDesign : MonoBehaviour
     {
         return obstacleInfos[(int)type].obstacleTime;
     }
-
-    
 }
