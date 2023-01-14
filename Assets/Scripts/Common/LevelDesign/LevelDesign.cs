@@ -8,12 +8,22 @@ public class LevelDesign : MonoBehaviour
 
     [Header("Level Design")]
     [SerializeField]
-    private string levels;
+    private string levelString;
 
     public float GetTime(Define.ObstacleType type)
     {
         return obstacleInfos[(int)type].obstacleTime;
     }
 
-    
+    public List<int> GetLevels()
+    {
+        List<int> levels = new List<int>(levelString.Length);
+
+        for(int i = 0; i < levelString.Length; i++)
+        {
+            levels.Add(levelString[i] - '0');
+        }
+
+        return levels;
+    }
 }
