@@ -15,6 +15,8 @@ public class LevelDesign : MonoBehaviour
         return obstacleInfos[(int)type].obstacleTime;
     }
 
+    public int LevelCount => obstacleInfos.Length;
+
     public List<int> GetLevels()
     {
         List<int> levels = new List<int>(levelString.Length);

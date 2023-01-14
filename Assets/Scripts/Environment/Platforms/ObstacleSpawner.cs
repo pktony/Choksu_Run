@@ -11,29 +11,41 @@ public class ObstacleSpawner : MonoBehaviour
     private int[] levels;   // Copy of Level Design levelString
     private int cursor = 0;
 
+    private int obstacleCount;
+
     private const float DEFAULT_OBSTACLE_TIME = 1.5f;
 
     private void Awake()
     {
         levelDesign = GetComponent<LevelDesign>();
         levels = levelDesign.GetLevels().ToArray();
+        obstacleCount = levelDesign.LevelCount;
     }
 
     private void Start()
     {
         poolManager = PoolingManager.Inst;
-        StartCoroutine(CreateObstacle());
+        StartCoroutine(SpawnObstacle());
     }
 
-    private IEnumerator CreateObstacle()
+    private IEnumerator SpawnObstacle()
     {
+        float time;
+        GameObject obj = null;
         while (cursor < levels.Length)
         {
-            float time = 0f;
-            GameObject obj = poolManager.GetPooledObject((ObstacleType)levels[cursor]);
-
-            time = levelDesign.GetTime((ObstacleType)levels[cursor]);
-            obj.SetActive(true);
+            if (levels[cursor] < obstacleCount)
+            {
+                obj = poolManager.GetPooledObject((ObstacleType)levels[cursor]);
+                time = levelDesign.GetTime((ObstacleType)levels[cursor]);
+                obj.SetActive(true);
+            }
+            else
+            {
+                obj = poolManager.GetPooledObject(ObstacleType.SingleJump);
+                time = DEFAULT_OBSTACLE_TIME;
+                obj.SetActive(true);
+            }
 
             cursor++;
             yield return new WaitForSeconds(time);

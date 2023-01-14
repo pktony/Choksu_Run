@@ -22,7 +22,7 @@ public class PoolingManager : Singleton<PoolingManager>
         else
         {
             obstaclePool[type].Enqueue(CreateObstacle((int)type, this.transform));
-            GetPooledObject(type);
+            return GetPooledObject(type);
         }
         return obj;
     }
