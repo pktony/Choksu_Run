@@ -7,7 +7,21 @@ namespace Define
         DoubleJump,
         Slide,
     }
+
+    public enum SceneIndex
+    {
+        Title,
+        In_Game,
+        Loading,
+    }
     #endregion
+
+    public enum AdType
+    {
+        Banner,
+        Interstitial,
+        Reward,
+    }
 
     #region SOUND ##############################################################
     public enum SFX

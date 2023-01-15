@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Define;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PoolingManager : Singleton<PoolingManager>
 {
@@ -33,9 +34,10 @@ public class PoolingManager : Singleton<PoolingManager>
         uselessObj.SetActive(false);
     }
 
-    protected override void Initialize()
+    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        InitializePool();
+        if(obstaclePool.Count < 1)
+            InitializePool();
     }
 
     private void InitializePool()
