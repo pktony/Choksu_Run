@@ -19,5 +19,6 @@ public class GameStartButton : MonoBehaviour
     {
         //씬 로드
         Debug.Log("Game Start");
+        SceneLoadManager.Inst.LoadScene_Ads(Define.SceneIndex.In_Game, Define.AdType.Interstitial);
     }
 }

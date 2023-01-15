@@ -35,7 +35,6 @@ public class Singleton<T> : MonoBehaviour where T : Component
         {
             instance = this as T;
             DontDestroyOnLoad(this.gameObject);
-
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
