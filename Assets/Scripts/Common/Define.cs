@@ -1,26 +1,23 @@
 namespace Define
 {
-    public enum SceneIndex
+    #region GAMEPLAY ##########################################################
+    public enum ObstacleType
     {
-        Title,
-        In_Game,
-        Loading,
+        SingleJump = 0,
+        DoubleJump,
+        Slide,
     }
+    #endregion
 
-    public enum AdType
-    {
-        Banner,
-        Interstitial,
-        Reward,
-    }
-
+    #region SOUND ##############################################################
     public enum SFX
     {
-        jump, slide
+        Jump, Slide
     }
 
     public enum BGM
     {
         MainScene
     }
+    #endregion
 }
