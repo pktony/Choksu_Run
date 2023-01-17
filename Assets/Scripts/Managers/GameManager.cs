@@ -51,6 +51,13 @@ public class GameManager : Singleton<GameManager>
         saves = GetComponent<SaveManager>();   
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        sound.Initialize();
+    }
+
+
     private void Start()
     {
         Gold = saves.LoadDatas(out playerDatas) ? playerDatas.gold : 0;

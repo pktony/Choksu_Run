@@ -26,12 +26,12 @@ namespace Define
     #region SOUND ##############################################################
     public enum SFX
     {
-        Jump, Slide
+        Jump, Slide, GetCoin, GameOver
     }
 
     public enum BGM
     {
-        MainScene
+        LobbyScene, GameScene
     }
     #endregion
 }
