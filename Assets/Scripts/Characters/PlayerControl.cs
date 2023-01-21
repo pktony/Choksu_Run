@@ -7,30 +7,42 @@ using UnityEngine.InputSystem;
 public class PlayerControl : MonoBehaviour
 {
     private PlayerInputActions inputActions;
-    private Rigidbody2D rigid;
     private Transform model;
     private Animator anim;
+    protected Rigidbody2D rigid;
 
-    private bool isGrounded = true;
+    protected bool isGrounded = true;
     private int jumpCounter = 0;
 
+    [Header("Jump")]
+    [SerializeField]
+    private bool isDoubleJump = false;
     [SerializeField]
     private float jumpForce;
+    [SerializeField]
+    private int maxJumpNumber = 3;
+
+    [Header("Die")]
     [SerializeField]
     private float dieForce = 5.0f;
     [SerializeField]
     private float dieTorque = 5.0f;
 
+    [Header("Duck")]
     [Range(0f, 1f)]
     [SerializeField]
     private float shrinkMagnitude;
 
-    [SerializeField]
-    private bool isDoubleJump = false;
-    [SerializeField]
-    private int maxJumpNumber = 3;
+    public virtual bool IsGrounded
+    {
+        get => isGrounded;
+        protected set
+        {
+            isGrounded = value;
+        }
+    }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         inputActions = new();
         rigid = GetComponent<Rigidbody2D>();
@@ -44,6 +56,8 @@ public class PlayerControl : MonoBehaviour
         inputActions.Player.Jump.performed += OnJump;
         inputActions.Player.Duck.performed += OnDuck;
         inputActions.Player.Duck.canceled += OnDuck;
+        inputActions.Player.Skill.performed += OnSkill;
+        inputActions.Player.Skill.canceled += OnSkill;
     }
 
     private void OnDisable()
@@ -53,12 +67,12 @@ public class PlayerControl : MonoBehaviour
 
     private void OnDuck(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             Vector2 newScale = Vector2.one - Vector2.up * shrinkMagnitude;
             transform.localScale = newScale;
         }
-        else if(context.canceled)
+        else if (context.canceled)
         {
             transform.localScale = Vector2.one;
         }
@@ -66,25 +80,32 @@ public class PlayerControl : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext _)
     {
+        Jump();
+    }
+
+    protected virtual void Jump()
+    {
         if (!isDoubleJump)
         {
-            if (isGrounded)
+            if (IsGrounded)
             {
-                //Debug.Log("Jump");
-                isGrounded = false;
-                rigid.velocity = jumpForce * Vector3.up;
-                //rigid.AddForce(jumpForce * Vector3.up, ForceMode2D.Impulse);
+                IsGrounded = false;
+                rigid.velocity = rigid.velocity.x * Vector3.right + jumpForce * Vector3.up;
             }
         }
         else
         {
             if (jumpCounter < maxJumpNumber)
             {
-                rigid.velocity = jumpForce * Vector3.up;
-                //rigid.AddForce(jumpForce * Vector3.up, ForceMode2D.Impulse);
+                rigid.velocity = rigid.velocity.x * Vector3.right + jumpForce * Vector3.up;
                 jumpCounter++;
             }
         }
+    }
+
+    protected virtual void OnSkill(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -97,9 +118,9 @@ public class PlayerControl : MonoBehaviour
             return;
         }
 
-        if(collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground"))
         {
-            isGrounded = true;
+            IsGrounded = true;
             jumpCounter = 0;
         }
     }
@@ -109,6 +130,8 @@ public class PlayerControl : MonoBehaviour
         inputActions.Player.Jump.performed -= OnJump;
         inputActions.Player.Duck.performed -= OnDuck;
         inputActions.Player.Duck.canceled -= OnDuck;
+        inputActions.Player.Skill.performed -= OnSkill;
+        inputActions.Player.Skill.canceled -= OnSkill;
         inputActions.Player.Disable();
     }
 

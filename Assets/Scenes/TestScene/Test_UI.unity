@@ -405,7 +405,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 213352965698818929, guid: 316ea04965ade401a9e02d50d528e197, type: 3}
       propertyPath: m_Name
-      value: Player_SingleHP
+      value: Player_Choksu
       objectReference: {fileID: 0}
     - target: {fileID: 213352965698818931, guid: 316ea04965ade401a9e02d50d528e197, type: 3}
       propertyPath: m_RootOrder

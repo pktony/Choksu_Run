@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
         PlayBGM(BGM.LobbyScene, (int)PlayType.Direct);
     }
     #region BGM
-    public void PlayBGM(BGM bgm, int Type) // Type 0 : ¹Ù·Î Àç»ý
+    public void PlayBGM(BGM bgm, int Type) // Type 0 : ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½
     {
         SetupBGM(bgm);
         Action bgmPlay = Type.Equals(0) ? bgmPlayer.Play : FadeIn;
@@ -73,7 +73,7 @@ public class SoundManager : MonoBehaviour
 
     private void SetupBGM(BGM bgm)
     {
-        if (BGMClips == null)
+        if (BGMClips.Length < 1)
         {
             Debug.LogError($"There is no BGM Resource in Array");
             return;
@@ -107,7 +107,7 @@ public class SoundManager : MonoBehaviour
 
     #endregion
 
-    #region ¿É¼Ç¿¡¼­ º¼·ýÁ¶Àý
+    #region ï¿½É¼Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void SetVolumeSFX(float a_volume)
     {
         masterVolumeSFX = a_volume;
