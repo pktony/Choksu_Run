@@ -7,79 +7,30 @@ using UnityEngine.SceneManagement;
 public class PoolingManager : Singleton<PoolingManager>
 {
     private Dictionary<ObstacleType, Queue<GameObject>> obstaclePool = new();
-    private Dictionary<CurrencyType, Queue<GameObject>> currencyPool = new();
 
     [SerializeField]
     private GameObject[] obstaclePrefabs;
 
-    [SerializeField]
-    private GameObject[] currencyPrefabs;
+    private int poolingCount = 2;
 
-    [Header("Pooling Count")]
-    [Tooltip("0 : obstcle  1 : currency")]
-    [SerializeField]
-    private int[] poolingCounts;
-
-
-    /// <summary>
-    /// 오브젝트 풀 가져오기
-    /// </summary>
-    /// <typeparam name="T">0 : Obstacle,  1 : Currency</typeparam>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    public GameObject GetPooledObject<T>(T type) where T : System.Enum
+    public GameObject GetPooledObject(ObstacleType type)
     {
         GameObject obj = null;
-
-        switch (type)
+        if (obstaclePool[type].Count > 0)
         {
-            case ObstacleType:
-                // 어떤게 낫지 ?
-                //ObstacleType otype = (ObstacleType)(object)type;
-                ObstacleType oType = (ObstacleType)System.Enum.Parse(type.GetType(), type.ToString());
-                if (obstaclePool[oType].Count > 0)
-                {
-                    obj = obstaclePool[oType].Dequeue();
-                }
-                else
-                {
-                    obstaclePool[oType].Enqueue(CreatePoolingObject(oType, (int)oType, this.transform));
-                    return GetPooledObject(oType);
-                }
-                break;
-            case CurrencyType:
-                CurrencyType ctype = (CurrencyType)(object)type;
-                if (currencyPool[ctype].Count > 0)
-                {
-                    obj = currencyPool[ctype].Dequeue();
-                }
-                else
-                {
-                    currencyPool[ctype].Enqueue(CreatePoolingObject(ctype, (int)ctype, this.transform));
-                    return GetPooledObject(ctype);
-                }
-                break;
-
-            default:
-                Debug.LogError("INVALID POOLING TYPE");
-                break;
+            obj = obstaclePool[type].Dequeue();
         }
-
+        else
+        {
+            obstaclePool[type].Enqueue(CreateObstacle((int)type, this.transform));
+            return GetPooledObject(type);
+        }
         return obj;
     }
 
-    public void ReturnPooledObject<T>(GameObject uselessObj, T type) where T:System.Enum
+    public void ReturnPooledObject(GameObject uselessObj, ObstacleType type)
     {
-        switch(type)
-        {
-            case ObstacleType:
-                obstaclePool[(ObstacleType)(object)type].Enqueue(uselessObj);
-                break;
-            case CurrencyType:
-                currencyPool[(CurrencyType)(object)type].Enqueue(uselessObj);
-                break;
-        }
-        
+        obstaclePool[type].Enqueue(uselessObj);
         uselessObj.SetActive(false);
     }
 
@@ -89,47 +40,22 @@ public class PoolingManager : Singleton<PoolingManager>
             InitializePool();
     }
 
-    #region PRIVATE 함수 ########################################################
     private void InitializePool()
     {
         for (int i = 0; i < obstaclePrefabs.Length; i++)
         {
             obstaclePool[(ObstacleType)i] = new Queue<GameObject>();
-            for (int j = 0; j < poolingCounts[0]; j++)
+            for (int j = 0; j < poolingCount; j++)
             {
-                obstaclePool[(ObstacleType)i].Enqueue(CreatePoolingObject((ObstacleType)i, i, this.transform));
-            }
-        }
-
-        for(int i = 0; i < currencyPrefabs.Length; i++)
-        {
-            currencyPool[(CurrencyType)i] = new Queue<GameObject>();
-            for (int j = 0; j < poolingCounts[1]; j++)
-            {
-                currencyPool[(CurrencyType)i].Enqueue(CreatePoolingObject((CurrencyType)i, i, this.transform));
+                obstaclePool[(ObstacleType)i].Enqueue(CreateObstacle(i, this.transform));
             }
         }
     }
 
-    private GameObject CreatePoolingObject<T>(T type, int index, Transform parent)
+    private GameObject CreateObstacle(int index, Transform parent)
     {
-        GameObject obj;
-        switch (type)
-        {
-            case ObstacleType:
-                obj = Instantiate(obstaclePrefabs[index], parent);
-                break;
-            case CurrencyType:
-                obj = Instantiate(currencyPrefabs[index], parent);
-                break;
-            default:
-                obj = null;
-                Debug.LogError("NO VALID PREFAB FOUND. LOOK INSPECTOR.");
-                break;
-        }
-        
-        obj.SetActive(false);
-        return obj;
+        GameObject obstacle = Instantiate(obstaclePrefabs[index], parent);
+        obstacle.SetActive(false);
+        return obstacle;
     }
-    #endregion
 }

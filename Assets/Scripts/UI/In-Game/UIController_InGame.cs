@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-using System.Text;
 
 public class UIController_InGame : MonoBehaviour
 {
