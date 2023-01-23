@@ -8,6 +8,11 @@ namespace Define
         Slide,
     }
 
+    public enum CurrencyType
+    {
+        bronze,
+    }
+
     public enum SceneIndex
     {
         Title,

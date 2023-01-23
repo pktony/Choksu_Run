@@ -8,18 +8,21 @@ public class ObstacleSpawner : MonoBehaviour
     PoolingManager poolManager;
     private LevelDesign levelDesign;
 
-    private int[] levels;   // Copy of Level Design levelString
+    private char[] levels;   // Copy of Level Design levelString
     private int cursor = 0;
 
-    private int obstacleCount;
+    /// <summary>
+    /// 장애물 종류
+    /// </summary>
+    private List<char> obstacleChars;
 
     private const float DEFAULT_OBSTACLE_TIME = 1.5f;
+    private const float DEFAULT_COIN_TIME = 0.2f;
 
     private void Awake()
     {
         levelDesign = GetComponent<LevelDesign>();
-        levels = levelDesign.GetLevels().ToArray();
-        obstacleCount = levelDesign.LevelCount;
+        levels = levelDesign.GetLevels(out obstacleChars).ToArray();
     }
 
     private void Start()
@@ -34,15 +37,24 @@ public class ObstacleSpawner : MonoBehaviour
         GameObject obj = null;
         while (cursor < levels.Length)
         {
-            if (levels[cursor] < obstacleCount)
+            if (obstacleChars.Contains(levels[cursor]))
             {
-                obj = poolManager.GetPooledObject((ObstacleType)levels[cursor]);
-                time = levelDesign.GetTime((ObstacleType)levels[cursor]);
-                obj.SetActive(true);
+                if (levels[cursor] - '0' < 10)
+                {// 장애물
+                    obj = poolManager.GetPooledObject<ObstacleType>((ObstacleType)levels[cursor] - '0');
+                    time = levelDesign.GetTime((ObstacleType)levels[cursor] - '0');
+                    obj.SetActive(true);
+                }
+                else
+                {// 코인
+                    obj = poolManager.GetPooledObject((CurrencyType)(levels[cursor] - 'a'));
+                    time = DEFAULT_COIN_TIME;
+                    obj.SetActive(true);
+                }
             }
             else
-            {
-                obj = poolManager.GetPooledObject(ObstacleType.SingleJump);
+            {// 예외 처리
+                obj = poolManager.GetPooledObject<ObstacleType>(ObstacleType.SingleJump);
                 time = DEFAULT_OBSTACLE_TIME;
                 obj.SetActive(true);
             }

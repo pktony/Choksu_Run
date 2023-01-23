@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Obstacle : Platforms //장애물 객체의 행동
 {
+    [SerializeField]
+    private Define.ObstacleType type;
+
+    public Define.ObstacleType ObstacleType => type;
+
     protected override void ReturnPool()
     {
         poolManager.ReturnPooledObject(this.gameObject, type);

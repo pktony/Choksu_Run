@@ -10,11 +10,6 @@ public abstract class Platforms : MonoBehaviour
     protected float speed = 0f;
     private Vector2 startPostion;
 
-    [SerializeField]
-    protected Define.ObstacleType type;
-
-    public Define.ObstacleType ObstacleType => type;
-
     private void Awake()
     {
         startPostion = transform.position;
