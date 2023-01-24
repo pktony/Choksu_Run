@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8997627308996992903}
   - component: {fileID: 2181122810290727984}
   - component: {fileID: 1714557807068677049}
+  - component: {fileID: 8203972542963928711}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -91,8 +92,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterVolumeSFX: 1
   masterVolumeBGM: 1
-  BGMClip: []
-  audioClip: []
+  BGMClips: []
+  SFXClips: []
 --- !u!114 &2181122810290727984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,3 +118,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05170f19ef1a44955a2d1ecc7205fb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8203972542963928711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858014448847946066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e90171da0e374936b04a57347727185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefabs:
+  - {fileID: 3335354574895244989, guid: f695363f5c10c4101a6efdb5b0a07acf, type: 3}
+  - {fileID: 3557305956497659762, guid: 2b36264c3f58049aa90aed17d2f2f6b5, type: 3}
+  currencyPrefabs:
+  - {fileID: 1405409376389303409, guid: 0faeaf84b22af4e20ba4c8f883ca6306, type: 3}
+  poolingCounts: 0200000002000000

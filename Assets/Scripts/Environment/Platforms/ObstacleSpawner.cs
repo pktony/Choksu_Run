@@ -19,6 +19,12 @@ public class ObstacleSpawner : MonoBehaviour
     private const float DEFAULT_OBSTACLE_TIME = 1.5f;
     private const float DEFAULT_COIN_TIME = 0.2f;
 
+    [Header("Spawn Position Limit")]
+    [SerializeField]
+    private float maxHeight;
+    [SerializeField]
+    private float minHeight;
+
     private void Awake()
     {
         levelDesign = GetComponent<LevelDesign>();
@@ -27,7 +33,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void Start()
     {
-        poolManager = PoolingManager.Inst;
+        poolManager = GameManager.Inst.PoolManager;
         StartCoroutine(SpawnObstacle());
     }
 
@@ -41,23 +47,22 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 if (levels[cursor] - '0' < 10)
                 {// 장애물
-                    obj = poolManager.GetPooledObject<ObstacleType>((ObstacleType)levels[cursor] - '0');
+                    obj = poolManager.GetPooledObject((ObstacleType)levels[cursor] - '0');
                     time = levelDesign.GetTime((ObstacleType)levels[cursor] - '0');
-                    obj.SetActive(true);
                 }
                 else
                 {// 코인
                     obj = poolManager.GetPooledObject((CurrencyType)(levels[cursor] - 'a'));
+                    obj.transform.position += maxHeight * Vector3.up;
                     time = DEFAULT_COIN_TIME;
-                    obj.SetActive(true);
                 }
             }
             else
             {// 예외 처리
-                obj = poolManager.GetPooledObject<ObstacleType>(ObstacleType.SingleJump);
+                obj = poolManager.GetPooledObject(ObstacleType.SingleJump);
                 time = DEFAULT_OBSTACLE_TIME;
-                obj.SetActive(true);
             }
+            obj.SetActive(true);
 
             cursor++;
             yield return new WaitForSeconds(time);

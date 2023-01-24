@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     public UIManager uiManager;
     private SaveManager saves;
     private ScoreManager score;
+    private PoolingManager poolManager;
 
     [Header("Flags")]
     private bool isGameOver = false;
@@ -24,6 +25,7 @@ public class GameManager : Singleton<GameManager>
 
     #region PROPERTY ##########################################################
     public ScoreManager Score => score;
+    public PoolingManager PoolManager => poolManager;
     public int Gold
     {
         get => gold;
@@ -40,7 +42,8 @@ public class GameManager : Singleton<GameManager>
         set
         {
             isGameOver = value;
-            GameOver();
+            if(isGameOver)
+                GameOver();
         }
     }
     #endregion
@@ -48,7 +51,9 @@ public class GameManager : Singleton<GameManager>
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         score = GetComponent<ScoreManager>();
-        saves = GetComponent<SaveManager>();   
+        saves = GetComponent<SaveManager>();
+        poolManager = GetComponent<PoolingManager>();
+        poolManager.InitializePool();
     }
 
     protected override void Awake()

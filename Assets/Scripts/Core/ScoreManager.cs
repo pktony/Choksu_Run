@@ -6,11 +6,13 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     private float score;
+    private int inGameCoin;
 
     [SerializeField]
     private float scoreSpeed;
     
     public Action<float> onScoreChange;
+    public Action<int> onCoinChange;
 
     public float Score
     {
@@ -22,9 +24,21 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public int InGameCoin
+    {
+        get => inGameCoin;
+        set
+        {
+            inGameCoin = value;
+             onCoinChange?.Invoke(inGameCoin);
+        }
+
+    }
+
     private void Start()
     {
         Score = 0;
+        InGameCoin = 0;
     }
 
     private void Update()

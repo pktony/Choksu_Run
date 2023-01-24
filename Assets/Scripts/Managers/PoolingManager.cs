@@ -4,7 +4,7 @@ using Define;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PoolingManager : Singleton<PoolingManager>
+public class PoolingManager : MonoBehaviour
 {
     private Dictionary<ObstacleType, Queue<GameObject>> obstaclePool = new();
     private Dictionary<CurrencyType, Queue<GameObject>> currencyPool = new();
@@ -19,6 +19,34 @@ public class PoolingManager : Singleton<PoolingManager>
     [Tooltip("0 : obstcle  1 : currency")]
     [SerializeField]
     private int[] poolingCounts;
+
+
+    /// <summary>
+    /// Pool 초기화
+    /// </summary>
+    public void InitializePool()
+    {
+        if (obstaclePool.Count > 1 || currencyPool.Count > 1)
+            return;
+
+        for (int i = 0; i < obstaclePrefabs.Length; i++)
+        {
+            obstaclePool[(ObstacleType)i] = new Queue<GameObject>();
+            for (int j = 0; j < poolingCounts[0]; j++)
+            {
+                obstaclePool[(ObstacleType)i].Enqueue(CreatePoolingObject((ObstacleType)i, i, this.transform));
+            }
+        }
+
+        for (int i = 0; i < currencyPrefabs.Length; i++)
+        {
+            currencyPool[(CurrencyType)i] = new Queue<GameObject>();
+            for (int j = 0; j < poolingCounts[1]; j++)
+            {
+                currencyPool[(CurrencyType)i].Enqueue(CreatePoolingObject((CurrencyType)i, i, this.transform));
+            }
+        }
+    }
 
 
     /// <summary>
@@ -83,34 +111,7 @@ public class PoolingManager : Singleton<PoolingManager>
         uselessObj.SetActive(false);
     }
 
-    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if(obstaclePool.Count < 1)
-            InitializePool();
-    }
-
     #region PRIVATE 함수 ########################################################
-    private void InitializePool()
-    {
-        for (int i = 0; i < obstaclePrefabs.Length; i++)
-        {
-            obstaclePool[(ObstacleType)i] = new Queue<GameObject>();
-            for (int j = 0; j < poolingCounts[0]; j++)
-            {
-                obstaclePool[(ObstacleType)i].Enqueue(CreatePoolingObject((ObstacleType)i, i, this.transform));
-            }
-        }
-
-        for(int i = 0; i < currencyPrefabs.Length; i++)
-        {
-            currencyPool[(CurrencyType)i] = new Queue<GameObject>();
-            for (int j = 0; j < poolingCounts[1]; j++)
-            {
-                currencyPool[(CurrencyType)i].Enqueue(CreatePoolingObject((CurrencyType)i, i, this.transform));
-            }
-        }
-    }
-
     private GameObject CreatePoolingObject<T>(T type, int index, Transform parent)
     {
         GameObject obj;

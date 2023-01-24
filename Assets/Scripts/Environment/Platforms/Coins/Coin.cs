@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Define;
 using UnityEngine;
 
-public class Coin : Platforms
+public class Coin : Platforms, ICoin
 {
     [SerializeField]
     protected Define.CurrencyType type;
+    [SerializeField]
+    private int worth = 1;
 
-    public Define.CurrencyType CurrencyType => type;
+    public CurrencyType Type => type;
+
+    public int Worth => worth;
 
     protected override void MovePlatform()
     {
@@ -21,19 +26,19 @@ public class Coin : Platforms
 
     protected override void ReturnPool()
     {
-        throw new System.NotImplementedException();
+        poolManager.ReturnPooledObject(this.gameObject, type);
     }
 
     protected override bool TouchAction()
     {
-        poolManager.ReturnPooledObject(this.gameObject, type);
+        ReturnPool();
 
         return true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if(collision.CompareTag("ItemCollector"))
         {
             TouchAction();
         }

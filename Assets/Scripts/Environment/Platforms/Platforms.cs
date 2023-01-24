@@ -17,7 +17,7 @@ public abstract class Platforms : MonoBehaviour
 
     private void Start()
     {
-        poolManager = PoolingManager.Inst;
+        poolManager = GameManager.Inst.PoolManager;
     }
 
     private void OnDisable()
