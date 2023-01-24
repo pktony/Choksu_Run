@@ -53,8 +53,8 @@ public class ObstacleSpawner : MonoBehaviour
                 else
                 {// 코인
                     obj = poolManager.GetPooledObject((CurrencyType)(levels[cursor] - 'a'));
-                    obj.transform.position += maxHeight * Vector3.up;
-                    time = DEFAULT_COIN_TIME;
+                    //obj.transform.position += maxHeight * Vector3.up;
+                    time = levelDesign.GetTime((CurrencyType)(levels[cursor] - 'a'));
                 }
             }
             else

@@ -4,6 +4,6 @@ using UnityEngine;
 [System.Serializable]
 public class ObstacleInfos
 {
-    public float obstacleTime;
     public Define.ObstacleType obstacleTypes;
+    public float obstacleTime;
 }

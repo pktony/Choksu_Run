@@ -11,6 +11,7 @@ namespace Define
     public enum CurrencyType
     {
         bronze,
+        group_DoubleJump,
     }
 
     public enum SceneIndex

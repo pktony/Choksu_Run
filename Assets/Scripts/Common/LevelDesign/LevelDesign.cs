@@ -5,9 +5,10 @@ using UnityEngine;
 public class LevelDesign : MonoBehaviour
 {
     public ObstacleInfos[] obstacleInfos;
+    public CurrencyInfos[] currencyInfos;
 
     [Header("Level Design")]
-    [Tooltip("0 :  1 :  c : coin")]
+    [Tooltip("Number : Obstacle , Alphabet : coin")]
     [SerializeField]
     private string levelString;
 
@@ -19,6 +20,11 @@ public class LevelDesign : MonoBehaviour
     public float GetTime(Define.ObstacleType type)
     {
         return obstacleInfos[(int)type].obstacleTime;
+    }
+
+    public float GetTime(Define.CurrencyType type)
+    {
+        return currencyInfos[(int)type].coinTime;
     }
 
     /// <summary>
@@ -34,14 +40,7 @@ public class LevelDesign : MonoBehaviour
 
         for (int i = 0; i < levelString.Length; i++)
         {
-            if (levelString[i] == 'c')
-            {
-                levels.Add(levelString[i]);
-            }
-            else
-            {
-                levels.Add(levelString[i]);
-            }
+            levels.Add(levelString[i]);
 
             if (!obstacleChars.Contains(levelString[i]))
                 obstacleChars.Add(levelString[i]);

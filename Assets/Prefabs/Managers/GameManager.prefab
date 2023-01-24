@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2181122810290727984}
   - component: {fileID: 1714557807068677049}
   - component: {fileID: 8203972542963928711}
+  - component: {fileID: 559927081}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -135,4 +136,17 @@ MonoBehaviour:
   - {fileID: 3557305956497659762, guid: 2b36264c3f58049aa90aed17d2f2f6b5, type: 3}
   currencyPrefabs:
   - {fileID: 1405409376389303409, guid: 0faeaf84b22af4e20ba4c8f883ca6306, type: 3}
+  - {fileID: 3454678023126507381, guid: 517ad41bef7f249fabac7374e7e00f9d, type: 3}
   poolingCounts: 0200000002000000
+--- !u!114 &559927081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858014448847946066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e737d6331329443398c16d3074feeb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

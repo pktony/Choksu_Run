@@ -39,7 +39,6 @@ public class PlayerControl_Chok : PlayerControl
             {
                 chokLine.DisableChok();
                 mode = ControlMode.normal;
-
                 //currentSpeed = transform.position.x <= defaultPosition.x ?
                 //    returningSpeed : -returningSpeed;
 

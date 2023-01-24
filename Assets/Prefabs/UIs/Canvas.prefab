@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 1026958905820379939}
   - component: {fileID: 1026958905820379936}
   - component: {fileID: 1026958905820379937}
-  - component: {fileID: 1026958905820379938}
+  - component: {fileID: 5343605241590787694}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -623,7 +623,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1026958905820379938
+--- !u!114 &5343605241590787694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1026958905820379868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00b3f803d744422cb9558c0cde990ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d56ec28855d444c88063b7b9d0428a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   popupWindow: {fileID: 1026958907312114737}
@@ -1153,6 +1153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1026958907338061746}
+  coinText: {fileID: 3926899316349901934}
 --- !u!1 &1026958906455406946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,7 +1997,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

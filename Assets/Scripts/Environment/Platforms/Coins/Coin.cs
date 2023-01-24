@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Coin : Platforms, ICoin
 {
+    [Header("Coin 정보")]
     [SerializeField]
     protected Define.CurrencyType type;
     [SerializeField]
@@ -18,7 +19,7 @@ public class Coin : Platforms, ICoin
     {
         transform.Translate(speed * Time.deltaTime * Vector2.left);
 
-        if (transform.position.x < -18.0f)
+        if (transform.position.x < leftEnd)
         {
             ReturnPool();
         }
@@ -31,7 +32,10 @@ public class Coin : Platforms, ICoin
 
     protected override bool TouchAction()
     {
-        ReturnPool();
+        if (isGroupedChild)
+            gameObject.SetActive(false);
+        else
+            ReturnPool();
 
         return true;
     }
