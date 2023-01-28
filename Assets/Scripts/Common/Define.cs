@@ -30,9 +30,11 @@ namespace Define
     }
 
     #region SOUND ##############################################################
+    public enum PlayType { Direct, FadeIn }
+
     public enum SFX
     {
-        Jump, Slide, GetCoin, GameOver
+        Click, Complete, Dead, Jump, Slide, GetCoin, GameOver
     }
 
     public enum BGM

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Define;
 
 public class GameStartButton : MonoBehaviour
 {
@@ -20,5 +21,6 @@ public class GameStartButton : MonoBehaviour
         //씬 로드
         Debug.Log("Game Start");
         SceneLoadManager.Inst.LoadScene_Ads(Define.SceneIndex.In_Game, Define.AdType.Interstitial);
+        GameManager.Inst.sound.PlayBGM(BGM.GameScene, (int)PlayType.FadeIn);
     }
 }

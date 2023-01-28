@@ -6,8 +6,7 @@ using Define;
 
 public class SoundManager : MonoBehaviour
 {
-    public enum PlayType { Direct, FadeIn }
-
+  
     public float masterVolumeSFX = 1f;
     public float masterVolumeBGM = 1f;
 

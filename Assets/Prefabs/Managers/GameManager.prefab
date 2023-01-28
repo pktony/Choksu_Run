@@ -93,8 +93,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterVolumeSFX: 1
   masterVolumeBGM: 1
-  BGMClips: []
-  SFXClips: []
+  BGMClips:
+  - {fileID: 8300000, guid: 8533ffff894604c319ad77968235b530, type: 3}
+  - {fileID: 8300000, guid: 80f3f938cc8b24191961d1507363ec4d, type: 3}
+  SFXClips:
+  - {fileID: 8300000, guid: a8ae7b990dfb3804c92efe15067cce4a, type: 3}
+  - {fileID: 8300000, guid: 9171fe4cb0bce406496b4b29ddb18d11, type: 3}
+  - {fileID: 8300000, guid: 80a84681642224d84bd537ed007fa209, type: 3}
+  - {fileID: 8300000, guid: 9bded897825de4186b25d20e1e4812df, type: 3}
+  - {fileID: 8300000, guid: 2fdafdb81e67ba243937e6b9a25c5aba, type: 3}
 --- !u!114 &2181122810290727984
 MonoBehaviour:
   m_ObjectHideFlags: 0
