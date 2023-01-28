@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     private SaveManager saves;
     private ScoreManager score;
     private PoolingManager poolManager;
+    private CamManager camManager;
 
     [Header("Flags")]
     private bool isGameOver = false;
@@ -26,6 +27,7 @@ public class GameManager : Singleton<GameManager>
     #region PROPERTY ##########################################################
     public ScoreManager Score => score;
     public PoolingManager PoolManager => poolManager;
+    public CamManager CameraManager => camManager;
     public int Gold
     {
         get => gold;
@@ -53,6 +55,7 @@ public class GameManager : Singleton<GameManager>
         score = GetComponent<ScoreManager>();
         saves = GetComponent<SaveManager>();
         poolManager = GetComponent<PoolingManager>();
+        camManager = GetComponent<CamManager>();
         poolManager.InitializePool();
     }
 
