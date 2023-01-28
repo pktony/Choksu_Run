@@ -367,36 +367,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4863333412055873374, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
-      propertyPath: maxHeight
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
-      propertyPath: levelString
-      value: bb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
-      propertyPath: currencyInfos.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
-      propertyPath: currencyInfos.Array.data[0].coinName
-      value: Bronze_Single
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
-      propertyPath: currencyInfos.Array.data[0].coinTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
-      propertyPath: currencyInfos.Array.data[1].coinName
-      value: GroupA
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
-      propertyPath: currencyInfos.Array.data[1].coinTime
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2161363628386428296, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
 --- !u!1001 &645430684
 PrefabInstance:
@@ -455,17 +426,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
---- !u!114 &1051608957 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3926899316349901934, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-  m_PrefabInstance: {fileID: 1026958906022543395}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1026958906022543395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -473,42 +433,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906022543397, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: coinText
-      value: 
-      objectReference: {fileID: 1051608957}
-    - target: {fileID: 1026958906112175729, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906112175729, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906112175729, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906112175729, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1026958906300817333, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -597,26 +521,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1026958906857823469, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906857823469, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906857823469, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906857823469, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926899316349901934, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
 --- !u!1001 &1917459838028156638
@@ -626,10 +530,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -3665577272703594567, guid: 4e08f2186c3f9400eb42d50ccd3dea4a, type: 3}
-      propertyPath: isShakeFor1sec
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1917459838389630558, guid: 4e08f2186c3f9400eb42d50ccd3dea4a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -687,10 +587,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 167992759, guid: 04e683f8fdc3547f7baa7936342a16e2, type: 3}
-      propertyPath: m_TagString
-      value: ItemCollector
-      objectReference: {fileID: 0}
     - target: {fileID: 8469529089303094032, guid: 04e683f8fdc3547f7baa7936342a16e2, type: 3}
       propertyPath: m_Name
       value: Player_Choksu

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Damping 효과 추가 구현 ?
+/// </summary>
 public class CamShaker : MonoBehaviour
 {
     static Camera mainCam;
@@ -23,7 +26,7 @@ public class CamShaker : MonoBehaviour
         mainCam = GetComponent<Camera>();
     }
 
-    public static void ShakeCamera(float _shakeTime, float _shakePower)
+    public static void ShakeCamera(float _shakePower, float _shakeTime)
     {
         if (!isShake)
         {
@@ -34,29 +37,29 @@ public class CamShaker : MonoBehaviour
         }
     }
 
+    //public static void DampCamera(float )
+
     private void Update()
     {
 #if UNITY_EDITOR
         if (isShakeFor1sec && !isShake)
             ShakeCamera(1f, DEFAULT_SHAKE_POWER);
 #endif
-        if (isShake)
+        if (!isShake) return;
+
+        timer += Time.deltaTime;
+        if (timer < shakeTime)
         {
-            timer += Time.deltaTime;
-            if (timer < shakeTime)
-            {
-                mainCam.transform.position = (Vector3)Random.insideUnitCircle * shakePower +
-                    initialPosition.z * Vector3.forward;
-            }
-            else
-            {
-                mainCam.transform.position = initialPosition;
-                timer = 0f;
-                isShake = false;
+            mainCam.transform.position = initialPosition + (Vector3)Random.insideUnitCircle * shakePower;
+        }
+        else
+        {
+            mainCam.transform.position = initialPosition;
+            timer = 0f;
+            isShake = false;
 #if UNITY_EDITOR
-                isShakeFor1sec = false;
+            isShakeFor1sec = false;
 #endif
-            }
         }
     }
 
