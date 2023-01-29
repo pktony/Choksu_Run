@@ -54,3 +54,6 @@ TagManager:
   - name: Player
     uniqueID: 3602718989
     locked: 0
+  - name: Coin
+    uniqueID: 1613915203
+    locked: 0

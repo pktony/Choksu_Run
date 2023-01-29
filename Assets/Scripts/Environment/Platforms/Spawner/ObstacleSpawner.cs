@@ -68,24 +68,4 @@ public class ObstacleSpawner : MonoBehaviour
             yield return new WaitForSeconds(time);
         }
     }
-
-    //private int DeactiveObstacle() //겹침방지
-    //{
-    //    List<int> num = new List<int>();
-
-    //    for (int i = 0; i < obstaclePool.Count; i++)
-    //    {
-    //        if (!obstaclePool[i].activeInHierarchy)
-    //        {
-    //            num.Add(i);
-    //        }
-    //    }
-    //    int order = 0;
-    //    if(num.Count > 0)
-    //    {
-    //        order = num[Random.Range(0, num.Count)];
-    //    }
-
-    //    return order;
-    //}
 }

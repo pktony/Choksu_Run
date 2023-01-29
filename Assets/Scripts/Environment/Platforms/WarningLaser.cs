@@ -67,6 +67,8 @@ public class WarningLaser : MonoBehaviour
     private IEnumerator SpawnFlyingObjects()
     {
         int spawnCount = 0;
+
+
         while(spawnCount < spawnNum)
         {
             GameObject obj = GameManager.Inst.PoolManager.GetPooledObject(Define.ObstacleType.FlyingObject);
@@ -74,6 +76,9 @@ public class WarningLaser : MonoBehaviour
             spawnCount++;
             yield return new WaitForSeconds(spawnDelay);
         }
+
+        yield return new WaitUntil(() => !isWarning);
+        gameObject.SetActive(false);
     }
 
 }
