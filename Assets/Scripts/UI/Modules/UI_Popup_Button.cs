@@ -8,7 +8,7 @@ namespace UIs
         [SerializeField]
         private UI_Popup popupWindow;
 
-        public void OnPointerClick(PointerEventData eventData)
+        public virtual void OnPointerClick(PointerEventData eventData)
         {
             popupWindow.OpenCloseWindow();
         }

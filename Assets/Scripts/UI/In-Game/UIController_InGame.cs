@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
-using System.Text;
 
 public class UIController_InGame : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI coinText;
 
+    public CanvasGroup gameoverGroup;
+
     private void Start()
     {
         GameManager.Inst.Score.onScoreChange += UpateScore;
         GameManager.Inst.Score.onCoinChange += UpdateCoin;
+    }
+
+    public void ShowGameoverUIs()
+    {
+        gameoverGroup.alpha = 1.0f;
+    }
+
+    public void HideGameoverUIs()
+    {
+        gameoverGroup.alpha = 0f;
     }
 
     private void UpateScore(float score)
@@ -26,4 +36,5 @@ public class UIController_InGame : MonoBehaviour
     {
         coinText.text = coin.ToString();
     }
+
 }

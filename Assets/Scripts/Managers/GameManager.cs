@@ -14,14 +14,16 @@ public class GameManager : Singleton<GameManager>
     private PoolingManager poolManager;
     private CamManager camManager;
 
-    [Header("Flags")]
     private bool isGameOver = false;
+    private bool isPause = false;
 
     private PlayerDatas playerDatas;
     private int gold;
 
     #region DELEGATE ##########################################################
     public Action<int, int> onGoldChange; // Current Gold, Goal Gold
+    public Action onPause;
+    public Action onResume;
     #endregion
 
     #region PROPERTY ##########################################################
@@ -46,6 +48,20 @@ public class GameManager : Singleton<GameManager>
             isGameOver = value;
             if(isGameOver)
                 GameOver();
+        }
+    }
+
+    public bool IsPause
+    {
+        get => isPause;
+        set
+        {
+            isPause = value;
+            Time.timeScale = isPause ? 0.0f : 1.0f;
+            if (isPause)
+                onPause?.Invoke();
+            else
+                onResume?.Invoke();
         }
     }
     #endregion
@@ -73,6 +89,6 @@ public class GameManager : Singleton<GameManager>
 
     private void GameOver()
     {
-
+        uiManager.ShowGameoverUI();
     }
 }

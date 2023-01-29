@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+/// <summary>
+/// 작업중
+/// 마우스 위치가 아닌 터치 위치를 가져와야함
+/// </summary>
 public class PlayerControl_Chok : PlayerControl
 {
     private enum ControlMode { normal, aim, chok };
@@ -39,6 +43,7 @@ public class PlayerControl_Chok : PlayerControl
             {
                 chokLine.DisableChok();
                 mode = ControlMode.normal;
+                rigid.gravityScale = gravityScale;
                 //currentSpeed = transform.position.x <= defaultPosition.x ?
                 //    returningSpeed : -returningSpeed;
 
@@ -113,7 +118,7 @@ public class PlayerControl_Chok : PlayerControl
     private void DetachChok()
     {
         chokLine.DisableChok();
-        rigid.gravityScale = 2.0f;
+        rigid.gravityScale = gravityScale;
         mode = ControlMode.normal;
     }
 
@@ -128,7 +133,7 @@ public class PlayerControl_Chok : PlayerControl
     {
         while (mode == ControlMode.aim)
         {
-            Vector2 mousePos = Mouse.current.position.ReadValue();
+            Vector2 mousePos = Touchscreen.current.position.ReadValue();
             Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
             worldPos.x = Mathf.Max(worldPos.x, transform.position.x);
             chokDirection = worldPos - (Vector2)aimLine.transform.position;
