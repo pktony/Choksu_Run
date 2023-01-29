@@ -64,6 +64,10 @@ MonoBehaviour:
     obstacleTime: 1
   - obstacleTypes: 1
     obstacleTime: 2
+  - obstacleTypes: 2
+    obstacleTime: 2
+  - obstacleTypes: 3
+    obstacleTime: 5
   currencyInfos:
   - coinName: Bronze_Single
     coinTime: 1
@@ -71,4 +75,4 @@ MonoBehaviour:
   - coinName: GroupA
     coinTime: 5
     type: 0
-  levelString: bb
+  levelString: 12ab132

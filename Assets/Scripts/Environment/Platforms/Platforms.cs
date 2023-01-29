@@ -15,7 +15,7 @@ public abstract class Platforms : MonoBehaviour
     private Vector2 startPostion;
     protected float leftEnd;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         startPostion = transform.position;
         CalculateGroupSize();

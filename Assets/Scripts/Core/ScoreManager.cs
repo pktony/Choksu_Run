@@ -43,7 +43,8 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if(!GameManager.Inst.IsGameOver)
-            Score += scoreSpeed * Time.deltaTime;
+        if (GameManager.Inst.IsGameOver) return;
+
+        Score += scoreSpeed * Time.deltaTime;
     }
 }

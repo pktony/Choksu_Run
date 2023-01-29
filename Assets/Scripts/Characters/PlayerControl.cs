@@ -21,6 +21,8 @@ public class PlayerControl : MonoBehaviour
     private float jumpForce;
     [SerializeField]
     private int maxJumpNumber = 3;
+    [SerializeField]
+    protected float gravityScale = 2.0f;
 
     [Header("Die")]
     [SerializeField]
@@ -50,14 +52,15 @@ public class PlayerControl : MonoBehaviour
         anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        GameManager.Inst.onPause += DisableAllControl;
+        GameManager.Inst.onResume += EnableAllControl;
+    }
+
     private void OnEnable()
     {
-        inputActions.Player.Enable();
-        inputActions.Player.Jump.performed += OnJump;
-        inputActions.Player.Duck.performed += OnDuck;
-        inputActions.Player.Duck.canceled += OnDuck;
-        inputActions.Player.Skill.performed += OnSkill;
-        inputActions.Player.Skill.canceled += OnSkill;
+        EnableAllControl();
     }
 
     private void OnDisable()
@@ -135,11 +138,21 @@ public class PlayerControl : MonoBehaviour
         inputActions.Player.Disable();
     }
 
+    private void EnableAllControl()
+    {
+        inputActions.Player.Enable();
+        inputActions.Player.Jump.performed += OnJump;
+        inputActions.Player.Duck.performed += OnDuck;
+        inputActions.Player.Duck.canceled += OnDuck;
+        inputActions.Player.Skill.performed += OnSkill;
+        inputActions.Player.Skill.canceled += OnSkill;
+    }
+
     public void ExertForce(Vector2 direction)
     {
         DisableAllControl();
         rigid.freezeRotation = false;
-        rigid.AddForce((direction + Vector2.up) * dieForce, ForceMode2D.Impulse);
+        rigid.AddForce((direction + Vector2.up * 3.0f) * dieForce, ForceMode2D.Impulse);
         rigid.AddTorque(dieTorque, ForceMode2D.Impulse);
 
         anim.SetTrigger("onDie");
