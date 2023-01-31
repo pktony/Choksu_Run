@@ -99,6 +99,8 @@ MonoBehaviour:
   sound: {fileID: 8997627308996992903}
   resource: {fileID: 1714557807068677049}
   uiManager: {fileID: 2181122810290727984}
+  speed: 3
+  gravityScale: 30
 --- !u!114 &6858014448847946068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +191,8 @@ MonoBehaviour:
   - {fileID: 3557305956497659762, guid: 2b36264c3f58049aa90aed17d2f2f6b5, type: 3}
   - {fileID: 4839410351737391132, guid: 22541de7ba57247eea58aa57c0597b84, type: 3}
   - {fileID: 4113411462854456040, guid: 8a1629932719d421d94eea3303b1a61f, type: 3}
+  - {fileID: 8330699962393764651, guid: ad02aa7c5ad7e4324abb8cfaf6526866, type: 3}
+  - {fileID: 5886494540739690399, guid: 4ee7faa394a4d4738b674d56761cee52, type: 3}
   currencyPrefabs:
   - {fileID: 1405409376389303409, guid: 0faeaf84b22af4e20ba4c8f883ca6306, type: 3}
   - {fileID: 3454678023126507381, guid: 517ad41bef7f249fabac7374e7e00f9d, type: 3}

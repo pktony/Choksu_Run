@@ -65,6 +65,8 @@ public class ObstacleSpawner : MonoBehaviour
             obj.SetActive(true);
 
             cursor++;
+            if (levelDesign.isObstacleTest)
+                cursor %= levels.Length;
             yield return new WaitForSeconds(time);
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform_Group : Platforms
+public class Platform_Group : Platforms<Define.CurrencyType>
 {
     private float groupSize_X;
 
@@ -22,7 +22,8 @@ public class Platform_Group : Platforms
 
     protected override void MovePlatform()
     {
-        transform.Translate(speed * Time.deltaTime * Vector2.left);
+        speed = gameManager.speed;
+        transform.Translate(speed * Time.fixedDeltaTime * Vector2.left);
 
         if (transform.position.x < leftEnd - groupSize_X)
         {//전체 사이즈를 계산하는 방법을 찾아야 됨
@@ -30,9 +31,13 @@ public class Platform_Group : Platforms
         }
     }
 
+    protected override void EnablingAction()
+    {
+    }
+
     protected override void ReturnPool()
     {
-        poolManager.ReturnPooledObject(this.gameObject, Define.CurrencyType.group_DoubleJump);
+        poolManager.ReturnPooledObject(this.gameObject, type);
     }
 
     protected override bool TouchAction()

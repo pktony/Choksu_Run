@@ -18,11 +18,11 @@ public class UIManager : MonoBehaviour
     {
         switch(arg0.buildIndex)
         {
-            case (int)SceneBuildIndex.Title:
+            case (int)SceneIndex.Title:
                 titleController = FindObjectOfType<UIController_StartScene>();
                 break;
 
-            case (int)SceneBuildIndex.InGame:
+            case (int)SceneIndex.In_Game:
                 inGameController = FindObjectOfType<UIController_InGame>();
                 break;
             default:

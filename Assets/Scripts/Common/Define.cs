@@ -1,34 +1,31 @@
 namespace Define
 {
     #region SCENE #############################################################
-    public enum SceneBuildIndex : byte
+    public enum SceneIndex
     {
-        Title = 0,
-        InGame,
+        Title,
+        In_Game,
+        Loading,
     }
     #endregion
 
     #region GAMEPLAY ##########################################################
     public enum ObstacleType
     {
+        empty = 99999,
         SingleJump = 0,
         DoubleJump,
         Slide,
         WarningLaser,
         FlyingObject,
+        FallingObstacle,
+        FallingObstacle_Fall,
     }
 
     public enum CurrencyType
     {
         bronze,
         group_DoubleJump,
-    }
-
-    public enum SceneIndex
-    {
-        Title,
-        In_Game,
-        Loading,
     }
     #endregion
 
