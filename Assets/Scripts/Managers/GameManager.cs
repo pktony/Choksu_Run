@@ -20,8 +20,9 @@ public class GameManager : Singleton<GameManager>
     private PlayerDatas playerDatas;
     private int gold;
 
+    [Header("게임 속도")]
     public float speed = 3.0f;
-    public float gravityScale = 2.0f;
+    public float gravityScale = 10f;
 
     #region DELEGATE ##########################################################
     public Action<int, int> onGoldChange; // Current Gold, Goal Gold
@@ -93,5 +94,6 @@ public class GameManager : Singleton<GameManager>
     private void GameOver()
     {
         uiManager.ShowGameoverUI();
+        //this.speed = 0f;
     }
 }

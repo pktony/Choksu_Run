@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class Platforms<T> : MonoBehaviour
+public abstract class Platforms<T> : MonoBehaviour where T : System.Enum
 {
+    protected GameManager gameManager;
     protected PoolingManager poolManager;
     protected Rigidbody2D rigid;
 
@@ -34,8 +35,9 @@ public abstract class Platforms<T> : MonoBehaviour
 
     private void Start()
     {
-        poolManager = GameManager.Inst.PoolManager;
-        leftEnd = GameManager.Inst.CameraManager.GetLeftEnd();
+        gameManager = GameManager.Inst;
+        poolManager = gameManager.PoolManager;
+        leftEnd = gameManager.CameraManager.GetLeftEnd();
     }
 
     private void OnEnable()

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class LevelDesign : MonoBehaviour
 {
-    public ObstacleInfos[] obstacleInfos;
-    public CurrencyInfos[] currencyInfos;
-
     [Header("Level Design")]
+    [Tooltip("무한반복")]
+    public bool isObstacleTest = false;
     [Tooltip("Number : Obstacle , Alphabet : coin")]
     [SerializeField]
     private string levelString;
+
+
+    public ObstacleInfos[] obstacleInfos;
+    public CurrencyInfos[] currencyInfos;
 
     /// <summary>
     /// 장애물 간격 시간

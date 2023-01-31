@@ -15,6 +15,7 @@ public class Coin : Platforms<CurrencyType>, ICoin
 
     protected override void MovePlatform()
     {
+        speed = gameManager.speed;
         rigid.MovePosition(rigid.position + speed * Time.fixedDeltaTime * Vector2.left);
 
         if (transform.position.x < leftEnd)

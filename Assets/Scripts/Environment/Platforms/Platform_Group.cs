@@ -22,6 +22,7 @@ public class Platform_Group : Platforms<Define.CurrencyType>
 
     protected override void MovePlatform()
     {
+        speed = gameManager.speed;
         transform.Translate(speed * Time.fixedDeltaTime * Vector2.left);
 
         if (transform.position.x < leftEnd - groupSize_X)

@@ -18,6 +18,8 @@ namespace Define
         Slide,
         WarningLaser,
         FlyingObject,
+        FallingObstacle,
+        FallingObstacle_Fall,
     }
 
     public enum CurrencyType

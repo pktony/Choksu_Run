@@ -46,11 +46,12 @@ public class Obstacle_Vertical : Platforms<ObstacleType>
         throw new System.NotImplementedException();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground"))
         {
-            //rigid.Sleep();
+            rigid.bodyType = RigidbodyType2D.Kinematic;
+            rigid.Sleep();
         }
     }
 }
