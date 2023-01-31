@@ -20,6 +20,9 @@ public class GameManager : Singleton<GameManager>
     private PlayerDatas playerDatas;
     private int gold;
 
+    public float speed = 3.0f;
+    public float gravityScale = 2.0f;
+
     #region DELEGATE ##########################################################
     public Action<int, int> onGoldChange; // Current Gold, Goal Gold
     public Action onPause;

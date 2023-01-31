@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : Platforms //장애물 객체의 행동
+public class Obstacle : Platforms<Define.ObstacleType> //장애물 객체의 행동
 {
-    [SerializeField]
-    private Define.ObstacleType type;
-
-    public Define.ObstacleType ObstacleType => type;
+    protected override void EnablingAction()
+    {
+        
+    }
 
     protected override void ReturnPool()
     {
@@ -21,9 +21,10 @@ public class Obstacle : Platforms //장애물 객체의 행동
 
     protected override void MovePlatform()
     {
-        transform.Translate(speed * Time.deltaTime * Vector2.left);
+        speed = GameManager.Inst.speed;
+        rigid.MovePosition(rigid.position + speed * Time.fixedDeltaTime * Vector2.left);
 
-        if (transform.position.x < -18.0f)
+        if (transform.position.x < leftEnd)
         {
             ReturnPool();
         }

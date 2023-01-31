@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using Define;
 using UnityEngine;
 
-public class Coin : Platforms, ICoin
+public class Coin : Platforms<CurrencyType>, ICoin
 {
     [Header("Coin 정보")]
-    [SerializeField]
-    protected Define.CurrencyType type;
     [SerializeField]
     private int worth = 1;
 
@@ -17,12 +15,17 @@ public class Coin : Platforms, ICoin
 
     protected override void MovePlatform()
     {
-        transform.Translate(speed * Time.deltaTime * Vector2.left);
+        rigid.MovePosition(rigid.position + speed * Time.fixedDeltaTime * Vector2.left);
 
         if (transform.position.x < leftEnd)
         {
             ReturnPool();
         }
+    }
+
+    protected override void EnablingAction()
+    {
+        
     }
 
     protected override void ReturnPool()
