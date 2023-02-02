@@ -8,8 +8,8 @@ public class ScoreManager : MonoBehaviour
     private float score;
     private int inGameCoin;
 
-    [SerializeField]
     private float scoreSpeed;
+    private readonly float scoreMultiplier = 10f;
     
     public Action<float> onScoreChange;
     public Action<int> onCoinChange;
@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         if (GameManager.Inst.IsGameOver) return;
-
+        scoreSpeed = GameManager.Inst.speed * scoreMultiplier;
         Score += scoreSpeed * Time.deltaTime;
     }
 }

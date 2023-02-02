@@ -9,7 +9,7 @@ public class GroundScroller : MonoBehaviour
     private List<GameObject> grounds = new List<GameObject>();
     private GameObject ground;
 
-    [SerializeField]
+    //[SerializeField]
     private float speed;
 
     private float leftEnd;
@@ -53,6 +53,7 @@ public class GroundScroller : MonoBehaviour
 
         for (int i = 0; i < grounds.Count; i++)
         {
+            speed = GameManager.Inst.speed;
             grounds[i].transform.Translate(new Vector2(-1, 0) * Time.deltaTime * speed);
         }
     }

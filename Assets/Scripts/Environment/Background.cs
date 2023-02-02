@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Background : MonoBehaviour
 {
     public Transform[] backgrounds;
-    public float speed = 1f;
+    private float speed = 1f;
 
     private SpriteRenderer _renderer = null;
 
@@ -24,6 +24,7 @@ public class Background : MonoBehaviour
 
     private void Update()
     {
+        speed = GameManager.Inst.speed * 0.3f;
         for (int i = 0; i < backgrounds.Length; i++)
         {
             backgrounds[i].position += new Vector3(-speed, 0, 0) * Time.deltaTime;
