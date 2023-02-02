@@ -9,11 +9,16 @@ public class PoolingManager : MonoBehaviour
     private Dictionary<ObstacleType, Queue<GameObject>> obstaclePool = new();
     private Dictionary<CurrencyType, Queue<GameObject>> currencyPool = new();
 
+    private Queue<UIs.UI_PopupText> popupTexts = new();
+
     [SerializeField]
     private GameObject[] obstaclePrefabs;
 
     [SerializeField]
     private GameObject[] currencyPrefabs;
+
+    [SerializeField]
+    private GameObject[] uiPoolPrefabs;
 
     [Header("Pooling Count")]
     [Tooltip("0 : obstcle  1 : currency")]
@@ -45,6 +50,12 @@ public class PoolingManager : MonoBehaviour
             {
                 currencyPool[(CurrencyType)i].Enqueue(CreatePoolingObject((CurrencyType)i, i, this.transform));
             }
+        }
+
+        for (int i = 0; i < poolingCounts[2]; i++)
+        {
+            GameObject uiObj = CreatePoolingObject(UIPoolType.popupText, 0, this.transform);
+            popupTexts.Enqueue(uiObj.GetComponent<UIs.UI_PopupText>());
         }
     }
 
@@ -87,7 +98,6 @@ public class PoolingManager : MonoBehaviour
                     return GetPooledObject(ctype);
                 }
                 break;
-
             default:
                 Debug.LogError("INVALID POOLING TYPE");
                 break;
@@ -96,6 +106,21 @@ public class PoolingManager : MonoBehaviour
         return obj;
     }
 
+
+    public UIs.UI_PopupText GetPooledUIs(UIPoolType type)
+    {
+        UIs.UI_PopupText popupText;
+        if (popupTexts.Count > 0)
+        {
+            popupText = popupTexts.Dequeue();
+        }
+        else
+        {
+            GameObject uiObj = CreatePoolingObject(type, (int)type, this.transform);
+            return uiObj.GetComponent<UIs.UI_PopupText>();
+        }
+        return popupText;
+    }
     public void ReturnPooledObject<T>(GameObject uselessObj, T type) where T:System.Enum
     {
         switch(type)
@@ -111,6 +136,14 @@ public class PoolingManager : MonoBehaviour
         uselessObj.SetActive(false);
     }
 
+    //임시
+    // 풀링할 게 더 생기면 수정 필요
+    public void ReturnPopupText(UIs.UI_PopupText popupText)
+    {
+        popupTexts.Enqueue(popupText);
+        popupText.gameObject.SetActive(false);
+    }
+
     #region PRIVATE 함수 ########################################################
     private GameObject CreatePoolingObject<T>(T type, int index, Transform parent)
     {
@@ -122,6 +155,9 @@ public class PoolingManager : MonoBehaviour
                 break;
             case CurrencyType:
                 obj = Instantiate(currencyPrefabs[index], parent);
+                break;
+            case UIPoolType:
+                obj = Instantiate(uiPoolPrefabs[index], parent);
                 break;
             default:
                 obj = null;

@@ -38,6 +38,11 @@ namespace Define
         bronze,
         group_DoubleJump,
     }
+
+    public enum UIPoolType
+    {
+        popupText,
+    }
     #endregion
 
     public enum AdType

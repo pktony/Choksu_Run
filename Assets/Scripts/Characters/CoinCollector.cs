@@ -11,6 +11,9 @@ public class CoinCollector : MonoBehaviour
             if(collision.TryGetComponent(out ICoin coin))
             {
                 GameManager.Inst.Score.InGameCoin += coin.Worth;
+                UIs.UI_PopupText popupText = GameManager.Inst.PoolManager.GetPooledUIs(Define.UIPoolType.popupText);
+                popupText.ShowText(coin.Worth.ToString(), 0.5f,transform.position, Color.black, 10f);
+                popupText.gameObject.SetActive(true);
             }
         }
     }
