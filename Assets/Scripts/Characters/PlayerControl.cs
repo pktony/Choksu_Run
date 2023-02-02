@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class PlayerControl : MonoBehaviour
 {
     private PlayerInputActions inputActions;
-    private Transform model;
     private Animator anim;
     protected Rigidbody2D rigid;
 
@@ -48,8 +47,7 @@ public class PlayerControl : MonoBehaviour
     {
         inputActions = new();
         rigid = GetComponent<Rigidbody2D>();
-        model = transform.GetChild(0);
-        anim = transform.GetChild(0).GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Start()

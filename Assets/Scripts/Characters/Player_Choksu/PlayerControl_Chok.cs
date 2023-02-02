@@ -56,8 +56,8 @@ public class PlayerControl_Chok : PlayerControl
     protected override void Awake()
     {
         base.Awake();
-        aimLine = transform.GetChild(1).GetComponent<AimLine>();
-        chokLine = transform.GetChild(2).GetComponent<ChokLine>();
+        aimLine = GetComponentInChildren<AimLine>();
+        chokLine = GetComponentInChildren<ChokLine>();
         forceWaitSeconds = new WaitForSeconds(forceInterval);
 
         defaultPosition = transform.position;

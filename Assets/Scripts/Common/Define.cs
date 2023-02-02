@@ -6,8 +6,19 @@ namespace Define
         Title,
         In_Game,
         Loading,
+        Customize,
     }
     #endregion
+
+
+    public enum Characters
+    {
+        kenny_Blue,
+        Test1,
+        Test2,
+        Test3,
+        characterCount,
+    }
 
     #region GAMEPLAY ##########################################################
     public enum ObstacleType

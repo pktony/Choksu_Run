@@ -18,6 +18,7 @@ public class EditorPreview : Editor
         base.OnInspectorGUI();
 
         if (data == null) return;
+        if (data.icon == null) return;
         Texture2D texture = AssetPreview.GetAssetPreview(data.icon);
         GUILayout.Label("", GUILayout.Height(80), GUILayout.Width(80));
         GUI.DrawTexture(GUILayoutUtility.GetLastRect(), texture);

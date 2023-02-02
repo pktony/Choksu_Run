@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     private ScoreManager score;
     private PoolingManager poolManager;
     private CamManager camManager;
+    private CharacterManager characterManager;
 
     private bool isGameOver = false;
     private bool isPause = false;
@@ -34,6 +35,7 @@ public class GameManager : Singleton<GameManager>
     public ScoreManager Score => score;
     public PoolingManager PoolManager => poolManager;
     public CamManager CameraManager => camManager;
+    public CharacterManager CharManager => characterManager;
     public int Gold
     {
         get => gold;
@@ -77,6 +79,8 @@ public class GameManager : Singleton<GameManager>
         poolManager = GetComponent<PoolingManager>();
         camManager = GetComponent<CamManager>();
         poolManager.InitializePool();
+
+        characterManager = GetComponent<CharacterManager>(); 
     }
 
     protected override void Awake()
