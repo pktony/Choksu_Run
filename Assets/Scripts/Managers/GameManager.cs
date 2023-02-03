@@ -4,16 +4,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    #region Sub-Managers ######################################################
     [Header("Managers")]
     //public UIManager ui;
     public SoundManager sound;
     public ResourceManager resource;
     public UIManager uiManager;
     private SaveManager saves;
-    private ScoreManager score;
-    private PoolingManager poolManager;
-    private CamManager camManager;
-    private CharacterManager characterManager;
+    public ScoreManager Score { get; private set; }
+    public PoolingManager PoolManager { get; private set; }
+    public CamManager CameraManager { get; private set; }
+    public CharacterManager CharManager { get; private set; }
+    public NetworkManager Network { get; private set; }
+    #endregion
 
     private bool isGameOver = false;
     private bool isPause = false;
@@ -32,10 +35,6 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region PROPERTY ##########################################################
-    public ScoreManager Score => score;
-    public PoolingManager PoolManager => poolManager;
-    public CamManager CameraManager => camManager;
-    public CharacterManager CharManager => characterManager;
     public int Gold
     {
         get => gold;
@@ -74,21 +73,16 @@ public class GameManager : Singleton<GameManager>
 
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        score = GetComponent<ScoreManager>();
+        Score = GetComponent<ScoreManager>();
         saves = GetComponent<SaveManager>();
-        poolManager = GetComponent<PoolingManager>();
-        camManager = GetComponent<CamManager>();
-        poolManager.InitializePool();
+        PoolManager = GetComponent<PoolingManager>();
+        CameraManager = GetComponent<CamManager>();
+        PoolManager.InitializePool();
 
-        characterManager = GetComponent<CharacterManager>(); 
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
+        CharManager = GetComponent<CharacterManager>();
         sound.Initialize();
+        Network = GetComponent<NetworkManager>();
     }
-
 
     private void Start()
     {
@@ -98,6 +92,10 @@ public class GameManager : Singleton<GameManager>
     private void GameOver()
     {
         uiManager.ShowGameoverUI();
-        //this.speed = 0f;
+        this.speed = 0f;
+
+        // 점수 저장
+        // 정렬
+        // 순위 산출
     }
 }

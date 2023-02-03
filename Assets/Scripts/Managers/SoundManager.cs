@@ -18,8 +18,6 @@ public class SoundManager : MonoBehaviour
 
     private Coroutine coroutine = null;
 
-
-
     public void Initialize()
     {
         sfxPlayer = GameManager.Inst.gameObject.AddComponent<AudioSource>();

@@ -25,10 +25,10 @@ public class AdManager : Singleton<AdManager>
 
     private void Update()
     {
-        if(UnityEngine.InputSystem.Keyboard.current.digit1Key.wasPressedThisFrame)
-        {
-            ShowAd(AdType.Interstitial);
-        }
+        //if(UnityEngine.InputSystem.Keyboard.current.digit1Key.wasPressedThisFrame)
+        //{
+        //    ShowAd(AdType.Interstitial);
+        //}
     }
 
     private void RequestAds()

@@ -24,21 +24,21 @@ public class ScrollSizeController : MonoBehaviour
         InitializeCharacterInfos();
     }
 
-    public void InitializeCharacterInfos()
+    private void InitializeCharacterInfos()
     {
         CharacterDatas[] datas = GameManager.Inst.resource.CharacterData;
-    
-        for (int i = 0; i < (int)Characters.characterCount; i++)
+        CharacterInfo[] characterInfoWindow = new CharacterInfo[datas.Length];
+        for (int i = 0; i < datas.Length; i++)
         {
             GameObject obj = Instantiate(characterInfoWindowObj, this.transform);
-            if (obj.TryGetComponent<CharacterInfo>(out CharacterInfo info))
+            if (obj.TryGetComponent<CharacterInfo>(out characterInfoWindow[i]))
             {
                 // 나중에 플레이어가 해당 캐릭터를 언락했는지에 대한 정보를 입력
-                info.InitializeInfos(datas[i], false);  
+                characterInfoWindow[i].InitializeInfos(datas[i], false);
             }
             else
             {
-                info.InitializeInfos(null, true);
+                characterInfoWindow[i].InitializeInfos(null, true);
             }
         }
     }

@@ -130,10 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 88474607, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
     - target: {fileID: 6858014448847946065, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -182,30 +178,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6858014448847946069, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6858014448847946069, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
-      propertyPath: gravityScale
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
-      propertyPath: poolingCounts.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
-      propertyPath: uiPoolPrefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
-      propertyPath: poolingCounts.Array.data[2]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
-      propertyPath: uiPoolPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 455107335081624608, guid: b83ac08e8788f403294909a42b31c541, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
 --- !u!1 &339130715

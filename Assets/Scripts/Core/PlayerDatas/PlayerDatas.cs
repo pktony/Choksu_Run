@@ -10,5 +10,4 @@ public class PlayerDatas
 {
     public int gold;
     public List<bool> characterUnlockInfo;
-
 }

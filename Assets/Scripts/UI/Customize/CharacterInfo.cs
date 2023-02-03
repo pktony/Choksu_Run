@@ -21,6 +21,7 @@ public class CharacterInfo : MonoBehaviour, IPointerClickHandler
         if (data == null) return;
 
         this.character = data.character;
+        this.isLocked = isLocked;
 
         characterIcon = transform.GetChild(0).GetComponent<Image>();
         lockCover = characterIcon.transform.GetChild(0).gameObject;
@@ -30,7 +31,7 @@ public class CharacterInfo : MonoBehaviour, IPointerClickHandler
         characterIcon.sprite = data.icon;
         nameText.text = data.characterName;
 
-        if (!isLocked)
+        if (!this.isLocked)
         {
             lockCover.SetActive(false);
         }
