@@ -28,7 +28,7 @@ public class ScrollSizeController : MonoBehaviour
     {
         CharacterDatas[] datas = GameManager.Inst.resource.CharacterData;
     
-        for (int i = 0; i < (int)Characters.characterCount; i++)
+        for (int i = 0; i < datas.Length; i++)
         {
             GameObject obj = Instantiate(characterInfoWindowObj, this.transform);
             if (obj.TryGetComponent<CharacterInfo>(out CharacterInfo info))

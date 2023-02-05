@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     private PoolingManager poolManager;
     private CamManager camManager;
     private CharacterManager characterManager;
+    private NetworkManager networkManager;
 
     private bool isGameOver = false;
     private bool isPause = false;
@@ -36,6 +37,7 @@ public class GameManager : Singleton<GameManager>
     public PoolingManager PoolManager => poolManager;
     public CamManager CameraManager => camManager;
     public CharacterManager CharManager => characterManager;
+    public NetworkManager Network => networkManager;
     public int Gold
     {
         get => gold;
@@ -80,15 +82,10 @@ public class GameManager : Singleton<GameManager>
         camManager = GetComponent<CamManager>();
         poolManager.InitializePool();
 
-        characterManager = GetComponent<CharacterManager>(); 
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
+        characterManager = GetComponent<CharacterManager>();
         sound.Initialize();
+        networkManager = GetComponent<NetworkManager>();
     }
-
 
     private void Start()
     {
@@ -98,6 +95,10 @@ public class GameManager : Singleton<GameManager>
     private void GameOver()
     {
         uiManager.ShowGameoverUI();
-        //this.speed = 0f;
+        this.speed = 0f;
+
+        // 점수 저장
+        // 정렬
+        // 순위 산출
     }
 }
