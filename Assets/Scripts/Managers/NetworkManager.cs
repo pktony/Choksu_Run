@@ -27,7 +27,7 @@ public class NetworkManager : MonoBehaviour
     private void Start()
     {
         //long rand = Random.Range(0, 100000);
-        //User_Rank rankInfo = new User_Rank(myID, rand);
+        //User_Rank rankInfo = new User_Rank(myID, 1000);
         //string json = JsonUtility.ToJson(rankInfo);
 
         //var value = await GetRankDB();
@@ -43,6 +43,7 @@ public class NetworkManager : MonoBehaviour
 
         //UpdateScoreDB("test", 5, 0);
     }
+
 
     /// <summary>
     /// 위험 !!!
@@ -62,6 +63,7 @@ public class NetworkManager : MonoBehaviour
         Dictionary<string, object> childUpdate = new();
         childUpdate[$"/{rank}/" + path_ID] = id;
         childUpdate[$"/{rank}/" + path_Score] = score;
+        
         DBreference.Child(masterPath_Rank).UpdateChildrenAsync(childUpdate);
     }
 
@@ -72,13 +74,14 @@ public class NetworkManager : MonoBehaviour
         DBreference.Child(masterPath_Rank).RunTransaction(data =>
         {
             List<object> leaders = data.Value as List<object>;
+
             Dictionary<string, object> dic = new();
 
             if (leaders == null)
                 leaders = new List<object>();
 
             long minScore = long.MaxValue;
-            object minValue = null;
+            object minLeader = null;
 
             // 점수 비교
             if (data.ChildrenCount >= MAX_RANK_COUNT)
@@ -91,7 +94,7 @@ public class NetworkManager : MonoBehaviour
                     if (childScore < minScore)
                     {
                         minScore = childScore;
-                        minValue = child;
+                        minLeader = child;
                     }
                 }
 
@@ -101,7 +104,7 @@ public class NetworkManager : MonoBehaviour
                     return TransactionResult.Abort();
                 }
                 //원래 최소 점수 제거
-                leaders.Remove(minValue);
+                leaders.Remove(minLeader);
             }
             dic[path_ID] = id;
             dic[path_Score] = newScore;
@@ -113,9 +116,9 @@ public class NetworkManager : MonoBehaviour
         });
     }
 
-    public async Task<IDictionary[]> GetRankDB()
+    public async Task<List<IDictionary>> GetRankDB()
     {
-        IDictionary[] results = null;
+        List<IDictionary> results = null;
         var newTask = Task.Run(() => DBreference.GetValueAsync());
         var value = await newTask;
 
@@ -123,14 +126,16 @@ public class NetworkManager : MonoBehaviour
         {
             DataSnapshot rankInfo = newTask.Result;
 
-            long childCount = rankInfo.Child(masterPath_Rank).ChildrenCount;
-            results = new IDictionary[childCount];
+            int childCount = (int)rankInfo.Child(masterPath_Rank).ChildrenCount;
+            results = new List<IDictionary>(childCount);
             for (int i = 0; i < childCount; i++)
             {
                 var rank = rankInfo.Child(masterPath_Rank).Child(i.ToString());
                 IDictionary info = (IDictionary)rank.Value;
-                results[i] = info;
+                results.Add(info);
             }
+
+            results = results.SortListIDictionary();
         }
         else if (newTask.IsFaulted)
         {
