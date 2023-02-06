@@ -21,7 +21,7 @@ public class Leaderboard : MonoBehaviour
         scores = new TextMeshProUGUI[NetworkManager.MAX_RANK_COUNT];
     }
 
-    private async void Start()
+    private void Start()
     {
         InitializeLeaderboard();
     }
@@ -47,7 +47,7 @@ public class Leaderboard : MonoBehaviour
 
         for (int i = 0; i < scores.Length; i++)
         {
-            if (i < dics.Length)
+            if (i < dics.Count)
             {
                 scores[i].text = string.Format("Rank {0}  ID {1}  Score {2}",
                     i + 1, dics[i][NetworkManager.path_ID], dics[i][NetworkManager.path_Score]);
@@ -57,5 +57,6 @@ public class Leaderboard : MonoBehaviour
                 scores[i].text = string.Format("Rank {0}", i + 1);
             }
         }
+        scrollRect.verticalNormalizedPosition = 1f;
     }
 }
