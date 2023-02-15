@@ -86,13 +86,11 @@ public class PlayerControl : MonoBehaviour
 
     protected virtual void Jump()
     {
+        if (!IsGrounded) return;
+
         if (!isDoubleJump)
         {
-            if (IsGrounded)
-            {
-                IsGrounded = false;
-                rigid.velocity = rigid.velocity.x * Vector3.right + jumpForce * Vector3.up;
-            }
+            rigid.velocity = rigid.velocity.x * Vector3.right + jumpForce * Vector3.up;
         }
         else
         {
@@ -102,6 +100,7 @@ public class PlayerControl : MonoBehaviour
                 jumpCounter++;
             }
         }
+        IsGrounded = false;
     }
 
     protected virtual void OnSkill(InputAction.CallbackContext context)

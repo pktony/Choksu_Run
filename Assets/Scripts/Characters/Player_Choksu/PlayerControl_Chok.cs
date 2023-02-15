@@ -12,7 +12,6 @@ public class PlayerControl_Chok : PlayerControl
 {
     private enum ControlMode { normal, aim, chok };
     [Header("Control Mode")]
-    [SerializeField]
     private ControlMode mode = ControlMode.normal;
 
     private AimLine aimLine;
@@ -44,10 +43,6 @@ public class PlayerControl_Chok : PlayerControl
                 chokLine.DisableChok();
                 mode = ControlMode.normal;
                 rigid.gravityScale = gravityScale;
-                //currentSpeed = transform.position.x <= defaultPosition.x ?
-                //    returningSpeed : -returningSpeed;
-
-                //StartCoroutine(ReturnOringinalPosition());
             }
         }
     }
@@ -60,7 +55,7 @@ public class PlayerControl_Chok : PlayerControl
         chokLine = GetComponentInChildren<ChokLine>();
         forceWaitSeconds = new WaitForSeconds(forceInterval);
 
-        defaultPosition = transform.position;
+        defaultPosition = new Vector2(transform.position.x, 0f) ;
 
         chokLine.onChokAttached += RotateCharacter;
     }
@@ -105,11 +100,6 @@ public class PlayerControl_Chok : PlayerControl
             Vector2 newDirection = attachedPoint - (Vector2)transform.position;
             newDirection = newDirection.normalized;
             Vector2 forceDir = new Vector2(newDirection.y, -newDirection.x);
-
-#if UNITY_EDITOR
-            Debug.DrawRay(transform.position, newDirection, Color.red);
-            Debug.DrawRay(transform.position, forceDir);
-#endif
             rigid.velocity = forceDir * chokSpeed;
             yield return null;
         }
@@ -120,6 +110,8 @@ public class PlayerControl_Chok : PlayerControl
         chokLine.DisableChok();
         rigid.gravityScale = gravityScale;
         mode = ControlMode.normal;
+
+        StartCoroutine(ReturnOringinalPosition());
     }
 
     private void UseSkill()
@@ -152,21 +144,27 @@ public class PlayerControl_Chok : PlayerControl
         mode = ControlMode.chok;
     }
 
-    //private IEnumerator ReturnOringinalPosition()
-    //{
+    private IEnumerator ReturnOringinalPosition()
+    {
+        yield return new WaitUntil(() => isGrounded == true);
+        currentSpeed = transform.position.x <= defaultPosition.x ?
+                    returningSpeed : -returningSpeed;
 
-    //    while (!isAtDefaultPosition)
-    //    {
-    //        rigid.velocity = rigid.velocity.y * Vector2.up + currentSpeed * Vector2.right;
+        isAtDefaultPosition = false;
 
-    //        if (transform.position.x - defaultPosition.x < 0.2f)
-    //        {
-    //            isAtDefaultPosition = true;
-    //            rigid.position = defaultPosition;
-    //        }
+        while (!isAtDefaultPosition)
+        {
+            rigid.velocity = rigid.velocity.y * Vector2.up + currentSpeed * Vector2.right;
 
-    //        yield return null;
-    //    }
-    //}
+            if (transform.position.x - defaultPosition.x < 0.2f)
+            {
+                isAtDefaultPosition = true;
+                rigid.position = defaultPosition;
+                break;
+            }
+
+            yield return null;
+        }
+    }
     #endregion
 }

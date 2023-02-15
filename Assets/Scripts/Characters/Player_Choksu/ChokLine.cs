@@ -9,6 +9,7 @@ public class ChokLine : MonoBehaviour
     private LineRenderer chokLine;
     private Collider2D chokCollider;
 
+    private Transform attachedObjTransform;
     private Vector2 destination;
     private Vector2 direction;
 
@@ -76,14 +77,22 @@ public class ChokLine : MonoBehaviour
         while (isAttached)
         {
             chokLine.SetPosition(0, transform.position);
+            chokLine.SetPosition(1, attachedObjTransform.position);
             yield return null;
         }
     }
 
+    /// <summary>
+    /// 나중에 layer 설정
+    /// chok
+    /// chokObstacle
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         chokCollider.enabled = false;
         isAttached = true;
+        attachedObjTransform = collision.transform;
         onChokAttached?.Invoke(destination);
         StartCoroutine(UpdateLinePosition());
 
