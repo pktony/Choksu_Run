@@ -60,4 +60,8 @@ namespace Define
         LobbyScene, GameScene
     }
     #endregion
+
+    #region RESOURCES #########################################################
+    public enum itemTypes { hair, mustache, cloth, pant, helmet, armor, shield, weapon, back };
+    #endregion
 }
