@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGroupedChild: 0
-  type: 0
+  type: 5
 --- !u!50 &8330699962393764652
 Rigidbody2D:
   serializedVersion: 4
