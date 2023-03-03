@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Define;
 
+
 public class GameStartButton : MonoBehaviour
 {
     private Button button;
@@ -20,7 +21,7 @@ public class GameStartButton : MonoBehaviour
     {
         //씬 로드
         Debug.Log("Game Start");
-        SceneLoadManager.Inst.LoadScene_Ads(Define.SceneIndex.In_Game, Define.AdType.Interstitial);
-        GameManager.Inst.sound.PlayBGM(BGM.GameScene, (int)PlayType.FadeIn);
+        GameManager.Inst.sound.StopBGM();
+        SceneLoadManager.Inst.LoadScene_Ads(SceneIndex.In_Game, AdType.Interstitial);
     }
 }

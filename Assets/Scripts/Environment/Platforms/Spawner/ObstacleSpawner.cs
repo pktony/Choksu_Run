@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Define;
 
+
 public class ObstacleSpawner : MonoBehaviour
 {
     PoolingManager poolManager;
@@ -39,6 +40,8 @@ public class ObstacleSpawner : MonoBehaviour
 
     private IEnumerator SpawnObstacle()
     {
+        yield return new WaitUntil(() => GameManager.Inst.Status == GameManager.GameStatus.Run);
+
         float time;
         GameObject obj = null;
         while (cursor < levels.Length)

@@ -1,9 +1,13 @@
-using System;   
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    public enum GameStatus { Stop, Run }
+
+    public GameStatus Status { get; set; } //Is InGame or Not
+
     [Header("Managers")]
     //public UIManager ui;
     public SoundManager sound;
@@ -21,6 +25,7 @@ public class GameManager : Singleton<GameManager>
 
     private PlayerDatas playerDatas;
     private int gold;
+
 
     [Header("게임 속도")]
     public float speed = 3.0f;
@@ -54,7 +59,7 @@ public class GameManager : Singleton<GameManager>
         set
         {
             isGameOver = value;
-            if(isGameOver)
+            if (isGameOver)
                 GameOver();
         }
     }
@@ -65,14 +70,23 @@ public class GameManager : Singleton<GameManager>
         set
         {
             isPause = value;
-            Time.timeScale = isPause ? 0.0f : 1.0f;
-            if (isPause)
+
+            if(isPause)
+            {
+                SetStatus(GameStatus.Stop);
+                Time.timeScale = 0.0f;
                 onPause?.Invoke();
+            }
             else
+            {
+                SetStatus(GameStatus.Run);
+                Time.timeScale = 1.0f;
                 onResume?.Invoke();
+            }
         }
     }
     #endregion
+
 
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -90,10 +104,12 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         Gold = saves.LoadDatas(out playerDatas) ? playerDatas.gold : 0;
+        SetStatus(GameStatus.Stop);
     }
 
     private void GameOver()
     {
+        SetStatus(GameStatus.Stop);
         uiManager.ShowGameoverUI();
         this.speed = 0f;
 
@@ -101,4 +117,6 @@ public class GameManager : Singleton<GameManager>
         // 정렬
         // 순위 산출
     }
+
+    public void SetStatus(GameStatus _status) => Status = _status;
 }

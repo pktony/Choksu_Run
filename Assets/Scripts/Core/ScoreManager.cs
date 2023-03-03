@@ -43,8 +43,11 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Inst.IsGameOver) return;
-        scoreSpeed = GameManager.Inst.speed * scoreMultiplier;
-        Score += scoreSpeed * Time.deltaTime;
+        if(GameManager.Inst.Status == GameManager.GameStatus.Run)
+        {
+            if (GameManager.Inst.IsGameOver) return;
+            scoreSpeed = GameManager.Inst.speed * scoreMultiplier;
+            Score += scoreSpeed * Time.deltaTime;
+        }
     }
 }

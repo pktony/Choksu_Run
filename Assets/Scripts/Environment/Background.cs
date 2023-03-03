@@ -24,14 +24,17 @@ public class Background : MonoBehaviour
 
     private void Update()
     {
-        speed = GameManager.Inst.speed * 0.3f;
-        for (int i = 0; i < backgrounds.Length; i++)
+        if(GameManager.Inst.Status == GameManager.GameStatus.Run)
         {
-            backgrounds[i].position += new Vector3(-speed, 0, 0) * Time.deltaTime;
-
-            if (backgrounds[i].position.x < -size_x)
+            speed = GameManager.Inst.speed * 0.3f;
+            for (int i = 0; i < backgrounds.Length; i++)
             {
-                backgrounds[i].position = size_x * 2f * Vector3.right;
+                backgrounds[i].position += new Vector3(-speed, 0, 0) * Time.deltaTime;
+
+                if (backgrounds[i].position.x < -size_x)
+                {
+                    backgrounds[i].position = size_x * 2f * Vector3.right;
+                }
             }
         }
     }

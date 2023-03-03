@@ -13,6 +13,7 @@ public class CharacterManager : MonoBehaviour
 
     public Characters CurrentCharacter => currentCharacter;
 
+
     public void SetCurrentCharacter_Customize(Characters selectedCharacter)
     {
         if (currentCharacter_Customize == selectedCharacter) return;
@@ -26,6 +27,5 @@ public class CharacterManager : MonoBehaviour
             GameManager.Inst.resource.CharacterData[(int)currentCharacter_Customize].model);
 
         currentShowingModel.transform.position = Vector2.zero;
-        
     }
 }
