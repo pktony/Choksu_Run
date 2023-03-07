@@ -60,8 +60,8 @@ public class PlayerControl_Chok : PlayerControl
         chokLine = GetComponentInChildren<ChokLine>();
         forceWaitSeconds = new WaitForSeconds(forceInterval);
 
-        defaultPosition = transform.position;
-
+        defaultPosition = transform.position + new Vector3(0f, -2.5f, 0f);
+        Debug.Log(defaultPosition);
         chokLine.onChokAttached += RotateCharacter;
     }
 
@@ -79,8 +79,16 @@ public class PlayerControl_Chok : PlayerControl
             ShootChok();
         }
     }
+
+    private void Update()
+    {
+        if(isGrounded) //TODO : 조건 하나만 더
+        {
+            transform.position = Vector3.MoveTowards(transform.position, defaultPosition, Time.deltaTime * 3.5f);
+        }
+    }
     #endregion
-    
+
     protected override void Jump()
     {
         if (mode == ControlMode.chok)
