@@ -34,6 +34,7 @@ public class Obstacle_Vertical : Platforms<ObstacleType>
         }
 
         rigid.gravityScale = GameManager.Inst.gravityScale;
+        rigid.AddTorque(2f);
     }
 
     protected override void ReturnPool()

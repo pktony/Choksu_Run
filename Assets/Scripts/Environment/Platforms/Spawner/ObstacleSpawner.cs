@@ -20,6 +20,9 @@ public class ObstacleSpawner : MonoBehaviour
     private const float DEFAULT_OBSTACLE_TIME = 1.5f;
     private const float DEFAULT_COIN_TIME = 0.2f;
 
+    [SerializeField]
+    private Transform spawnPoint;
+
     [Header("Spawn Position Limit")]
     [SerializeField]
     private float maxHeight;
@@ -65,11 +68,15 @@ public class ObstacleSpawner : MonoBehaviour
                 obj = poolManager.GetPooledObject(ObstacleType.SingleJump);
                 time = DEFAULT_OBSTACLE_TIME;
             }
+            obj.transform.position = new Vector2(
+                spawnPoint.transform.position.x, obj.transform.position.y);
             obj.SetActive(true);
 
             cursor++;
             if (levelDesign.isObstacleTest)
                 cursor %= levels.Length;
+
+            //TODO : waitseconds cache
             yield return new WaitForSeconds(time);
         }
     }
