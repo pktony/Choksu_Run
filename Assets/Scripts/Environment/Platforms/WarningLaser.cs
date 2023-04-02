@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using Define;   
 
@@ -11,6 +11,8 @@ public class WarningLaser : MonoBehaviour
 {
     private PoolingManager poolManager;
     private Animator anim;
+
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
@@ -45,19 +47,27 @@ public class WarningLaser : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
         poolManager = GameManager.Inst.PoolManager;
+
+        //TODO : 매니저 준비완료(초기화) 대기
         float rightEnd = GameManager.Inst.CameraManager.GetRightEnd();
-        transform.localScale = new Vector2(rightEnd * 2f, 1f);
+        spriteRenderer.transform.localScale = new Vector2(rightEnd * 2f, 1f);
+        spriteRenderer.transform.localPosition = new Vector2(-rightEnd * 0.5f, 0f);
     }
 
     private void OnEnable()
     {
         IsWarning = true;
+
+    }
+
+    public void SetRandomHeight()
+    {
+        
     }
 
     private IEnumerator WanringOff_Delay()
@@ -74,6 +84,7 @@ public class WarningLaser : MonoBehaviour
         {
             GameObject obj = GameManager.Inst.PoolManager.GetPooledObject(ObstacleType.FlyingObject);
             obj.SetActive(true);
+            obj.transform.position = transform.position;
             spawnCount++;
             yield return new WaitForSeconds(spawnDelay);
         }

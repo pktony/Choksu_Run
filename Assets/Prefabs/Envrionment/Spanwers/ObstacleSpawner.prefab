@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1007a5b7d58174ea08d0d6cd20cc97d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isObstacleTest: 0
-  levelString: 12ab132123321132aaba
+  isObstacleTest: 1
+  levelString: 3
   obstacleInfos:
   - obstacleTypes: 0
     obstacleTime: 1
