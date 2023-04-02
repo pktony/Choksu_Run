@@ -37,23 +37,26 @@ public class GroundScroller : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < grounds.Count; i++)
+        if (GameManager.Inst.Status == GameManager.GameStatus.Run)
         {
-            if (leftEnd - xSize >= grounds[i].transform.position.x)
+            for (int i = 0; i < grounds.Count; i++)
             {
-                for (int j = 0; j < grounds.Count; j++)
+                if (leftEnd - xSize >= grounds[i].transform.position.x)
                 {
-                    if (ground.transform.position.x < grounds[j].transform.position.x)
-                        ground = grounds[j];
+                    for (int j = 0; j < grounds.Count; j++)
+                    {
+                        if (ground.transform.position.x < grounds[j].transform.position.x)
+                            ground = grounds[j];
+                    }
+                    grounds[i].transform.position = new Vector2(ground.transform.position.x + xSize, -5.5f);
                 }
-                grounds[i].transform.position = new Vector2(ground.transform.position.x + xSize, -5.5f);
             }
-        }
 
-        for (int i = 0; i < grounds.Count; i++)
-        {
-            speed = GameManager.Inst.speed;
-            grounds[i].transform.Translate(new Vector2(-1, 0) * Time.deltaTime * speed);
+            for (int i = 0; i < grounds.Count; i++)
+            {
+                speed = GameManager.Inst.speed;
+                grounds[i].transform.Translate(new Vector2(-1, 0) * Time.deltaTime * speed);
+            }
         }
     }
 }

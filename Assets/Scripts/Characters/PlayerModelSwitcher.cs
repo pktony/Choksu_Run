@@ -12,7 +12,7 @@ public class PlayerModelSwitcher : MonoBehaviour
 
     private void Start()
     {
-        //임시
+        // TODO
         // 나중에 스타트 씬에서 가져오기
         Define.Characters currentCharacter = GameManager.Inst.CharManager.CurrentCharacter;
         data = GameManager.Inst.resource.CharacterData[(int)currentCharacter];

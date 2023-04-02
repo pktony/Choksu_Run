@@ -1,28 +1,31 @@
-using System;   
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    #region Sub-Managers ######################################################
+    public enum GameStatus { Stop, Run }
+
+    public GameStatus Status { get; set; } //Is InGame or Not
+
     [Header("Managers")]
     //public UIManager ui;
     public SoundManager sound;
     public ResourceManager resource;
     public UIManager uiManager;
+    [SerializeField] private CharacterManager characterManager;
     private SaveManager saves;
-    public ScoreManager Score { get; private set; }
-    public PoolingManager PoolManager { get; private set; }
-    public CamManager CameraManager { get; private set; }
-    public CharacterManager CharManager { get; private set; }
-    public NetworkManager Network { get; private set; }
-    #endregion
+    private ScoreManager score;
+    private PoolingManager poolManager;
+    private CamManager camManager;
+    private NetworkManager networkManager;
 
     private bool isGameOver = false;
     private bool isPause = false;
 
     private PlayerDatas playerDatas;
     private int gold;
+
 
     [Header("게임 속도")]
     public float speed = 3.0f;
@@ -35,6 +38,11 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region PROPERTY ##########################################################
+    public ScoreManager Score => score;
+    public PoolingManager PoolManager => poolManager;
+    public CamManager CameraManager => camManager;
+    public CharacterManager CharManager => characterManager;
+    public NetworkManager Network => networkManager;
     public int Gold
     {
         get => gold;
@@ -51,7 +59,7 @@ public class GameManager : Singleton<GameManager>
         set
         {
             isGameOver = value;
-            if(isGameOver)
+            if (isGameOver)
                 GameOver();
         }
     }
@@ -62,35 +70,45 @@ public class GameManager : Singleton<GameManager>
         set
         {
             isPause = value;
-            Time.timeScale = isPause ? 0.0f : 1.0f;
-            if (isPause)
+
+            if(isPause)
+            {
+                SetStatus(GameStatus.Stop);
+                Time.timeScale = 0.0f;
                 onPause?.Invoke();
+            }
             else
+            {
+                SetStatus(GameStatus.Run);
+                Time.timeScale = 1.0f;
                 onResume?.Invoke();
+            }
         }
     }
     #endregion
 
+
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Score = GetComponent<ScoreManager>();
+        score = GetComponent<ScoreManager>();
         saves = GetComponent<SaveManager>();
-        PoolManager = GetComponent<PoolingManager>();
-        CameraManager = GetComponent<CamManager>();
-        PoolManager.InitializePool();
+        poolManager = GetComponent<PoolingManager>();
+        camManager = GetComponent<CamManager>();
+        poolManager.InitializePool();
 
-        CharManager = GetComponent<CharacterManager>();
         sound.Initialize();
-        Network = GetComponent<NetworkManager>();
+        networkManager = GetComponent<NetworkManager>();
     }
 
     private void Start()
     {
         Gold = saves.LoadDatas(out playerDatas) ? playerDatas.gold : 0;
+        SetStatus(GameStatus.Stop);
     }
 
     private void GameOver()
     {
+        SetStatus(GameStatus.Stop);
         uiManager.ShowGameoverUI();
         this.speed = 0f;
 
@@ -98,4 +116,6 @@ public class GameManager : Singleton<GameManager>
         // 정렬
         // 순위 산출
     }
+
+    public void SetStatus(GameStatus _status) => Status = _status;
 }

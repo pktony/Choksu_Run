@@ -22,7 +22,6 @@ public class SoundManager : MonoBehaviour
     {
         sfxPlayer = GameManager.Inst.gameObject.AddComponent<AudioSource>();
         bgmPlayer = GameManager.Inst.gameObject.AddComponent<AudioSource>();
-        PlayBGM(BGM.LobbyScene, (int)PlayType.Direct);
     }
     #region BGM
     public void PlayBGM(BGM bgm, int Type) // Type 0 : �ٷ� ���

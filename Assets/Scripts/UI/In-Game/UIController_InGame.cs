@@ -11,6 +11,7 @@ public class UIController_InGame : MonoBehaviour
 
     public CanvasGroup gameoverGroup;
 
+
     private void Start()
     {
         GameManager.Inst.Score.onScoreChange += UpateScore;

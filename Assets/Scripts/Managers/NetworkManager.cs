@@ -21,7 +21,7 @@ public class NetworkManager : MonoBehaviour
 
     private void Awake()
     {
-        DBreference = FirebaseDatabase.DefaultInstance.RootReference;
+        //DBreference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
     private void Start()

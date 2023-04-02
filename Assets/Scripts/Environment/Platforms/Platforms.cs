@@ -53,7 +53,11 @@ public abstract class Platforms<T> : MonoBehaviour where T : System.Enum
     private void FixedUpdate()
     {
         if (isGroupedChild) return;
-        MovePlatform();
+
+        if (GameManager.Inst.Status == GameManager.GameStatus.Run)
+        {
+            MovePlatform();
+        }
     }
 
     /// <summary>

@@ -73,8 +73,9 @@ public class PoolingManager : MonoBehaviour
         switch (type)
         {
             case ObstacleType:
-                // 어떤게 낫지 ?
-                //ObstacleType otype = (ObstacleType)(object)type;
+                // implicit type change
+                // ObstacleType otype = (ObstacleType)(object)type;
+                // reflection
                 ObstacleType oType = (ObstacleType)System.Enum.Parse(type.GetType(), type.ToString());
                 if (obstaclePool[oType].Count > 0)
                 {

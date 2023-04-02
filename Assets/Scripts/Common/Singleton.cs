@@ -53,5 +53,9 @@ public class Singleton<T> : MonoBehaviour where T : Component
     /// <param name="mode">씬 추가 모드</param>
     protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if(scene.buildIndex == 0)
+        {
+            GameManager.Inst.sound.PlayBGM(Define.BGM.LobbyScene, (int)Define.PlayType.Direct);
+        }
     }
 }
