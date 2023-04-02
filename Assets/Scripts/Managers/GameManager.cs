@@ -13,11 +13,11 @@ public class GameManager : Singleton<GameManager>
     public SoundManager sound;
     public ResourceManager resource;
     public UIManager uiManager;
+    [SerializeField] private CharacterManager characterManager;
     private SaveManager saves;
     private ScoreManager score;
     private PoolingManager poolManager;
     private CamManager camManager;
-    private CharacterManager characterManager;
     private NetworkManager networkManager;
 
     private bool isGameOver = false;
@@ -96,7 +96,6 @@ public class GameManager : Singleton<GameManager>
         camManager = GetComponent<CamManager>();
         poolManager.InitializePool();
 
-        characterManager = GetComponent<CharacterManager>();
         sound.Initialize();
         networkManager = GetComponent<NetworkManager>();
     }

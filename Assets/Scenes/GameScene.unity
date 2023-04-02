@@ -200,6 +200,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6858014448847946069, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: characterManager
+      value: 
+      objectReference: {fileID: 1717027433}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
 --- !u!1 &339130715
@@ -318,7 +322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
       propertyPath: levelString
-      value: 0a0a230a0b56
+      value: 111
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
@@ -654,6 +658,10 @@ PrefabInstance:
       propertyPath: obstacleSpawner
       value: 
       objectReference: {fileID: 48449371}
+    - target: {fileID: 6366180842247237536, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
 --- !u!1 &1158574475
@@ -842,6 +850,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 5124994414725550521, guid: 8d0704de1e4da4a039217f5f23dfa07b, type: 3}
+--- !u!114 &1717027433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4910152565746049667, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+  m_PrefabInstance: {fileID: 258821050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff2f0a045e9a411599e49e5845843ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1734264358
 GameObject:
   m_ObjectHideFlags: 0
