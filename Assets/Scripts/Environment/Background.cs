@@ -1,41 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 public class Background : MonoBehaviour
 {
-    public Transform[] backgrounds;
-    private float speed = 1f;
+    [SerializeField] float speed;
+    private float offset_x;
 
-    private SpriteRenderer _renderer = null;
+    private Material mat;
 
-    private float size_x;
+    private Coroutine routine = null;
 
 
-    private void Awake()
+    private void Start()
     {
-        _renderer = backgrounds[0].GetComponent<SpriteRenderer>();
+        mat = GetComponent<Renderer>().material;
 
-        size_x = Camera.main.pixelWidth * 0.010f;
+        if(routine != null)
+        {
+            StopCoroutine(routine);
+        }
+        routine = StartCoroutine(ScrollBackGround());
     }
 
-
-    private void Update()
+    private IEnumerator ScrollBackGround()
     {
-        if(GameManager.Inst.Status == GameManager.GameStatus.Run)
-        {
-            speed = GameManager.Inst.speed * 0.3f;
-            for (int i = 0; i < backgrounds.Length; i++)
-            {
-                backgrounds[i].position += new Vector3(-speed, 0, 0) * Time.deltaTime;
+        yield return new WaitUntil(() => GameManager.Inst.Status.Equals(GameManager.GameStatus.Run));
 
-                if (backgrounds[i].position.x < -size_x)
-                {
-                    backgrounds[i].position = size_x * 2f * Vector3.right;
-                }
-            }
+        while(GameManager.Inst.Status.Equals(GameManager.GameStatus.Run))
+        {
+            offset_x += (speed * Time.deltaTime);
+
+            Vector2 offset = new Vector2(offset_x, 0);
+            mat.SetTextureOffset("_MainTex", offset);
+
+            yield return null;
         }
+
+        yield return null;
     }
 }

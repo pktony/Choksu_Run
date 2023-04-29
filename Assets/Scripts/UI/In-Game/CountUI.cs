@@ -16,6 +16,7 @@ public class CountUI : MonoBehaviour
     private Coroutine routine = null;
 
 
+
     private void OnEnable()
     {
         if (routine != null)
@@ -39,7 +40,7 @@ public class CountUI : MonoBehaviour
 
         //TimeOver Then -- > 
 
-        //TODO : Ä³¸¯ÅÍ Animator , RunÀ¸·Î Æ®¸®°Å ÀÛµ¿ÇÏ±â (¸ðµç Ä³¸¯ÅÍ Animator ÀÛ¾÷½Ã Run Æ®¸®°Å Ãß°¡)
+        //TODO : Ä³ï¿½ï¿½ï¿½ï¿½ Animator , Runï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ï¿½Ï±ï¿½ (ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ Animator ï¿½Û¾ï¿½ï¿½ï¿½ Run Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½)
         if (anim == null)
         {
             anim = player.GetChild(0).GetComponent<Animator>();
