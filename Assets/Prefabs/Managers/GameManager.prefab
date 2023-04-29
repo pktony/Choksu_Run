@@ -101,6 +101,12 @@ MonoBehaviour:
   sound: {fileID: 8997627308996992903}
   resource: {fileID: 1714557807068677049}
   uiManager: {fileID: 2181122810290727984}
+  characterManager: {fileID: 4910152565746049667}
+  saves: {fileID: 6858014448847946068}
+  score: {fileID: 89129096}
+  poolManager: {fileID: 8203972542963928711}
+  camManager: {fileID: 559927081}
+  networkManager: {fileID: 6445307458532610320}
   speed: 5
   gravityScale: 3
 --- !u!114 &6445307458532610320

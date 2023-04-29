@@ -3,6 +3,7 @@ namespace Define
     #region SCENE #############################################################
     public enum SceneIndex
     {
+        Booting = 0,
         Title,
         In_Game,
         Loading,

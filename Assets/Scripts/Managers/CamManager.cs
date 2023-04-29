@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamManager : MonoBehaviour
+public class CamManager : MonoBehaviour, IBootingComponent
 {
     private float camBound_X;
     private float camBount_Y;
     private const float END_CORRECTION_VALUE = 1f;
+
+#region IBootingComponent
+    private bool isReady = false;
+    public bool IsReady => isReady;
+#endregion
 
     private void Awake()
     {
@@ -15,6 +20,8 @@ public class CamManager : MonoBehaviour
 
         Vector3 topEnd = new(Screen.height, 0f, 0f);
         camBount_Y = Camera.main.ScreenToWorldPoint(topEnd).y;
+
+        isReady = true;
     }
 
 

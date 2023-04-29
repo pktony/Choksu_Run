@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : MonoBehaviour, IBootingComponent
 {
     string saveFileName = "PlayerData.json";
+
+    private bool isReady = false;
+    public bool IsReady => isReady;
+
+    private void Awake() 
+    {
+        isReady = true;
+    }
 
     public void SaveDatas(PlayerDatas datas)
     {

@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using Define;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class PoolingManager : MonoBehaviour
+public class PoolingManager : MonoBehaviour, IBootingComponent
 {
     private Dictionary<ObstacleType, Queue<GameObject>> obstaclePool = new();
     private Dictionary<CurrencyType, Queue<GameObject>> currencyPool = new();
@@ -25,6 +23,10 @@ public class PoolingManager : MonoBehaviour
     [SerializeField]
     private int[] poolingCounts;
 
+#region IBootingComponent
+    private bool isReady = false;
+    public bool IsReady => isReady;
+#endregion
 
     /// <summary>
     /// Pool 초기화
@@ -57,6 +59,8 @@ public class PoolingManager : MonoBehaviour
             GameObject uiObj = CreatePoolingObject(UIPoolType.popupText, 0, this.transform);
             popupTexts.Enqueue(uiObj.GetComponent<UIs.UI_PopupText>());
         }
+
+        isReady = true;
     }
 
 

@@ -6,15 +6,22 @@ using UnityEngine;
 using Define;
 
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager : MonoBehaviour, IBootingComponent
 {
     private const string ITEM_PATH = "Items/";
 
     private Dictionary<itemTypes, Sprite[]> itemResources;
 
+#region IBootingComponent
+    private bool isReady = false;
+    public bool IsReady => isReady;
+#endregion
+
     private void Awake()
     {
         InitializeResources_Items();
+
+        isReady = true;
     }
 
     private void InitializeResources_Items()
@@ -47,9 +54,6 @@ public class ResourceManager : MonoBehaviour
         return itemResources[type];
     }
 
-
-
-
     #region old version
     //임시
     // 나중에 로딩 후 입력할 수 있도록 변경
@@ -58,5 +62,6 @@ public class ResourceManager : MonoBehaviour
 
 
     public CharacterDatas[] CharacterData => characterData;
+
     #endregion
 }

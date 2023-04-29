@@ -3,15 +3,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Define;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, IBootingComponent
 {
     //임시
     UIController_StartScene titleController;
     UIController_InGame inGameController;
 
+#region IBootingComponent
+    private bool isReady = false;
+    public bool IsReady => isReady;
+#endregion
+    
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoad;
+
+        isReady = true;
     }
 
     private void OnSceneLoad(Scene arg0, LoadSceneMode arg1)

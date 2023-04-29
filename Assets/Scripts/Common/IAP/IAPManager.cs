@@ -8,7 +8,7 @@ using UnityEngine.Purchasing;
 
 
 
-public class IAPManager : Singleton<IAPManager>, IStoreListener
+public class IAPManager : Singleton<IAPManager>, IStoreListener, IBootingComponent
 {
 
     private string environment = "production"; // Unity Services Initialize
@@ -32,12 +32,18 @@ public class IAPManager : Singleton<IAPManager>, IStoreListener
 
     public bool IsInitialized => storeController != null && storeExtensionProvider != null;
 
+    #region IBootingComponent
+    private bool isReady = false;
+    public bool IsReady => isReady;
+    #endregion
 
     private void Start()
     {
         InitUnityServices();
         InitUnityIAP();
         StartCoroutine("HadSubscription");
+
+        isReady = true;
     }
 
     private void InitUnityServices()

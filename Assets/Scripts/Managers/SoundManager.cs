@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Define;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour, IBootingComponent
 {
   
     public float masterVolumeSFX = 1f;
@@ -18,10 +18,15 @@ public class SoundManager : MonoBehaviour
 
     private Coroutine coroutine = null;
 
+    private bool isReady = false;
+    public bool IsReady => isReady;
+
     public void Initialize()
     {
         sfxPlayer = GameManager.Inst.gameObject.AddComponent<AudioSource>();
         bgmPlayer = GameManager.Inst.gameObject.AddComponent<AudioSource>();
+
+        isReady = true;
     }
     #region BGM
     public void PlayBGM(BGM bgm, int Type) // Type 0 : �ٷ� ���

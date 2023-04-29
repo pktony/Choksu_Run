@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
 using System.Threading.Tasks;
-using UnityEngine.SocialPlatforms;
 
-public class NetworkManager : MonoBehaviour
+public class NetworkManager : MonoBehaviour, IBootingComponent
 {
     DatabaseReference DBreference;
 
@@ -19,9 +18,17 @@ public class NetworkManager : MonoBehaviour
     // 나중에 로그인 정보를 가져와서 아이디 가져오기 
     string myID = "test_ID";
 
+#region IBootingComponent
+    private bool isReady = false;
+    public bool IsReady => isReady;
+#endregion
+
     private void Awake()
     {
+        // TODO : Check Firebase Realtime Database Dependency / Instance
+
         //DBreference = FirebaseDatabase.DefaultInstance.RootReference;
+        isReady = true;
     }
 
     private void Start()

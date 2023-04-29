@@ -1,6 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+using Define;
+using System.Collections;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,11 +20,11 @@ public class GameManager : Singleton<GameManager>
     public ResourceManager resource;
     public UIManager uiManager;
     [SerializeField] private CharacterManager characterManager;
-    private SaveManager saves;
-    private ScoreManager score;
-    private PoolingManager poolManager;
-    private CamManager camManager;
-    private NetworkManager networkManager;
+    [SerializeField] private SaveManager saves;
+    [SerializeField] private ScoreManager score;
+    [SerializeField] private PoolingManager poolManager;
+    [SerializeField] private CamManager camManager;
+    [SerializeField] private NetworkManager networkManager;
 
     private bool isGameOver = false;
     private bool isPause = false;
@@ -26,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     private PlayerDatas playerDatas;
     private int gold;
 
+    private IEnumerator bootWaitHandler;
 
     [Header("게임 속도")]
     public float speed = 3.0f;
@@ -87,17 +94,32 @@ public class GameManager : Singleton<GameManager>
     }
     #endregion
 
-
-    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    protected override void Awake()
     {
-        score = GetComponent<ScoreManager>();
-        saves = GetComponent<SaveManager>();
-        poolManager = GetComponent<PoolingManager>();
-        camManager = GetComponent<CamManager>();
-        poolManager.InitializePool();
+        base.Awake();
 
+        poolManager.InitializePool();
         sound.Initialize();
-        networkManager = GetComponent<NetworkManager>();
+
+        if (bootWaitHandler == null)
+            StartCoroutine(bootWaitHandler = ChecKBootingComponents());
+    }
+
+    private IEnumerator ChecKBootingComponents()
+    {
+        float startTime = Time.time;
+
+        //TODO : find a method to reduce garbage
+        var bootingComponents = FindObjectsOfType<MonoBehaviour>().OfType<IBootingComponent>();
+
+        foreach (var component in bootingComponents)
+        {
+            while (!component.IsReady) yield return null;
+        }
+
+        Debug.Log($"Booting Components Initialize Complete. : {Time.time - startTime} ms");
+
+        SceneManager.LoadScene((int)SceneIndex.Title);
     }
 
     private void Start()
