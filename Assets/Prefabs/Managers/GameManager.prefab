@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefabs:
-  - {fileID: 3335354574895244989, guid: f695363f5c10c4101a6efdb5b0a07acf, type: 3}
+  - {fileID: 3557305956497659762, guid: f695363f5c10c4101a6efdb5b0a07acf, type: 3}
   - {fileID: 3557305956497659762, guid: 2b36264c3f58049aa90aed17d2f2f6b5, type: 3}
   - {fileID: 3557305956497659762, guid: 2b36264c3f58049aa90aed17d2f2f6b5, type: 3}
   - {fileID: 4839410351737391132, guid: 22541de7ba57247eea58aa57c0597b84, type: 3}
