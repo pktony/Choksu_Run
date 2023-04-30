@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &48449371 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4863333412055873374, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
-  m_PrefabInstance: {fileID: 384425624}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21baf2f8864794dedaf9aeb48e161c95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &76544201 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4706349221624710828, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
@@ -338,38 +327,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906112175729, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906112175729, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906112175729, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906112175729, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1026958906300817333, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: m_Name
       value: UI
@@ -462,38 +419,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1955115208}
-    - target: {fileID: 1026958906857823469, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906857823469, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906857823469, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026958906857823469, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706349221624710828, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: time
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4706349221624710828, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 778351753}
-    - target: {fileID: 4706349221624710828, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: obstacleSpawner
-      value: 
-      objectReference: {fileID: 48449371}
-    - target: {fileID: 6366180842247237536, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
 --- !u!1001 &1249560106
