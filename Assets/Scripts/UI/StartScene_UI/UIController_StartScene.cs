@@ -9,17 +9,9 @@ public class UIController_StartScene : MonoBehaviour
     [SerializeField]
     private GameStartButton startButton;
 
-    [SerializeField]
-    private UIs.UI_Slide loadingPanel;
 
     private void Awake()
     {
         currency = transform.GetChild(0).GetComponent<Currency_UI>();
-    }
-
-
-    public void MoveLoadingPanel()
-    {
-        loadingPanel.Slide();
     }
 }

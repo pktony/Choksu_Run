@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,19 +27,21 @@ namespace UIs
         [SerializeField] private openingDiretion openingDiretion;
         [SerializeField] private float slidingSpeed = 10f;
 
+        public bool IsPanelSliding => isMoving;
+
         private void Awake()
         {
             rect = GetComponent<RectTransform>();
             panelSize = rect.sizeDelta;
         }
 
-        public void Slide()
+        public void Slide(Action slideEndAction = null)
         {
             if(!isMoving)
-                StartCoroutine(SlidePanels(openingDiretion));
+                StartCoroutine(SlidePanels(openingDiretion, slideEndAction));
         }
 
-        private IEnumerator SlidePanels(openingDiretion dir)
+        private IEnumerator SlidePanels(openingDiretion dir, Action slideEndAction = null)
         {
             isMoving = true;
             Vector2 newPos = rect.anchoredPosition;
@@ -67,6 +70,7 @@ namespace UIs
 
             isOpen = !isOpen;
             isMoving = false;
+            slideEndAction?.Invoke();
         }
     }
 }

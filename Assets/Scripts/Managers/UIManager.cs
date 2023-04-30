@@ -39,16 +39,6 @@ public class UIManager : MonoBehaviour, IBootingComponent
         }
     }
 
-    public void OnLoadStart()
-    {
-        titleController.MoveLoadingPanel();
-    }
-
-    public void OnLoadComplete()
-    {
-        titleController.MoveLoadingPanel();
-    }
-
     public void ShowGameoverUI()
     {
         inGameController.ShowGameoverUIs();
