@@ -35,6 +35,14 @@ public class NetworkManager : MonoBehaviour, IBootingComponent
         {
             CheckFirebaseDependency();
         }
+        else if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+
+        }
+        else
+        {
+            isReady = true;
+        }
         //DBreference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 

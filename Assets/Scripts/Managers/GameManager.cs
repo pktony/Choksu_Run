@@ -114,7 +114,10 @@ public class GameManager : Singleton<GameManager>
 
         foreach (var component in bootingComponents)
         {
+            Debug.Log($"{component} initialize Begin");
             while (!component.IsReady) yield return null;
+
+            Debug.Log($"{component} initialized");
         }
 
         Debug.Log($"Booting Components Initialize Complete. : {Time.time - startTime} ms");
