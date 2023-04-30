@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Firebase.Database;
 using System.Threading.Tasks;
+using UnityEngine;
+
+using Firebase;
+using Firebase.Database;
 
 public class NetworkManager : MonoBehaviour, IBootingComponent
 {
@@ -13,6 +15,10 @@ public class NetworkManager : MonoBehaviour, IBootingComponent
     public const string path_Score = "score";
     public const int MAX_RANK_COUNT = 20;
     private long rank = 0;
+
+    private FirebaseApp firebaseInstance = null;
+
+    private int dependencyCheckCount = 0;
 
     // 임시
     // 나중에 로그인 정보를 가져와서 아이디 가져오기 
@@ -25,10 +31,35 @@ public class NetworkManager : MonoBehaviour, IBootingComponent
 
     private void Awake()
     {
-        // TODO : Check Firebase Realtime Database Dependency / Instance
-
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            CheckFirebaseDependency();
+        }
         //DBreference = FirebaseDatabase.DefaultInstance.RootReference;
-        isReady = true;
+    }
+
+    private void CheckFirebaseDependency()
+    {
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+        {
+            var dependencyStatus = task.Result;
+            if (dependencyStatus == Firebase.DependencyStatus.Available)
+            {
+                firebaseInstance = FirebaseApp.DefaultInstance;
+                isReady = true;
+            }
+            else
+            {
+                Debug.LogError(
+                    $"Could not resolve all Firebase dependencies: {dependencyStatus}");
+
+                dependencyCheckCount++;
+
+                if (dependencyCheckCount > 10) return;
+                Debug.Log($"Retrying Firebase Depedency Check : {dependencyCheckCount}");
+                CheckFirebaseDependency();
+            }
+        });
     }
 
     private void Start()
