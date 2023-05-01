@@ -262,6 +262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: poolingCounts.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
 --- !u!1 &1333286161
@@ -540,6 +544,26 @@ PrefabInstance:
     - target: {fileID: 6649291173213688606, guid: 3d78016aa319044deaf26904270f7002, type: 3}
       propertyPath: m_Name
       value: LoadingScreenCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649291174176126598, guid: 3d78016aa319044deaf26904270f7002, type: 3}
+      propertyPath: slidingSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649291174176126651, guid: 3d78016aa319044deaf26904270f7002, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649291174176126651, guid: 3d78016aa319044deaf26904270f7002, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649291174176126651, guid: 3d78016aa319044deaf26904270f7002, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649291174176126651, guid: 3d78016aa319044deaf26904270f7002, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d78016aa319044deaf26904270f7002, type: 3}

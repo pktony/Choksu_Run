@@ -21,11 +21,15 @@ public class UIController_InGame : MonoBehaviour
     public void ShowGameoverUIs()
     {
         gameoverGroup.alpha = 1.0f;
+        gameoverGroup.interactable = true;
+        gameoverGroup.blocksRaycasts = true;
     }
 
     public void HideGameoverUIs()
     {
         gameoverGroup.alpha = 0f;
+        gameoverGroup.interactable = false;
+        gameoverGroup.blocksRaycasts = false;
     }
 
     private void UpateScore(float score)

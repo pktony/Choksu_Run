@@ -21,20 +21,21 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         AdManager.Inst.ShowAd(adType);
         AdManager.Inst.InterstitialAd.OnAdClosed += (_,_) =>
         {
+            loadingPanel.gameObject.SetActive(true);
             if (loadingHandler == null)
-                StartCoroutine(loadingHandler = LoadSceneProcess((int)sceneIndex, 1f));
+                StartCoroutine(loadingHandler = LoadSceneProcess((int)sceneIndex, null, 1f));
         };
     }
 
-    public void LoadScene_NoAds(SceneIndex sceneIndex)
-    {
-        if (loadingHandler == null)
-            StartCoroutine(loadingHandler = LoadSceneProcess((int)sceneIndex));
-    }
-
-    private IEnumerator LoadSceneProcess(int sceneIndex, float intentionalWaitSeconds = 0f)
+    public void LoadScene_NoAds(SceneIndex sceneIndex, Action loadProceessAction = null)
     {
         loadingPanel.gameObject.SetActive(true);
+        if (loadingHandler == null)
+            StartCoroutine(loadingHandler = LoadSceneProcess((int)sceneIndex, loadProceessAction, 1f));
+    }
+
+    private IEnumerator LoadSceneProcess(int sceneIndex, Action loadProcessAction = null, float intentionalWaitSeconds = 0f)
+    {
         loadingPanel.Slide();
 
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
@@ -43,13 +44,14 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         while (asyncOperation.progress < 0.9f) yield return null;
         while (loadingPanel.IsPanelSliding) yield return null;
 
+        loadProcessAction?.Invoke();
         yield return new WaitForSeconds(intentionalWaitSeconds);
 
         asyncOperation.allowSceneActivation = true;
         while (!asyncOperation.isDone) yield return null;
 
 
-        loadingPanel.Slide(() => this.gameObject.SetActive(false));
+        loadingPanel.Slide(() => loadingPanel.gameObject.SetActive(false));
 
         loadingHandler = null;
     }

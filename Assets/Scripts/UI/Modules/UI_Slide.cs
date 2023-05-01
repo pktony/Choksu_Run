@@ -32,7 +32,7 @@ namespace UIs
         private void Awake()
         {
             rect = GetComponent<RectTransform>();
-            panelSize = rect.sizeDelta;
+            panelSize = rect.rect.size;
         }
 
         public void Slide(Action slideEndAction = null)
@@ -45,7 +45,9 @@ namespace UIs
         {
             isMoving = true;
             Vector2 newPos = rect.anchoredPosition;
-            float boundary = panelSize.x;
+            float boundary = slideDirection == slideDirection.horizontal ?
+                panelSize.x :
+                panelSize.y;
 
             Vector2 destination = slideDirection == slideDirection.horizontal ?
                 newPos + (int)dir * panelSize.x * Vector2.right :
@@ -56,14 +58,14 @@ namespace UIs
 
             float timer = 0f;
             //시간 = 거리 / 속력
-            float requiredTime = boundary / slidingSpeed * Time.unscaledDeltaTime;
+            float requiredTime = boundary / slidingSpeed * Time.deltaTime;
             while(timer < requiredTime + ERROR_CORRECTION_NUM)
             {
                 newPos = Vector2.Lerp(newPos, destination,
-                    slidingSpeed * Time.unscaledDeltaTime);
+                    slidingSpeed * Time.deltaTime);
                 rect.anchoredPosition = newPos;
 
-                timer += Time.unscaledDeltaTime;
+                timer += Time.deltaTime;
                 yield return null;
             }
             rect.anchoredPosition = destination;

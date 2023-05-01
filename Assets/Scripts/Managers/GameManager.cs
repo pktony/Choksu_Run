@@ -122,7 +122,7 @@ public class GameManager : Singleton<GameManager>
 
         Debug.Log($"Booting Components Initialize Complete. : {Time.time - startTime} ms");
 
-        SceneManager.LoadScene((int)SceneIndex.Title);
+        SceneLoadManager.Inst.LoadScene_NoAds(SceneIndex.Title);
     }
 
     private void Start()
@@ -143,4 +143,9 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void SetStatus(GameStatus _status) => Status = _status;
+
+    public void ResetPooledObjects()
+    {
+        poolManager.ReturnAllActivePools();
+    }
 }
