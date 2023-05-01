@@ -24,6 +24,9 @@ public class PlayerControl_Chok : PlayerControl
     private bool isAtDefaultPosition = false;
     private float currentSpeed;
 
+    private IEnumerator returnHandler = null;
+    private IEnumerator aimHandler = null;
+
     [Header("SKill")]
     [SerializeField]
     private float returningSpeed = 5f;
@@ -111,14 +114,16 @@ public class PlayerControl_Chok : PlayerControl
         rigid.gravityScale = gravityScale;
         mode = ControlMode.normal;
 
-        StartCoroutine(ReturnOringinalPosition());
+        if (returnHandler != null) StopCoroutine(returnHandler);
+        StartCoroutine(returnHandler = ReturnOringinalPosition());
     }
 
     private void UseSkill()
     {
         Time.timeScale = 0.3f;
         mode = ControlMode.aim;
-        StartCoroutine(Aim());
+        if (aimHandler != null) StopCoroutine(aimHandler);
+        StartCoroutine(aimHandler = Aim());
     }
 
     private IEnumerator Aim()
@@ -156,12 +161,13 @@ public class PlayerControl_Chok : PlayerControl
         {
             rigid.velocity = rigid.velocity.y * Vector2.up + currentSpeed * Vector2.right;
 
-            if (transform.position.x - defaultPosition.x < 0.2f)
+            if (Mathf.Abs(transform.position.x - defaultPosition.x) < 0.2f)
             {
                 isAtDefaultPosition = true;
-                rigid.position = defaultPosition;
+                rigid.position = new Vector2(defaultPosition.x, rigid.position.y);
                 break;
             }
+
 
             yield return null;
         }

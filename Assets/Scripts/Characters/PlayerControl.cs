@@ -47,7 +47,9 @@ public class PlayerControl : MonoBehaviour
     {
         inputActions = new();
         rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponentInChildren<Animator>();
+        anim = this.gameObject.AddComponent<Animator>();
+
+        //TODO : Animator Controller Or Animation Clip 
     }
 
     private void Start()
@@ -86,7 +88,11 @@ public class PlayerControl : MonoBehaviour
 
     protected virtual void Jump()
     {
-        if (!IsGrounded) return;
+        if (!IsGrounded && !isDoubleJump)
+        {
+            Debug.Log("Not Grounded");
+            return;
+        }
 
         if (!isDoubleJump)
         {
@@ -99,6 +105,7 @@ public class PlayerControl : MonoBehaviour
                 rigid.velocity = rigid.velocity.x * Vector3.right + jumpForce * Vector3.up;
                 jumpCounter++;
             }
+            Debug.Log($"Jump Count : {jumpCounter}");
         }
         IsGrounded = false;
     }

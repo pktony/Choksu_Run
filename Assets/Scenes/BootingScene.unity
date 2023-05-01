@@ -545,26 +545,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScreenCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6649291174176126598, guid: 3d78016aa319044deaf26904270f7002, type: 3}
-      propertyPath: slidingSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6649291174176126651, guid: 3d78016aa319044deaf26904270f7002, type: 3}
-      propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6649291174176126651, guid: 3d78016aa319044deaf26904270f7002, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6649291174176126651, guid: 3d78016aa319044deaf26904270f7002, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6649291174176126651, guid: 3d78016aa319044deaf26904270f7002, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1080
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d78016aa319044deaf26904270f7002, type: 3}
 --- !u!1001 &3820887067926795702
