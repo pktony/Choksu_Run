@@ -25,4 +25,17 @@ public class CharacterManager : MonoBehaviour
 
         currentShowingModel.transform.position = Vector2.zero;
     }
+
+    public void GetCurrentCharacter()
+    {
+        if (!ReferenceEquals(currentShowingModel, null))
+            Destroy(currentShowingModel);
+
+        currentShowingModel = Instantiate(
+            GameManager.Inst.resource.CharacterData[(int)CurrentCharacter].model);
+
+        currentShowingModel.transform.position = Vector2.zero;
+
+        currentShowingModel.GetComponent<Animator>().SetTrigger("Run");
+    }
 }
