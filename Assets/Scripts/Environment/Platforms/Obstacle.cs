@@ -11,7 +11,7 @@ public class Obstacle : Platforms<Define.ObstacleType> //장애물 객체의 행
 
     protected override void ReturnPool()
     {
-        poolManager.ReturnPooledObject(this.gameObject, type);
+        poolManager.ReturnObstacle(this);
     }
 
     protected override bool TouchAction()
@@ -24,7 +24,7 @@ public class Obstacle : Platforms<Define.ObstacleType> //장애물 객체의 행
         speed = gameManager.speed;
         rigid.MovePosition(rigid.position + speed * Time.fixedDeltaTime * Vector2.left);
 
-        if (transform.position.x < leftEnd)
+        if (transform.position.x < leftEnd - size_X)
         {
             ReturnPool();
         }

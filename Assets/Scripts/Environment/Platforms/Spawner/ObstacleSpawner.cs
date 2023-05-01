@@ -46,31 +46,38 @@ public class ObstacleSpawner : MonoBehaviour
         yield return new WaitUntil(() => GameManager.Inst.Status == GameManager.GameStatus.Run);
 
         float time;
-        GameObject obj = null;
         while (cursor < levels.Length)
         {
+            if (GameManager.Inst.IsGameOver) yield break;
+
             if (obstacleChars.Contains(levels[cursor]))
             {
                 if (levels[cursor] - '0' < 10)
                 {// 장애물
-                    obj = poolManager.GetPooledObject((ObstacleType)levels[cursor] - '0');
+                    var obj = poolManager.GetObstacle((ObstacleType)levels[cursor] - '0');
                     time = levelDesign.GetTime((ObstacleType)levels[cursor] - '0');
+                    obj.transform.position = new Vector2(
+                spawnPoint.transform.position.x, obj.transform.position.y);
+                    obj.gameObject.SetActive(true);
                 }
                 else
                 {// 코인
-                    obj = poolManager.GetPooledObject((CurrencyType)(levels[cursor] - 'a'));
+                    var obj = poolManager.GetCurrency((CurrencyType)(levels[cursor] - 'a'));
                     //obj.transform.position += maxHeight * Vector3.up;
                     time = levelDesign.GetTime((CurrencyType)(levels[cursor] - 'a'));
+                    obj.transform.position = new Vector2(
+                spawnPoint.transform.position.x, obj.transform.position.y);
+                    obj.gameObject.SetActive(true);
                 }
             }
             else
             {// 예외 처리
-                obj = poolManager.GetPooledObject(ObstacleType.SingleJump);
+                var obj = poolManager.GetObstacle(ObstacleType.SingleJump);
                 time = DEFAULT_OBSTACLE_TIME;
-            }
-            obj.transform.position = new Vector2(
+                obj.transform.position = new Vector2(
                 spawnPoint.transform.position.x, obj.transform.position.y);
-            obj.SetActive(true);
+                obj.gameObject.SetActive(true);
+            }
 
             cursor++;
             if (levelDesign.isObstacleTest)

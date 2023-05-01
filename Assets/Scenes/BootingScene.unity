@@ -266,6 +266,10 @@ PrefabInstance:
       propertyPath: poolingCounts.Array.data[2]
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: obstaclePrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4848447873844511723, guid: 6aeed8d5e3cdc44a19d3ed9d70faefbe, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
 --- !u!1 &1333286161

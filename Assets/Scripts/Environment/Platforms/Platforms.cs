@@ -8,6 +8,7 @@ public abstract class Platforms<T> : MonoBehaviour where T : System.Enum
     protected GameManager gameManager;
     protected PoolingManager poolManager;
     protected Rigidbody2D rigid;
+    private Collider2D platformCollider;
 
     protected float speed = 0f;
     [Header("뭉텡이면 체크")]
@@ -19,11 +20,15 @@ public abstract class Platforms<T> : MonoBehaviour where T : System.Enum
 
     private Vector2 startPostion;
     protected float leftEnd;
+    protected float size_X;
+
+    public T Type => type;
 
     protected virtual void Awake()
     {
         InitializeRigidbody();
         startPostion = transform.position;
+        GetSize();
         CalculateGroupSize();
     }
 
@@ -58,6 +63,13 @@ public abstract class Platforms<T> : MonoBehaviour where T : System.Enum
         {
             MovePlatform();
         }
+    }
+
+    private void GetSize()
+    {
+        if (!TryGetComponent<Collider2D>(out platformCollider)) return;
+
+        size_X = platformCollider.bounds.size.x;
     }
 
     /// <summary>

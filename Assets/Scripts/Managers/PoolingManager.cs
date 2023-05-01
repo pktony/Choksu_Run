@@ -2,12 +2,18 @@ using System.Collections.Generic;
 using Define;
 using UnityEngine;
 
+using UIs;
+
 public class PoolingManager : MonoBehaviour, IBootingComponent
 {
-    private Dictionary<ObstacleType, Queue<GameObject>> obstaclePool = new();
-    private Dictionary<CurrencyType, Queue<GameObject>> currencyPool = new();
+    private Dictionary<ObstacleType, Queue<Platforms<ObstacleType>>> obstaclePool = new();
+    private Dictionary<CurrencyType, Queue<Platforms<CurrencyType>>> currencyPool = new();
 
-    private Queue<UIs.UI_PopupText> popupTexts = new();
+    private Dictionary<ObstacleType, List<Platforms<ObstacleType>>> activeObstacles = new();
+    private Dictionary<CurrencyType, List<Platforms<CurrencyType>>> activeCurrencies = new();
+
+    private Queue<UI_PopupText> popupTexts = new();
+    private List<UI_PopupText> activePopupTexts = new();
 
     [SerializeField]
     private GameObject[] obstaclePrefabs;
@@ -36,142 +42,154 @@ public class PoolingManager : MonoBehaviour, IBootingComponent
         if (obstaclePool.Count > 1 || currencyPool.Count > 1)
             return;
 
-        for (int i = 0; i < obstaclePrefabs.Length; i++)
+        for(int i = 0; i < obstaclePrefabs.Length; i++)
         {
-            obstaclePool[(ObstacleType)i] = new Queue<GameObject>();
-            for (int j = 0; j < poolingCounts[0]; j++)
-            {
-                obstaclePool[(ObstacleType)i].Enqueue(CreatePoolingObject((ObstacleType)i, i, this.transform));
-            }
+            var type = (ObstacleType)i;
+            obstaclePool[type] = new();
+            activeObstacles[type] = new();
+            CreateObstacles(type, transform);
         }
-
         for (int i = 0; i < currencyPrefabs.Length; i++)
         {
-            currencyPool[(CurrencyType)i] = new Queue<GameObject>();
-            for (int j = 0; j < poolingCounts[1]; j++)
-            {
-                currencyPool[(CurrencyType)i].Enqueue(CreatePoolingObject((CurrencyType)i, i, this.transform));
-            }
+            var type = (CurrencyType)i;
+            currencyPool[type] = new();
+            activeCurrencies[type] = new();
+            CreateCurrencies(type, transform);
         }
-
-        for (int i = 0; i < poolingCounts[2]; i++)
-        {
-            GameObject uiObj = CreatePoolingObject(UIPoolType.popupText, 0, this.transform);
-            popupTexts.Enqueue(uiObj.GetComponent<UIs.UI_PopupText>());
-        }
+        CreatePopupUIs(UIPoolType.popupText, transform);
 
         isReady = true;
     }
 
-
-    /// <summary>
-    /// 오브젝트 풀 가져오기
-    /// </summary>
-    /// <typeparam name="T">0 : Obstacle,  1 : Currency</typeparam>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    public GameObject GetPooledObject<T>(T type) where T : System.Enum
+    public Platforms<ObstacleType> GetObstacle(ObstacleType type)
     {
-        GameObject obj = null;
-
-        switch (type)
+        Platforms<ObstacleType> obj = null;
+        if (obstaclePool[type].Count > 0)
         {
-            case ObstacleType:
-                // implicit type change
-                // ObstacleType otype = (ObstacleType)(object)type;
-                // reflection
-                ObstacleType oType = (ObstacleType)System.Enum.Parse(type.GetType(), type.ToString());
-                if (obstaclePool[oType].Count > 0)
-                {
-                    obj = obstaclePool[oType].Dequeue();
-                }
-                else
-                {
-                    obstaclePool[oType].Enqueue(CreatePoolingObject(oType, (int)oType, this.transform));
-                    return GetPooledObject(oType);
-                }
-                break;
-            case CurrencyType:
-                CurrencyType ctype = (CurrencyType)(object)type;
-                if (currencyPool[ctype].Count > 0)
-                {
-                    obj = currencyPool[ctype].Dequeue();
-                }
-                else
-                {
-                    currencyPool[ctype].Enqueue(CreatePoolingObject(ctype, (int)ctype, this.transform));
-                    return GetPooledObject(ctype);
-                }
-                break;
-            default:
-                Debug.LogError("INVALID POOLING TYPE");
-                break;
+            obj = obstaclePool[type].Dequeue();
+            activeObstacles[type].Add(obj);
+        }
+        else
+        {
+            CreateObstacles(type, this.transform);
+            return GetObstacle(type);
         }
 
         return obj;
     }
 
-
-    public UIs.UI_PopupText GetPooledUIs(UIPoolType type)
+    public Platforms<CurrencyType> GetCurrency(CurrencyType type)
     {
-        UIs.UI_PopupText popupText;
-        if (popupTexts.Count > 0)
+        Platforms<CurrencyType> obj = null;
+        if (currencyPool[type].Count > 0)
         {
-            popupText = popupTexts.Dequeue();
+            obj = currencyPool[type].Dequeue();
+            activeCurrencies[type].Add(obj);
         }
         else
         {
-            GameObject uiObj = CreatePoolingObject(type, (int)type, this.transform);
-            return uiObj.GetComponent<UIs.UI_PopupText>();
+            CreateCurrencies(type, transform);
+            return GetCurrency(type);
+        }
+
+        return obj;
+    }
+
+    public UI_PopupText GetPooledUIs(UIPoolType type)
+    {
+        UI_PopupText popupText;
+        if (popupTexts.Count > 0)
+        {
+            popupText = popupTexts.Dequeue();
+            activePopupTexts.Add(popupText);
+        }
+        else
+        {
+            CreatePopupUIs(type, this.transform);
+            return GetPooledUIs(type);
         }
         return popupText;
     }
-    public void ReturnPooledObject<T>(GameObject uselessObj, T type) where T:System.Enum
+
+    public void ReturnObstacle(Platforms<ObstacleType> uselessObj)
     {
-        switch(type)
-        {
-            case ObstacleType:
-                obstaclePool[(ObstacleType)(object)type].Enqueue(uselessObj);
-                break;
-            case CurrencyType:
-                currencyPool[(CurrencyType)(object)type].Enqueue(uselessObj);
-                break;
-        }
-        
-        uselessObj.SetActive(false);
+        obstaclePool[uselessObj.Type].Enqueue(uselessObj);
+        activeObstacles[uselessObj.Type].Remove(uselessObj);
+
+        uselessObj.gameObject.SetActive(false);
+    }
+
+    public void ReturnCurrency(Platforms<CurrencyType> uselessObj)
+    {
+        currencyPool[uselessObj.Type].Enqueue(uselessObj);
+        activeCurrencies[uselessObj.Type].Remove(uselessObj);
+
+        uselessObj.gameObject.SetActive(false);
     }
 
     //임시
     // 풀링할 게 더 생기면 수정 필요
-    public void ReturnPopupText(UIs.UI_PopupText popupText)
+    public void ReturnPopupText(UI_PopupText popupText)
     {
         popupTexts.Enqueue(popupText);
+        activePopupTexts.Remove(popupText);
         popupText.gameObject.SetActive(false);
     }
 
-    #region PRIVATE 함수 ########################################################
-    private GameObject CreatePoolingObject<T>(T type, int index, Transform parent)
+    public void ReturnAllActivePools()
     {
-        GameObject obj;
-        switch (type)
+        for (int i = 0; i < activeObstacles.Count; i++)
         {
-            case ObstacleType:
-                obj = Instantiate(obstaclePrefabs[index], parent);
-                break;
-            case CurrencyType:
-                obj = Instantiate(currencyPrefabs[index], parent);
-                break;
-            case UIPoolType:
-                obj = Instantiate(uiPoolPrefabs[index], parent);
-                break;
-            default:
-                obj = null;
-                Debug.LogError("NO VALID PREFAB FOUND. LOOK INSPECTOR.");
-                break;
+            if (activeObstacles[(ObstacleType)i].Count <= 0) continue;
+
+            while (activeObstacles[(ObstacleType)i].Count > 0)
+                ReturnObstacle(activeObstacles[(ObstacleType)i][0]);
+
+            Debug.Log($"All {(ObstacleType)i} Returned");
         }
-        
-        obj.SetActive(false);
-        return obj;
+        for (int i = 0; i < activeCurrencies.Count; i++)
+        {
+            if (activeCurrencies[(CurrencyType)i].Count <= 0) continue;
+
+            while(activeCurrencies[(CurrencyType)i].Count > 0)
+                ReturnCurrency(activeCurrencies[(CurrencyType)i][0]);
+
+            Debug.Log($"All {(CurrencyType)i} Returned");
+        }
+    }
+
+    #region PRIVATE 함수 ########################################################
+    private void CreateObstacles(ObstacleType type, Transform parent)
+    {
+        while (obstaclePool[type].Count < poolingCounts[0])
+        {
+            Platforms<ObstacleType> obstacle =
+                Instantiate(obstaclePrefabs[(int)type], parent).GetComponent<Platforms<ObstacleType>>();
+            obstacle.gameObject.SetActive(false);
+            obstaclePool[type].Enqueue(obstacle);
+        }
+    }
+
+    private void CreateCurrencies(CurrencyType type, Transform parent)
+    {
+        while (currencyPool[type].Count < poolingCounts[1])
+        {
+            Platforms<CurrencyType> currency =
+                Instantiate(currencyPrefabs[(int)type], parent).GetComponent<Platforms<CurrencyType>>();
+            currency.gameObject.SetActive(false);
+            currencyPool[type].Enqueue(currency);
+        }
+    }
+
+    private void CreatePopupUIs(UIPoolType type, Transform parent)
+    {
+        while (popupTexts.Count < poolingCounts[2])
+        {
+            UI_PopupText popupUI =
+                Instantiate(uiPoolPrefabs[(int)type], parent).GetComponent<UI_PopupText>();
+            popupTexts.Enqueue(popupUI);
+            popupUI.gameObject.SetActive(false);
+        }
     }
     #endregion
 }

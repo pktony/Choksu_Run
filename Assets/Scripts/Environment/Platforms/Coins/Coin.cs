@@ -9,7 +9,7 @@ public class Coin : Platforms<CurrencyType>, ICoin
     [SerializeField]
     private int worth = 1;
 
-    public CurrencyType Type => type;
+    //public CurrencyType Type => type;
 
     public int Worth => worth;
 
@@ -31,7 +31,7 @@ public class Coin : Platforms<CurrencyType>, ICoin
 
     protected override void ReturnPool()
     {
-        poolManager.ReturnPooledObject(this.gameObject, type);
+        poolManager.ReturnCurrency(this);
     }
 
     protected override bool TouchAction()

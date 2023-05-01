@@ -7,9 +7,8 @@ using Define;
 /// 작업중
 /// 워닝 레이저 크기 설정 필요
 /// </summary>
-public class WarningLaser : MonoBehaviour
+public class WarningLaser : Platforms<ObstacleType>
 {
-    private PoolingManager poolManager;
     private Animator anim;
 
     [SerializeField]
@@ -44,8 +43,9 @@ public class WarningLaser : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         anim = GetComponent<Animator>();
     }
 
@@ -82,14 +82,25 @@ public class WarningLaser : MonoBehaviour
 
         while (spawnCount < spawnNum)
         {
-            GameObject obj = GameManager.Inst.PoolManager.GetPooledObject(ObstacleType.FlyingObject);
-            obj.SetActive(true);
+            var obj = GameManager.Inst.PoolManager.GetObstacle(ObstacleType.FlyingObject);
+            obj.gameObject.SetActive(true);
             obj.transform.position = transform.position;
             spawnCount++;
             yield return new WaitForSeconds(spawnDelay);
         }
 
         yield return new WaitUntil(() => !isWarning);
-        poolManager.ReturnPooledObject(this.gameObject, ObstacleType.WarningLaser);
+        ReturnPool();
+    }
+
+    protected override void MovePlatform() { }
+
+    protected override bool TouchAction() { return false; }
+
+    protected override void EnablingAction() { }
+
+    protected override void ReturnPool()
+    {
+        poolManager.ReturnObstacle(this);
     }
 }

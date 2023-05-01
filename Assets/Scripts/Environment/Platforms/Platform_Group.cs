@@ -37,7 +37,7 @@ public class Platform_Group : Platforms<Define.CurrencyType>
 
     protected override void ReturnPool()
     {
-        poolManager.ReturnPooledObject(this.gameObject, type);
+        poolManager.ReturnCurrency(this);
     }
 
     protected override bool TouchAction()

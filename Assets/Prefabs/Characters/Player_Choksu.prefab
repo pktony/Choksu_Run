@@ -425,7 +425,6 @@ MonoBehaviour:
   dieForce: 5
   dieTorque: 5
   shrinkMagnitude: 0.328
-  mode: 0
   returningSpeed: 5
   chokSpeed: 10
   forceInterval: 0.5

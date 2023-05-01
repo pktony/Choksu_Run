@@ -39,7 +39,7 @@ public class Obstacle_Vertical : Platforms<ObstacleType>
 
     protected override void ReturnPool()
     {
-        poolManager.ReturnPooledObject(this.gameObject, type);
+        poolManager.ReturnObstacle(this);
     }
 
     protected override bool TouchAction()
