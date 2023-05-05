@@ -21,17 +21,19 @@ public class Leaderboard : MonoBehaviour
         scores = new TextMeshProUGUI[NetworkManager.MAX_RANK_COUNT];
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => GameManager.Inst.Network.IsReady);
         InitializeLeaderboard();
     }
 
     private async void InitializeLeaderboard()
     {
         Transform scoreObjParent = scrollRect.content;
+        GameObject obj = null;
         for (int i = 0; i < NetworkManager.MAX_RANK_COUNT; i++)
         {
-            GameObject obj = Instantiate(scoreObj, scoreObjParent);
+            obj = Instantiate(scoreObj, scoreObjParent);
             obj.name = (i + 1).ToString();
             scores[i] = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         }

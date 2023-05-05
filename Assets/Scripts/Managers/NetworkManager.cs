@@ -41,9 +41,9 @@ public class NetworkManager : MonoBehaviour, IBootingComponent
         }
         else
         {
-            isReady = true;
+            DBreference = FirebaseDatabase.DefaultInstance.RootReference;
+            isReady = true; 
         }
-        //DBreference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
     private void CheckFirebaseDependency()
@@ -54,6 +54,7 @@ public class NetworkManager : MonoBehaviour, IBootingComponent
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
                 firebaseInstance = FirebaseApp.DefaultInstance;
+                DBreference = FirebaseDatabase.DefaultInstance.RootReference;
                 isReady = true;
             }
             else

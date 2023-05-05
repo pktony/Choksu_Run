@@ -8,6 +8,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerDatas
 {
+    public string uid;
     public int gold;
     public List<bool> characterUnlockInfo;
 }
