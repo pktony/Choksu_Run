@@ -62,3 +62,5 @@ crashlytics-build.properties
 Assets/Prefabs/Envrionment/.DS_Store
 UserSettings/Layouts/default-2021.dwlt
 UserSettings/Layouts/default-2021.dwlt
+.DS_Store
+Assets/Firebase/Plugins/x86_64/FirebaseCppApp-10_7_0.bundle

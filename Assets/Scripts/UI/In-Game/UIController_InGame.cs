@@ -41,5 +41,4 @@ public class UIController_InGame : MonoBehaviour
     {
         coinText.text = coin.ToString();
     }
-
 }
