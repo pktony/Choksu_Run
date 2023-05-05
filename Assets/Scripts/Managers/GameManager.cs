@@ -38,6 +38,11 @@ public class GameManager : Singleton<GameManager>
     public float speed = 3.0f;
     public float gravityScale = 10f;
 
+    [Header("광고 관련")]
+    [SerializeField] AdType gameStartAd;
+    [Range(0f, 1f)]
+    [SerializeField] float adExposureProbability;
+
     #region DELEGATE ##########################################################
     public Action<int, int> onGoldChange; // Current Gold, Goal Gold
     public Action onPause;

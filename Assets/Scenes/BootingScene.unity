@@ -262,6 +262,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6858014448847946069, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: gameStartAd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6858014448847946069, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: adExposureProbability
+      value: 0.502
+      objectReference: {fileID: 0}
     - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
       propertyPath: poolingCounts.Array.data[2]
       value: 10

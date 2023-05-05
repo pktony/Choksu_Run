@@ -12,6 +12,7 @@ public class AdManager : Singleton<AdManager>
     private const string ANDROID_ID = "ca-app-pub-1558168203898482~1386105414";
 
     private InterstitialAd interstitialAd;
+    private RewardedAd rewardedAd;
 
     public InterstitialAd InterstitialAd => interstitialAd;
 
@@ -19,7 +20,8 @@ public class AdManager : Singleton<AdManager>
     {
         if (interstitialAd == null)
         {
-            MobileAds.Initialize(initCompleteAction => { });
+            MobileAds.Initialize(initCompleteAction =>
+            { Debug.Log("Googld Admob Initialized"); });
         }
     }
 
@@ -31,7 +33,7 @@ public class AdManager : Singleton<AdManager>
         //}
     }
 
-    private void RequestAds()
+    private string RequestAds()
     {
         string id ;
 #if UNITY_EDITOR
@@ -41,26 +43,34 @@ public class AdManager : Singleton<AdManager>
 #else
         id = TEST_ID;
 #endif
-
-        interstitialAd = new InterstitialAd(id);
-        AdRequest request = new AdRequest.Builder().Build();
-        interstitialAd.LoadAd(request);
+        return id;
     }
 
-    public void ShowAd(AdType adType)
+    public void ShowAd(AdType adType, Action<object, EventArgs> adLoadAction)
     {
-        RequestAds();
-        switch(adType)
+        string adID = RequestAds();
+        switch (adType)
         {
             case AdType.Banner:
+                GameObject bannerObj = new("bannerObj");
+                var banner = bannerObj.AddComponent<BannerAd>();
+                banner.SetBanner(adID, adLoadAction);
+                banner.ShowAd();
                 break;
             case AdType.Interstitial:
                 interstitialAd.Show();
+                interstitialAd = new InterstitialAd(adID);
+                AdRequest request = new AdRequest.Builder().Build();
+                interstitialAd.LoadAd(request);
+                interstitialAd.OnAdClosed += (arg, arg2) => { adLoadAction?.Invoke(arg, arg2);};
                 break;
             case AdType.Reward:
+                rewardedAd = new RewardedAd(adID);
+                rewardedAd.Show();
+                Debug.LogWarning("Rewarded Ad Not Impletemented");
                 break;
             default:
                 break;
         }
-    }
+    }   
 }

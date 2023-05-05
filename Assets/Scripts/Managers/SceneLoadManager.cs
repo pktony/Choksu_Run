@@ -18,13 +18,12 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     public void LoadScene_Ads(SceneIndex sceneIndex, AdType adType)
     {
-        AdManager.Inst.ShowAd(adType);
-        AdManager.Inst.InterstitialAd.OnAdClosed += (_,_) =>
+        AdManager.Inst.ShowAd(adType, (_, _) =>
         {
             loadingPanel.gameObject.SetActive(true);
             if (loadingHandler == null)
                 StartCoroutine(loadingHandler = LoadSceneProcess((int)sceneIndex, null, 1f));
-        };
+        });
     }
 
     public void LoadScene_NoAds(SceneIndex sceneIndex, Action loadProceessAction = null)

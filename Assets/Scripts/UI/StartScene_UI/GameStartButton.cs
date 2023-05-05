@@ -22,6 +22,7 @@ public class GameStartButton : MonoBehaviour
         //씬 로드
         Debug.Log("Game Start");
         GameManager.Inst.sound.StopBGM();
-        SceneLoadManager.Inst.LoadScene_Ads(SceneIndex.In_Game, AdType.Interstitial);
+        
+        SceneLoadManager.Inst.LoadScene_Ads(SceneIndex.In_Game, AdType.Banner);
     }
 }
