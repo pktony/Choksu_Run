@@ -471,6 +471,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8469529089303094032, guid: 04e683f8fdc3547f7baa7936342a16e2, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 8469529089303094032, guid: 04e683f8fdc3547f7baa7936342a16e2, type: 3}
       propertyPath: m_Name
       value: Player_Choksu
       objectReference: {fileID: 0}

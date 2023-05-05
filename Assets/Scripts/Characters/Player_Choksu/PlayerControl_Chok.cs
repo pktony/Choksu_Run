@@ -67,7 +67,7 @@ public class PlayerControl_Chok : PlayerControl
     {
         if (mode == ControlMode.chok)
             return;
-
+        DetachChok();
         if (context.performed)
         {
             UseSkill();
@@ -87,6 +87,12 @@ public class PlayerControl_Chok : PlayerControl
             return;
         }
         base.Jump();
+    }
+
+    protected override void GroundTouchAction()
+    {
+        base.GroundTouchAction();
+        DetachChok();
     }
 
     #region PRIVATE 함수 #######################################################
@@ -113,7 +119,6 @@ public class PlayerControl_Chok : PlayerControl
         chokLine.DisableChok();
         rigid.gravityScale = gravityScale;
         mode = ControlMode.normal;
-
         if (returnHandler != null) StopCoroutine(returnHandler);
         StartCoroutine(returnHandler = ReturnOringinalPosition());
     }
@@ -152,22 +157,26 @@ public class PlayerControl_Chok : PlayerControl
     private IEnumerator ReturnOringinalPosition()
     {
         yield return new WaitUntil(() => isGrounded == true);
-        currentSpeed = transform.position.x <= defaultPosition.x ?
+        currentSpeed = rigid.position.x <= defaultPosition.x ?
                     returningSpeed : -returningSpeed;
+
+        Debug.Log($"Player Grounded : Current Speed {currentSpeed}");
 
         isAtDefaultPosition = false;
 
         while (!isAtDefaultPosition)
         {
-            rigid.velocity = rigid.velocity.y * Vector2.up + currentSpeed * Vector2.right;
-
-            if (Mathf.Abs(transform.position.x - defaultPosition.x) < 0.2f)
+            if ((currentSpeed < 0 && rigid.position.x < defaultPosition.x) || 
+                    (currentSpeed > 0 && rigid.position.x > defaultPosition.x))
             {
                 isAtDefaultPosition = true;
                 rigid.position = new Vector2(defaultPosition.x, rigid.position.y);
+                rigid.velocity = Vector2.zero;
+                Debug.Log("Player at Default Posistion");
                 break;
             }
 
+            rigid.velocity = rigid.velocity.y * Vector2.up + currentSpeed * Vector2.right;
 
             yield return null;
         }

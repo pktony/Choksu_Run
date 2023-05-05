@@ -127,9 +127,14 @@ public class PlayerControl : MonoBehaviour
 
         if (collision.collider.CompareTag("Ground"))
         {
-            IsGrounded = true;
-            jumpCounter = 0;
+            GroundTouchAction();
         }
+    }
+
+    protected virtual void GroundTouchAction()
+    {
+        IsGrounded = true;
+        jumpCounter = 0;
     }
 
     private void DisableAllControl()
