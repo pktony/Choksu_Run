@@ -1,44 +1,62 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Threading.Tasks;
+using UIs;
 
 public class Leaderboard : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject scoreObj;
+    [SerializeField] private RankElementPool rankElementPool = default;
+    [SerializeField] private UI_Slide_Button slideButton = default;
+
+    [SerializeField] private GameObject loadingCircle = default;
+    [SerializeField] private VerticalLayoutGroup layoutGroup = default;
 
     private ScrollRect scrollRect;
-
-    private TextMeshProUGUI[] scores;
 
     private void Awake()
     {
         scrollRect = GetComponentInChildren<ScrollRect>();
-        scores = new TextMeshProUGUI[NetworkManager.MAX_RANK_COUNT];
+
+        slideButton.SetActivateListeners(() => OpenAction(), () => CloseAction());
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return new WaitUntil(() => GameManager.Inst.Network.IsReady);
+<<<<<<< Updated upstream
+=======
+        yield return new WaitUntil(() => GameManager.Inst.Network.IsReady && rankElementPool.IsPoolReady);
+>>>>>>> Stashed changes
         InitializeLeaderboard();
     }
 
     private async void InitializeLeaderboard()
     {
         Transform scoreObjParent = scrollRect.content;
-        GameObject obj = null;
         for (int i = 0; i < NetworkManager.MAX_RANK_COUNT; i++)
         {
-            obj = Instantiate(scoreObj, scoreObjParent);
+<<<<<<< Updated upstream
+            GameObject obj = Instantiate(scoreObj, scoreObjParent);
             obj.name = (i + 1).ToString();
             scores[i] = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+=======
+            var element = rankElementPool.GetRankElement(scoreObjParent);
+            element.gameObject.name = (i + 1).ToString();
+>>>>>>> Stashed changes
         }
 
+        float totalHeight = (rankElementPool.ActiveElementPool[0].Height + layoutGroup.spacing)
+            * rankElementPool.ActiveElementPool.Count;
+        scrollRect.content.sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, totalHeight);
+
+        loadingCircle.SetActive(true);
+
         await GetLeaderboardDB();
+
+        loadingCircle.SetActive(false);
     }
 
     public async Task GetLeaderboardDB()
@@ -47,18 +65,33 @@ public class Leaderboard : MonoBehaviour
 
         var dics = await taskData;
 
-        for (int i = 0; i < scores.Length; i++)
+        for (int i = 0; i < rankElementPool.ActiveElementPool.Count; i++)
         {
             if (i < dics.Count)
             {
-                scores[i].text = string.Format("Rank {0}  ID {1}  Score {2}",
-                    i + 1, dics[i][NetworkManager.path_ID], dics[i][NetworkManager.path_Score]);
+                rankElementPool.ActiveElementPool[i].SetRank(i + 1, dics[i][NetworkManager.path_ID].ToString(),
+                    dics[i][NetworkManager.path_Score].ToString());
             }
             else
             {
-                scores[i].text = string.Format("Rank {0}", i + 1);
+                rankElementPool.ActiveElementPool[i].SetRank(i + 1, null, null);
             }
+
+            rankElementPool.ActiveElementPool[i].gameObject.SetActive(true);
         }
+
         scrollRect.verticalNormalizedPosition = 1f;
+    }
+
+
+    private void CloseAction()
+    {
+        rankElementPool.ReleaseAllElements();
+    }
+
+    private void OpenAction()
+    {
+        rankElementPool.ReleaseAllElements();
+        InitializeLeaderboard();
     }
 }

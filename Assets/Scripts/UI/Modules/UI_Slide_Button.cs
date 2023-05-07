@@ -1,21 +1,56 @@
+using System;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace UIs
 {
-    public class UI_Slide_Button : MonoBehaviour, IPointerClickHandler
+    [RequireComponent(typeof(Button))]
+    public class UI_Slide_Button : MonoBehaviour
     {
-        [SerializeField]
-        private UI_Slide slider;
+        [SerializeField] private UI_Slide slider;
+
+        private Button slideButton = default;
+
+        private Action openActionListener;
+        private Action closeActionListener;
+
+        private IEnumerator closeActionHandler;
 
         private void Awake()
         {
-            //slider = GetComponentInParent<UI_Slide>();
+            slideButton = GetComponent<Button>();
+            slideButton.onClick.AddListener(Slide);
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public void SetActivateListeners(Action openingAction, Action closeAction)
         {
-            slider.Slide();
+            openActionListener = openingAction;
+            closeActionListener = closeAction;
+        }
+
+        private void Slide()
+        {
+            bool isOpen = slider.Slide();
+
+            if (isOpen)
+            {
+                openActionListener?.Invoke();
+            }
+            else
+            {
+                if (closeActionHandler != null)
+                    StartCoroutine(closeActionHandler = CloseActionCoroutine());
+            }
+
+        }
+
+        private IEnumerator CloseActionCoroutine()
+        {
+            yield return new WaitUntil(() => !slider.IsPanelSliding);
+
+            closeActionListener?.Invoke();
+            closeActionHandler = null;
         }
     }
 }
