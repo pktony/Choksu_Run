@@ -46,8 +46,6 @@ public class Leaderboard : MonoBehaviour
         loadingCircle.SetActive(true);
 
         await GetLeaderboardDB();
-
-        loadingCircle.SetActive(false);
     }
 
     public async Task GetLeaderboardDB()
@@ -55,6 +53,7 @@ public class Leaderboard : MonoBehaviour
         var taskData = GameManager.Inst.Network.GetRankDB();
 
         var dics = await taskData;
+        if (dics == null) return;
 
         for (int i = 0; i < rankElementPool.ActiveElementPool.Count; i++)
         {
@@ -72,6 +71,7 @@ public class Leaderboard : MonoBehaviour
         }
 
         scrollRect.verticalNormalizedPosition = 1f;
+        loadingCircle.SetActive(false);
     }
 
 
