@@ -203,6 +203,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+--- !u!114 &384425625 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4863333412055873374, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+  m_PrefabInstance: {fileID: 384425624}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21baf2f8864794dedaf9aeb48e161c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &676124414
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +338,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1696490190, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 384425625}
     - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -467,6 +482,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _countUI
+      value: 
+      objectReference: {fileID: 76544201}
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _backGround
+      value: 
+      objectReference: {fileID: 676124419}
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _groundScroller
+      value: 
+      objectReference: {fileID: 1559010908}
     - target: {fileID: 1026958907606929421, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1

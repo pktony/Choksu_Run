@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScreenCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6649291174176126650, guid: 3d78016aa319044deaf26904270f7002, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d78016aa319044deaf26904270f7002, type: 3}
 --- !u!1001 &508203482
@@ -314,6 +318,10 @@ PrefabInstance:
     - target: {fileID: 3820887068219267960, guid: 1e026a7b227f7429f858d1757c74aa4a, type: 3}
       propertyPath: m_Name
       value: CommonPopupCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3820887068548587384, guid: 1e026a7b227f7429f858d1757c74aa4a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e026a7b227f7429f858d1757c74aa4a, type: 3}
