@@ -16,7 +16,12 @@ public class Background : MonoBehaviour
     {
         mat = GetComponent<Renderer>().material;
 
-        if(routine != null)
+        InitRoutine();
+    }
+
+    public void InitRoutine()
+    {
+        if (routine != null)
         {
             StopCoroutine(routine);
         }
@@ -38,5 +43,5 @@ public class Background : MonoBehaviour
         }
 
         yield return null;
-    }
+    }   
 }

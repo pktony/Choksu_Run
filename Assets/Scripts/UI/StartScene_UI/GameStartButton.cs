@@ -22,6 +22,12 @@ public class GameStartButton : MonoBehaviour
         //씬 로드
         Debug.Log("Game Start");
         GameManager.Inst.sound.StopBGM();
+
+        GameManager.Inst.Score.Initialize();
+
+        GameManager.Inst.IsGameOver = false;
+
+        GameManager.Inst.SetSpeed();
         
         SceneLoadManager.Inst.LoadScene_Ads(SceneIndex.In_Game, AdType.Banner);
     }
