@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
 
     public GameStatus Status { get; set; } //Is InGame or Not
 
+
     [Header("Managers")]
     //public UIManager ui;
     public SoundManager sound;
@@ -35,8 +36,8 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator bootWaitHandler;
 
     [Header("게임 속도")]
-    public float speed = 3.0f;
-    public float gravityScale = 10f;
+    public float speed; //Inject on Inspector , Default : speed 5 , gravity 3
+    public float gravityScale;
 
     [Header("광고 관련")]
     [SerializeField] AdType gameStartAd;
@@ -85,13 +86,12 @@ public class GameManager : Singleton<GameManager>
 
             if(isPause)
             {
-                SetStatus(GameStatus.Stop);
                 Time.timeScale = 0.0f;
+                SetStatus(GameStatus.Stop);
                 onPause?.Invoke();
             }
             else
             {
-                SetStatus(GameStatus.Run);
                 Time.timeScale = 1.0f;
                 onResume?.Invoke();
             }
@@ -151,7 +151,7 @@ public class GameManager : Singleton<GameManager>
     {
         SetStatus(GameStatus.Stop);
         uiManager.ShowGameoverUI();
-        this.speed = 0f;
+        InitSpeed();
 
         // 점수 저장
         // 정렬
@@ -164,4 +164,12 @@ public class GameManager : Singleton<GameManager>
     {
         poolManager.ReturnAllActivePools();
     }
+
+    #region Time & Gravity
+    public void InitSpeed() => speed = 0f;
+
+    public void SetSpeed(float _speed = 5.0f) => speed = _speed;
+
+    public float GetSpeed() => speed;
+    #endregion
 }

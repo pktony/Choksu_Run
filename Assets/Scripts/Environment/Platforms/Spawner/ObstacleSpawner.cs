@@ -29,16 +29,32 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField]
     private float minHeight;
 
+    private Coroutine routine = null;
+
+
     private void Awake()
     {
         levelDesign = GetComponent<LevelDesign>();
-        levels = levelDesign.GetLevels(out obstacleChars).ToArray();
     }
 
     private void Start()
     {
         poolManager = GameManager.Inst.PoolManager;
-        StartCoroutine(SpawnObstacle());
+
+        InitRoutine();
+    }
+
+    public void InitRoutine()
+    {
+        cursor = 0;
+
+        levels = levelDesign.GetLevels(out obstacleChars).ToArray();
+
+        if (routine != null)
+        {
+            StopCoroutine(routine);
+        }
+        routine = StartCoroutine(SpawnObstacle());
     }
 
     private IEnumerator SpawnObstacle()
