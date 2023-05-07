@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="firebase_database_url" translatable="false">https://choksu-run-default-rtdb.asia-southeast1.firebasedatabase.app/</string>
+  <string name="gcm_defaultSenderId" translatable="false">617134512415</string>
+  <string name="google_storage_bucket" translatable="false">choksu-run.appspot.com</string>
+  <string name="project_id" translatable="false">choksu-run</string>
+  <string name="google_api_key" translatable="false">AIzaSyBRsKwc4rGU4aAf2mTW8NDFOTVQ69gGv5I</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBRsKwc4rGU4aAf2mTW8NDFOTVQ69gGv5I</string>
+  <string name="google_app_id" translatable="false">1:617134512415:android:e19b1a62d54221652af82a</string>
+  <string name="default_web_client_id" translatable="false">617134512415-au4kiqqv49t8shgfdourf8tat1cs7mvv.apps.googleusercontent.com</string>
+</resources>
