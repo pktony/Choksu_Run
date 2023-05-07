@@ -41,11 +41,11 @@ public class NetworkManager : MonoBehaviour, IBootingComponent
         }
         else if (Application.platform == RuntimePlatform.OSXEditor)
         {
-            DBreference = FirebaseDatabase.DefaultInstance.RootReference;
             isReady = true;
         }
         else
         {
+            DBreference = FirebaseDatabase.DefaultInstance.RootReference;
             isReady = true;
         }
     }
