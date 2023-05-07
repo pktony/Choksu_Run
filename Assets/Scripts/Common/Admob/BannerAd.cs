@@ -19,7 +19,7 @@ public class BannerAd : MonoBehaviour
 
         onBannerLoadedListener += onBannerLoaded ;
 
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this);
     }
 
     public void ShowAd()
