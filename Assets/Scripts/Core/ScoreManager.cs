@@ -35,10 +35,15 @@ public class ScoreManager : MonoBehaviour
 
     }
 
-    private void Start()
+    public void Initialize()
     {
         Score = 0;
         InGameCoin = 0;
+    }
+
+    private void Start()
+    {
+        Initialize();
     }
 
     private void Update()
@@ -46,7 +51,7 @@ public class ScoreManager : MonoBehaviour
         if(GameManager.Inst.Status == GameManager.GameStatus.Run)
         {
             if (GameManager.Inst.IsGameOver) return;
-            scoreSpeed = GameManager.Inst.speed * scoreMultiplier;
+            scoreSpeed = GameManager.Inst.GetSpeed() * scoreMultiplier;
             Score += scoreSpeed * Time.deltaTime;
         }
     }

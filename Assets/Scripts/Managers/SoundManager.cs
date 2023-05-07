@@ -119,5 +119,13 @@ public class SoundManager : MonoBehaviour, IBootingComponent
         masterVolumeBGM = a_volume;
         bgmPlayer.volume = masterVolumeBGM;
     }
+
+    public float GetVolumeSFX() => masterVolumeSFX;
+
+
+    public float GetVolumeBGM() => masterVolumeBGM;
+
     #endregion
+
+    public AudioClip GetBGMClip() => bgmPlayer.clip;
 }

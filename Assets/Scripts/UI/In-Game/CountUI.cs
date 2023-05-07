@@ -17,7 +17,18 @@ public class CountUI : MonoBehaviour
 
 
 
-    private void OnEnable()
+    private void Start()
+    {
+        InitRoutine();
+        GameManager.Inst.sound.PlayBGM(BGM.GameScene, (int)PlayType.Direct);
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log(GameManager.Inst.Status.ToString());
+    }
+
+    public void InitRoutine()
     {
         if (routine != null)
         {
@@ -47,8 +58,7 @@ public class CountUI : MonoBehaviour
         }
         anim.SetTrigger("Run");
 
-        GameManager.Inst.sound.PlayBGM(BGM.GameScene, (int)PlayType.Direct);
-        GameManager.Inst.Status = GameManager.GameStatus.Run;
+        GameManager.Inst.SetStatus(GameManager.GameStatus.Run);
 
         countText.text = string.Empty;
         routine = null;

@@ -15,7 +15,7 @@ public class Obstacle_Vertical : Platforms<ObstacleType>
 
     protected override void MovePlatform()
     {
-        speed = GameManager.Inst.speed;
+        speed = GameManager.Inst.GetSpeed();
 
         rigid.MovePosition(rigid.position + speed * Time.fixedDeltaTime * Vector2.left);
 

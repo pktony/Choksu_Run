@@ -7,6 +7,11 @@ namespace UIs
     [RequireComponent(typeof(CanvasGroup))]
     public class UI_Popup : MonoBehaviour
     {
+        [Header("Routine Objects")]
+        [SerializeField] Background _backGround;
+        [SerializeField] GroundScroller _groundScroller;
+        [SerializeField] CountUI _countUI;
+
         private CanvasGroup group;
         private RectTransform rect;
 
@@ -106,6 +111,14 @@ namespace UIs
             group.alpha = 0f;
             group.interactable = false;
             group.blocksRaycasts = false;
+
+            if(GameManager.Inst.Status.Equals(GameManager.GameStatus.Stop))
+            {
+                _countUI.gameObject.SetActive(true);
+                _countUI.InitRoutine();
+                _groundScroller.InitRoutine();
+                _backGround.InitRoutine();
+            }
         }
     }
 }
