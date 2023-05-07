@@ -24,12 +24,9 @@ public class Leaderboard : MonoBehaviour
         slideButton.SetActivateListeners(() => OpenAction(), () => CloseAction());
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
-<<<<<<< Updated upstream
-=======
         yield return new WaitUntil(() => GameManager.Inst.Network.IsReady && rankElementPool.IsPoolReady);
->>>>>>> Stashed changes
         InitializeLeaderboard();
     }
 
@@ -38,14 +35,8 @@ public class Leaderboard : MonoBehaviour
         Transform scoreObjParent = scrollRect.content;
         for (int i = 0; i < NetworkManager.MAX_RANK_COUNT; i++)
         {
-<<<<<<< Updated upstream
-            GameObject obj = Instantiate(scoreObj, scoreObjParent);
-            obj.name = (i + 1).ToString();
-            scores[i] = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-=======
             var element = rankElementPool.GetRankElement(scoreObjParent);
             element.gameObject.name = (i + 1).ToString();
->>>>>>> Stashed changes
         }
 
         float totalHeight = (rankElementPool.ActiveElementPool[0].Height + layoutGroup.spacing)
