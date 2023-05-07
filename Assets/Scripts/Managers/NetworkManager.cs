@@ -39,10 +39,14 @@ public class NetworkManager : MonoBehaviour, IBootingComponent
         {
 
         }
-        else
+        else if (Application.platform == RuntimePlatform.OSXEditor)
         {
             DBreference = FirebaseDatabase.DefaultInstance.RootReference;
-            isReady = true; 
+            isReady = true;
+        }
+        else
+        {
+            isReady = true;
         }
     }
 
@@ -165,6 +169,8 @@ public class NetworkManager : MonoBehaviour, IBootingComponent
 
     public async Task<List<IDictionary>> GetRankDB()
     {
+        if (DBreference == null) return null;
+
         List<IDictionary> results = null;
         var newTask = Task.Run(() => DBreference.GetValueAsync());
         var value = await newTask;
