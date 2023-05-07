@@ -29,21 +29,29 @@ namespace UIs
 
         public bool IsPanelSliding => isMoving;
 
+        public bool IsOpen => isOpen;
+
         private void Awake()
         {
             rect = GetComponent<RectTransform>();
             panelSize = rect.rect.size;
         }
 
-        public void Slide(Action slideEndAction = null)
+        public bool Slide(Action slideEndAction = null)
         {
-            if(!isMoving)
+            if (!isMoving)
+            {
+                isOpen = !isOpen;
                 StartCoroutine(SlidePanels(openingDiretion, slideEndAction));
+            }
+
+            return isOpen;
         }
 
         private IEnumerator SlidePanels(openingDiretion dir, Action slideEndAction = null)
         {
             isMoving = true;
+
             Vector2 newPos = rect.anchoredPosition;
             float boundary = slideDirection == slideDirection.horizontal ?
                 panelSize.x :
@@ -53,7 +61,7 @@ namespace UIs
                 newPos + (int)dir * panelSize.x * Vector2.right :
                 newPos + (int)dir * panelSize.y * Vector2.up;
 
-            if (isOpen) destination = originalPos;
+            if (!isOpen) destination = originalPos;
             else originalPos = rect.anchoredPosition;
 
             float timer = 0f;
@@ -70,7 +78,6 @@ namespace UIs
             }
             rect.anchoredPosition = destination;
 
-            isOpen = !isOpen;
             isMoving = false;
             slideEndAction?.Invoke();
         }

@@ -10,6 +10,10 @@ public class SoundManager : MonoBehaviour, IBootingComponent
     public float masterVolumeSFX = 1f;
     public float masterVolumeBGM = 1f;
 
+    // TODO : save setting value in device;
+    private float lastMasterVolumeSFX;
+    private float lastMasterVolumeBGM;
+
     [SerializeField] AudioClip[] BGMClips;
     [SerializeField] AudioClip[] SFXClips;
 
@@ -118,6 +122,21 @@ public class SoundManager : MonoBehaviour, IBootingComponent
     {
         masterVolumeBGM = a_volume;
         bgmPlayer.volume = masterVolumeBGM;
+    }
+
+    public void MuteAll()
+    {
+        lastMasterVolumeBGM = masterVolumeBGM;
+        lastMasterVolumeSFX = masterVolumeSFX;
+
+        SetVolumeBGM(0f);
+        SetVolumeSFX(0f);
+    }
+
+    public void UnMuteAll()
+    {
+        SetVolumeBGM(lastMasterVolumeBGM);
+        SetVolumeSFX(lastMasterVolumeSFX);
     }
     #endregion
 }

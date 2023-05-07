@@ -467,6 +467,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1026958907606929421, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4706349221624710828, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: player
       value: 
