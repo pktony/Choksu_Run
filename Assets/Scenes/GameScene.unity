@@ -342,18 +342,6 @@ PrefabInstance:
       propertyPath: spawner
       value: 
       objectReference: {fileID: 384425625}
-    - target: {fileID: 1696490190, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: groundScroller
-      value: 
-      objectReference: {fileID: 1559010908}
-    - target: {fileID: 633433813833548597, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: countUI
-      value: 
-      objectReference: {fileID: 76544201}
-    - target: {fileID: 633433813833548597, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
-      propertyPath: backGround
-      value: 
-      objectReference: {fileID: 676124419}
     - target: {fileID: 1026958905733865598, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -494,6 +482,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _countUI
+      value: 
+      objectReference: {fileID: 76544201}
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _backGround
+      value: 
+      objectReference: {fileID: 676124419}
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _groundScroller
+      value: 
+      objectReference: {fileID: 1559010908}
     - target: {fileID: 1026958907606929421, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
