@@ -93,6 +93,7 @@ public class GameManager : Singleton<GameManager>
             {
                 SetStatus(GameStatus.Run);
                 Time.timeScale = 1.0f;
+                SetStatus(GameStatus.Run);
                 onResume?.Invoke();
             }
         }

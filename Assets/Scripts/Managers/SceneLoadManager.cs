@@ -44,7 +44,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         while (loadingPanel.IsPanelSliding) yield return null;
 
         loadProcessAction?.Invoke();
-        yield return new WaitForSeconds(intentionalWaitSeconds);
+        yield return new WaitForSecondsRealtime(intentionalWaitSeconds);
 
         asyncOperation.allowSceneActivation = true;
         while (!asyncOperation.isDone) yield return null;

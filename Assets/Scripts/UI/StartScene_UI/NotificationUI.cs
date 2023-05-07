@@ -1,10 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+using TMPro;
 
 public class NotificationUI : MonoBehaviour
 {
-    UIs.UI_Slide notificationPanel;
+    private UIs.UI_Slide notificationPanel;
+
+    [SerializeField] private TextMeshProUGUI notificationText = default;
+    [SerializeField] private string textText;
+    [SerializeField] private float showTime;
 
     private void Awake()
     {
@@ -15,8 +20,21 @@ public class NotificationUI : MonoBehaviour
     {
         if(UnityEngine.InputSystem.Keyboard.current.kKey.wasPressedThisFrame)
         {
-
+            ShowNotification(textText);
         }
-            
+    }
+
+    public void ShowNotification(string notificationText)
+    {
+        this.notificationText.text = notificationText;
+
+        notificationPanel.Slide(() => StartCoroutine(HideNotificationAfter(showTime)));
+    }
+
+    private IEnumerator HideNotificationAfter(float waitSeconds)
+    {
+        yield return new WaitForSeconds(waitSeconds);
+
+        notificationPanel.Slide();
     }
 }
