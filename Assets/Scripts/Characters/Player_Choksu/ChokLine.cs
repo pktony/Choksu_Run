@@ -21,6 +21,7 @@ public class ChokLine : MonoBehaviour
     private float maxChokTime = 1.0f;
 
     public System.Action<Vector2> onChokAttached;
+    public System.Action onAutoChokDisabled;
 
     private void Awake()
     {
@@ -69,6 +70,7 @@ public class ChokLine : MonoBehaviour
         if(timer >= maxChokTime)
         {
             DisableChok();
+            onAutoChokDisabled?.Invoke();
         }
     }
 

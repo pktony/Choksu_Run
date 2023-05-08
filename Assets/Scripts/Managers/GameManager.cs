@@ -153,6 +153,8 @@ public class GameManager : Singleton<GameManager>
         uiManager.ShowGameoverUI();
         InitSpeed();
 
+        // TODO : 리더보드 갱신하기
+        //networkManager.UpdateScoreDB(id, score.Score);
         // 점수 저장
         // 정렬
         // 순위 산출
