@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,6 +62,7 @@ public class PlayerControl_Chok : PlayerControl
         defaultPosition = new Vector2(transform.position.x, 0f) ;
 
         chokLine.onChokAttached += RotateCharacter;
+        chokLine.onAutoChokDisabled += SetModeNormal;
     }
 
     protected override void OnSkill(InputAction.CallbackContext context)
@@ -152,6 +154,11 @@ public class PlayerControl_Chok : PlayerControl
         aimLine.DisableAimLine();
         chokLine.ShootChok(chokDirection);
         mode = ControlMode.chok;
+    }
+
+    private void SetModeNormal()
+    {
+        mode = ControlMode.normal;
     }
 
     private IEnumerator ReturnOringinalPosition()
