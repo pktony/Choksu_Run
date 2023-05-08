@@ -497,6 +497,25 @@ PrefabInstance:
     - target: {fileID: 1026958907606929421, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _countUI
+      value: 
+      objectReference: {fileID: 76544201}
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _spawner
+      value: 
+      objectReference: {fileID: 384425625}
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _backGround
+      value: 
+      objectReference: {fileID: 676124419}
+    - target: {fileID: 1026958907312114737, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: _groundScroller
+      value: 
+      objectReference: {fileID: 1559010908}
+    - target: {fileID: 1026958907312114738, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4706349221624710828, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: player
