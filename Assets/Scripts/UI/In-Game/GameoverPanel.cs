@@ -45,6 +45,6 @@ public class GameoverPanel : MonoBehaviour
         GameManager.Inst.sound.StopBGM();
 
         SceneLoadManager.Inst.LoadScene_NoAds(Define.SceneIndex.Title,
-            () => GameManager.Inst.ResetPooledObjects()) ;
+            () => GameManager.Inst.ResetPooledObjects());
     }
 }
