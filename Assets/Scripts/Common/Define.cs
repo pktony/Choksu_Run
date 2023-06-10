@@ -30,7 +30,7 @@ namespace Define
         WarningLaser,
         FlyingObject,
         FallingObstacle,
-        FallingObstacle_Fall,
+        FallingObstacle_Duck,
     }
 
     public enum CurrencyType

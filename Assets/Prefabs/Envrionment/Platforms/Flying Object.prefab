@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGroupedChild: 0
-  type: 4
+  type: 3
 --- !u!60 &5360688033237530939
 PolygonCollider2D:
   m_ObjectHideFlags: 0

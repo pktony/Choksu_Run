@@ -199,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
       propertyPath: levelString
-      value: 01201245
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
       propertyPath: obstacleInfos.Array.size

@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGroupedChild: 0
-  type: 3
+  type: 2
   spriteRenderer: {fileID: 785412195139982686}
   spawnNum: 3
   warningDuration: 2
