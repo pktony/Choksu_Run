@@ -199,7 +199,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
       propertyPath: levelString
-      value: 012356ab
+      value: 01201245
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+      propertyPath: obstacleInfos.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+      propertyPath: obstacleInfos.Array.data[0].obstacleTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+      propertyPath: obstacleInfos.Array.data[1].obstacleTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+      propertyPath: obstacleInfos.Array.data[3].obstacleTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+      propertyPath: obstacleInfos.Array.data[4].obstacleTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+      propertyPath: obstacleInfos.Array.data[5].obstacleTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863333412055873375, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}
+      propertyPath: obstacleInfos.Array.data[2].obstacleTypes
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6533a657ec86f44e89ef3d9c3f7d80d5, type: 3}

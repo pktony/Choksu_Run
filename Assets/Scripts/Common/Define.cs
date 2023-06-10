@@ -27,7 +27,6 @@ namespace Define
         empty = 99999,
         SingleJump = 0,
         DoubleJump,
-        Slide,
         WarningLaser,
         FlyingObject,
         FallingObstacle,

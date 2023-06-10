@@ -464,6 +464,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: obstaclePrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: obstaclePrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4839410351737391132, guid: 22541de7ba57247eea58aa57c0597b84, type: 3}
+    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: obstaclePrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 4113411462854456040, guid: 8a1629932719d421d94eea3303b1a61f, type: 3}
+    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: obstaclePrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 8330699962393764651, guid: ad02aa7c5ad7e4324abb8cfaf6526866, type: 3}
+    - target: {fileID: 8203972542963928711, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: obstaclePrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 5886494540739690399, guid: 4ee7faa394a4d4738b674d56761cee52, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
 --- !u!1001 &1034457456
