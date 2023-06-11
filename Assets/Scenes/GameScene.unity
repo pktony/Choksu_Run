@@ -461,6 +461,10 @@ PrefabInstance:
       propertyPath: _groundScroller
       value: 
       objectReference: {fileID: 1559010908}
+    - target: {fileID: 1026958907312114738, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4706349221624710828, guid: 077d7969e357f4979ad8ca99668bffc3, type: 3}
       propertyPath: player
       value: 

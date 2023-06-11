@@ -9,7 +9,7 @@ using System;
 public class AdManager : Singleton<AdManager>
 {
     private const string TEST_ID = "ca-app-pub-3940256099942544~3347511713";
-    private const string ANDROID_ID = "ca-app-pub-1558168203898482~1386105414";
+    private const string Interstitial_AOS = "\nca-app-pub-1558168203898482~4627346428";
 
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;
@@ -33,22 +33,29 @@ public class AdManager : Singleton<AdManager>
         //}
     }
 
-    private string RequestAds()
+    private string RequestAds(AdType adType)
     {
         string id ;
-#if UNITY_EDITOR
-        id = ANDROID_ID;
-#elif UNITY_ANDROID
-        id = ANDROID_ID;
-#else
-        id = TEST_ID;
-#endif
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            id = Interstitial_AOS;
+        }
+        else if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            id = string.Empty;
+        }
+        else
+        {
+            id = TEST_ID;
+        }
+
         return id;
     }
 
     public void ShowAd(AdType adType, Action<object, EventArgs> adLoadAction)
     {
-        string adID = RequestAds();
+        string adID = RequestAds(adType);
         switch (adType)
         {
             case AdType.Banner:

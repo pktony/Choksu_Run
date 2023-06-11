@@ -134,8 +134,8 @@ public class GameManager : Singleton<GameManager>
 
         NotInitialized:
             Debug.LogError($"{component} not initialized");
-            CommonPopup.Inst.OpenCommonPopup("Error", "Failed to Initialize Game, Quitting",
-                () => Application.Quit());
+            //CommonPopup.Inst.OpenCommonPopup("Error", "Failed to Initialize Game, Quitting",
+            //    () => Application.Quit());
         }
 
         Debug.Log($"Booting Components Initialize Complete. : {Time.time - startTime} ms");
