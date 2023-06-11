@@ -3,4 +3,10 @@
           package="com.google.firebase.app.unity"
           android:versionCode="1"
           android:versionName="1.0">
+          <application>
+                  <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+                  <meta-data
+                      android:name="com.google.android.gms.ads.APPLICATION_ID"
+                      android:value="ca-app-pub-1558168203898482~1386105414"/>
+              </application>
 </manifest>
