@@ -40,15 +40,28 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
         asyncOperation.allowSceneActivation = false;
 
-        while (asyncOperation.progress < 0.9f) yield return null;
-        while (loadingPanel.IsPanelSliding) yield return null;
+        while (asyncOperation.progress < 0.9f) 
+        {
+            Debug.Log($"{asyncOperation.progress}");
+            yield return null;
+        }
+        while (loadingPanel.IsPanelSliding) 
+        {
+            Debug.Log("IsPanelSliding");
+            yield return null;
+        }
 
         loadProcessAction?.Invoke();
         yield return new WaitForSeconds(intentionalWaitSeconds);
 
         asyncOperation.allowSceneActivation = true;
-        while (!asyncOperation.isDone) yield return null;
+        while (!asyncOperation.isDone) 
+        {
+            Debug.Log("!asyncOperation.isDone");
+            yield return null;
+        }
 
+        yield return null;
 
         loadingPanel.Slide(() => loadingPanel.gameObject.SetActive(false));
 

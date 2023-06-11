@@ -165,5 +165,12 @@ public class PlayerControl : MonoBehaviour
         rigid.AddTorque(dieTorque, ForceMode2D.Impulse);
 
         anim.SetTrigger("onDie");
+        this?.Invoke(nameof(GameOverAction), 0.5f);
+    }
+
+    private void GameOverAction()
+    {
+        StopAllCoroutines();
+        gameObject.SetActive(false);
     }
 }
