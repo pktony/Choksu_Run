@@ -250,7 +250,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: Dororok.keystore'
+  AndroidKeystoreName: '{dedicated}: Downloads/Dororok.keystore'
   AndroidKeyaliasName: chok!
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
@@ -869,11 +869,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 9d5f566f-e5a3-41fd-9040-d2a660bdb909
+  cloudProjectId: 2d98fa25-402e-44c5-81bc-1c7a8e560fc4
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Chok! (1)
-  organizationId: pktony2011
+  projectName: Chok!
+  organizationId: blogerhong
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
