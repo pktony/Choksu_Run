@@ -5,19 +5,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Define;
+
 public class GameoverPanel : MonoBehaviour
 {
     [SerializeField] private Button restartButton = default;
     [SerializeField] private Button homeButton = default;
 
+    [SerializeField] private CanvasGroup canvasGroup = default;
+
     [Header("Init Objects")]
     [SerializeField] ObstacleSpawner spawner;
-    
+
 
     private void Awake()
     {
         restartButton.onClick.AddListener(RestartGame);
         homeButton.onClick.AddListener(ReturnToHome);
+    }
+
+    public void SetActiveGameoverUI(bool isActive)
+    {
+        canvasGroup.alpha = isActive ? 1.0f : 0.0f;
+        canvasGroup.interactable = isActive;
+        canvasGroup.blocksRaycasts = isActive;
     }
 
     private void RestartGame()
@@ -34,7 +45,7 @@ public class GameoverPanel : MonoBehaviour
 
         spawner.InitRoutine();
 
-        SceneLoadManager.Inst.LoadScene_NoAds(Define.SceneIndex.In_Game,
+        SceneLoadManager.Inst.LoadScene_Ads(SceneIndex.In_Game, AdType.Interstitial,
             () => GameManager.Inst.ResetPooledObjects());
     }
 
@@ -44,7 +55,10 @@ public class GameoverPanel : MonoBehaviour
 
         GameManager.Inst.sound.StopBGM();
 
-        SceneLoadManager.Inst.LoadScene_NoAds(Define.SceneIndex.Title,
+        SceneLoadManager.Inst.LoadScene_Ads(SceneIndex.Title, AdType.Interstitial,
             () => GameManager.Inst.ResetPooledObjects());
+
+        //SceneLoadManager.Inst.LoadScene_NoAds(Define.SceneIndex.Title,
+        //    () => GameManager.Inst.ResetPooledObjects());
     }
 }

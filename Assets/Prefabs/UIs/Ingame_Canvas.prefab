@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartButton: {fileID: 8521795169484540433}
   homeButton: {fileID: 5145536061071002914}
+  canvasGroup: {fileID: 174495965}
   spawner: {fileID: 0}
 --- !u!222 &1696490189
 CanvasRenderer:
@@ -1299,7 +1300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1026958907338061746}
   coinText: {fileID: 3926899316349901934}
-  gameoverGroup: {fileID: 174495965}
+  gameoverPanel: {fileID: 1696490190}
 --- !u!1 &1026958906455406946
 GameObject:
   m_ObjectHideFlags: 0

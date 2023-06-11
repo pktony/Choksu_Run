@@ -9,7 +9,7 @@ public class UIController_InGame : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI coinText;
 
-    public CanvasGroup gameoverGroup;
+    [SerializeField] private GameoverPanel gameoverPanel;
 
 
     private void Start()
@@ -20,16 +20,12 @@ public class UIController_InGame : MonoBehaviour
 
     public void ShowGameoverUIs()
     {
-        gameoverGroup.alpha = 1.0f;
-        gameoverGroup.interactable = true;
-        gameoverGroup.blocksRaycasts = true;
+        gameoverPanel.SetActiveGameoverUI(true);
     }
 
     public void HideGameoverUIs()
     {
-        gameoverGroup.alpha = 0f;
-        gameoverGroup.interactable = false;
-        gameoverGroup.blocksRaycasts = false;
+        gameoverPanel.SetActiveGameoverUI(false);
     }
 
     private void UpateScore(float score)
