@@ -6,6 +6,7 @@ using Define;
 public class Obstacle_Vertical : Platforms<ObstacleType>
 {
     bool initialized = false;
+    float roateSpeed = 5.0f;
 
     protected override void InitializeRigidbody()
     {
@@ -18,6 +19,8 @@ public class Obstacle_Vertical : Platforms<ObstacleType>
         speed = GameManager.Inst.GetSpeed();
 
         rigid.MovePosition(rigid.position + speed * Time.fixedDeltaTime * Vector2.left);
+
+        transform.Rotate(new Vector3(0,0,1) * roateSpeed);
 
         if (transform.position.y < leftEnd)
         {

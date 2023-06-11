@@ -27,11 +27,10 @@ namespace Define
         empty = 99999,
         SingleJump = 0,
         DoubleJump,
-        Slide,
         WarningLaser,
         FlyingObject,
         FallingObstacle,
-        FallingObstacle_Fall,
+        FallingObstacle_Duck,
     }
 
     public enum CurrencyType
