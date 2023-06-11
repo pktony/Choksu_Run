@@ -16,13 +16,13 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     private IEnumerator loadingHandler = null;
 
-    public void LoadScene_Ads(SceneIndex sceneIndex, AdType adType)
+    public void LoadScene_Ads(SceneIndex sceneIndex, AdType adType, Action loadSceneAction = null)
     {
         AdManager.Inst.ShowAd(adType, (_, _) =>
         {
             loadingPanel.gameObject.SetActive(true);
             if (loadingHandler == null)
-                StartCoroutine(loadingHandler = LoadSceneProcess((int)sceneIndex, null, 1f));
+                StartCoroutine(loadingHandler = LoadSceneProcess((int)sceneIndex, loadSceneAction, 1f));
         });
     }
 
@@ -47,7 +47,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         }
         while (loadingPanel.IsPanelSliding) 
         {
-            Debug.Log("IsPanelSliding");
+            //Debug.Log("IsPanelSliding");
             yield return null;
         }
 
@@ -57,7 +57,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         asyncOperation.allowSceneActivation = true;
         while (!asyncOperation.isDone) 
         {
-            Debug.Log("!asyncOperation.isDone");
+            //Debug.Log("!asyncOperation.isDone");
             yield return null;
         }
 
