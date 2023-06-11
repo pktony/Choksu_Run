@@ -47,6 +47,8 @@ public class GameoverPanel : MonoBehaviour
 
         SceneLoadManager.Inst.LoadScene_Ads(SceneIndex.In_Game, AdType.Interstitial,
             () => GameManager.Inst.ResetPooledObjects());
+
+        gameObject.SetActive(false);
     }
 
     private void ReturnToHome()
@@ -60,5 +62,7 @@ public class GameoverPanel : MonoBehaviour
 
         //SceneLoadManager.Inst.LoadScene_NoAds(Define.SceneIndex.Title,
         //    () => GameManager.Inst.ResetPooledObjects());
+
+        gameObject.SetActive(false);
     }
 }

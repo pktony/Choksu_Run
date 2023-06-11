@@ -65,16 +65,16 @@ public class AdManager : Singleton<AdManager>
                 banner.ShowAd();
                 break;
             case AdType.Interstitial:
-                interstitialAd.Show();
                 interstitialAd = new InterstitialAd(adID);
                 AdRequest request = new AdRequest.Builder().Build();
                 interstitialAd.LoadAd(request);
                 interstitialAd.OnAdClosed += (arg, arg2) => { adLoadAction?.Invoke(arg, arg2);};
+                interstitialAd.Show();
                 break;
             case AdType.Reward:
                 rewardedAd = new RewardedAd(adID);
-                rewardedAd.Show();
                 Debug.LogWarning("Rewarded Ad Not Impletemented");
+                rewardedAd.Show();
                 break;
             default:
                 break;
