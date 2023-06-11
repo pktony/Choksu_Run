@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Dororok
-  productName: ChokRun
+  productName: Chok!
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0
+  bundleVersion: 1.0.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -155,15 +155,15 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.IsDororok.ChosuRun
+    Android: com.IsDororok.Chok
     Standalone: com.DefaultCompany.2DProject
   buildNumber:
     Standalone: 0
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 26
+  AndroidBundleVersionCode: 101
+  AndroidMinSdkVersion: 29
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -250,15 +250,15 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: '{inproject}: Dororok.keystore'
+  AndroidKeyaliasName: chok!
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 0
+  androidUseCustomKeystore: 1
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -845,7 +845,7 @@ PlayerSettings:
     Collab: 0
     Game Performance: 0
     Legacy Analytics: 1
-    Purchasing: 1
+    Purchasing: 0
     UDP: 0
     Unity Ads: 0
   luminIcon:
@@ -862,11 +862,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 38ee5d33-3db9-4e55-b2b7-a67882eb697a
+  cloudProjectId: 9d5f566f-e5a3-41fd-9040-d2a660bdb909
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: RunnerTemplate
-  organizationId: blogerhong
+  projectName: Chok! (1)
+  organizationId: pktony2011
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
