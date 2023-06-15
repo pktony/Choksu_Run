@@ -25,10 +25,10 @@ public class BannerAd : MonoBehaviour
     public void ShowAd()
     {
         bannerAd = new BannerView(adID, AdSize.Banner, AdPosition.Bottom);
-        var adRequest = new AdRequest.Builder()
-        .AddKeyword(keyword).Build();
+        //var adRequest = new AdRequest.Builder()
+        //.AddKeyword(keyword).Build();
 
-        bannerAd.OnAdLoaded += (arg0,arg1) => onBannerLoadedListener?.Invoke(arg0, arg1);
-        bannerAd.LoadAd(adRequest);
+        //bannerAd.OnAdLoaded += (arg0,arg1) => onBannerLoadedListener?.Invoke(arg0, arg1);
+        //bannerAd.LoadAd(adRequest);
     }
 }
