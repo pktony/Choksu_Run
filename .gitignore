@@ -152,4 +152,4 @@ crashlytics-build.properties
 *.force
 *.CopyComplete
 *.pref
-*.pref
+*.DS_Store
