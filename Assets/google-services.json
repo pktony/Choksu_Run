@@ -34,64 +34,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:617134512415:android:4224cb657d2b045a2af82a",
-        "android_client_info": {
-          "package_name": "com.IsDororok.ChoksuRun"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "617134512415-8hhsp9ufsbu13pd0rl3it5sj4oji7jvn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBRsKwc4rGU4aAf2mTW8NDFOTVQ69gGv5I"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "617134512415-8hhsp9ufsbu13pd0rl3it5sj4oji7jvn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:617134512415:android:e19b1a62d54221652af82a",
-        "android_client_info": {
-          "package_name": "com.IsDororok.ChosuRun"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "617134512415-8hhsp9ufsbu13pd0rl3it5sj4oji7jvn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBRsKwc4rGU4aAf2mTW8NDFOTVQ69gGv5I"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "617134512415-8hhsp9ufsbu13pd0rl3it5sj4oji7jvn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"

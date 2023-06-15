@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using Define;
+
 public class Singleton<T> : MonoBehaviour where T : Component
 {
     private static T instance = null;
@@ -53,7 +55,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
     /// <param name="mode">씬 추가 모드</param>
     protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.buildIndex == 0)
+        if(scene.buildIndex == (int)SceneIndex.Title)
         {
             GameManager.Inst.sound.PlayBGM(Define.BGM.LobbyScene, (int)Define.PlayType.Direct);
         }

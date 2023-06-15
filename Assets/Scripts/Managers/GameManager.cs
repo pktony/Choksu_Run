@@ -106,8 +106,15 @@ public class GameManager : Singleton<GameManager>
         poolManager.InitializePool();
         sound.Initialize();
 
+        InitializeApplicationSettings();
+
         if (bootWaitHandler == null)
             StartCoroutine(bootWaitHandler = ChecKBootingComponents());
+    }
+
+    private void InitializeApplicationSettings()
+    {
+        Application.targetFrameRate = 60;
     }
 
     private IEnumerator ChecKBootingComponents()
@@ -119,8 +126,6 @@ public class GameManager : Singleton<GameManager>
 
         foreach (var component in bootingComponents)
         {
-            Debug.Log($"{component} initialize Begin");
-
             float eachTime = 0f;
             while (!component.IsReady)
             {

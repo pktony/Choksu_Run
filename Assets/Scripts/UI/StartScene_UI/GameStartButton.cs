@@ -29,7 +29,7 @@ public class GameStartButton : MonoBehaviour
 
         GameManager.Inst.SetSpeed();
 
-        SceneLoadManager.Inst.LoadScene_NoAds(SceneIndex.In_Game, null);
-        //SceneLoadManager.Inst.LoadScene_Ads(SceneIndex.In_Game, AdType.Banner);
+        //SceneLoadManager.Inst.LoadScene_NoAds(SceneIndex.In_Game, null);
+        SceneLoadManager.Inst.LoadScene_Ads(SceneIndex.In_Game, AdType.Interstitial);
     }
 }

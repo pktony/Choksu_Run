@@ -18,7 +18,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     public void LoadScene_Ads(SceneIndex sceneIndex, AdType adType, Action loadSceneAction = null)
     {
-        AdManager.Inst.ShowAd(adType, (_, _) =>
+        AdManager.Inst.ShowAd(adType, () =>
         {
             loadingPanel.gameObject.SetActive(true);
             if (loadingHandler == null)
@@ -41,8 +41,8 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         asyncOperation.allowSceneActivation = false;
 
         while (asyncOperation.progress < 0.9f) 
-        {
-            Debug.Log($"{asyncOperation.progress}");
+        {   
+            //Debug.Log($"{asyncOperation.progress}");
             yield return null;
         }
         while (loadingPanel.IsPanelSliding) 

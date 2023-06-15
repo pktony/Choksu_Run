@@ -598,5 +598,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: AdmobManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7914577901200345119, guid: 8e4599cb4dc3a442cb652b7fabfb2845, type: 3}
+      propertyPath: Interstitial_AOS
+      value: ca-app-pub-1558168203898482/4627346428
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e4599cb4dc3a442cb652b7fabfb2845, type: 3}
