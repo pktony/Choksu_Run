@@ -31,12 +31,16 @@ namespace Define
         FlyingObject,
         FallingObstacle,
         FallingObstacle_Duck,
+
+        Count,
     }
 
     public enum CurrencyType
     {
         bronze,
         group_DoubleJump,
+
+        Count,
     }
 
     public enum UIPoolType

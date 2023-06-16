@@ -1,6 +1,9 @@
-using System.Collections;
+using System.IO;
+using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
+
+using Define;
 
 public class LevelDesign : MonoBehaviour
 {
@@ -11,21 +14,49 @@ public class LevelDesign : MonoBehaviour
     [SerializeField]
     private string levelString;
 
+    [SerializeField, Range(0f, 1f)] private float obstacleCurrencyRatio = 0.8f;
 
     public ObstacleInfos[] obstacleInfos;
     public CurrencyInfos[] currencyInfos;
+
+    private void GenerateRandomLevels(int levelVariationCount)
+    {
+        StringBuilder levels = new();
+
+        int levelCount = 0;
+        while (levelCount < levelVariationCount)
+        {
+            float levelType = Random.Range(0f, 1f);
+
+            if (levelType < obstacleCurrencyRatio)
+            {
+                var randValue = Random.Range(0, (int)ObstacleType.Count);
+                levels.Append(randValue.ToString());
+            }
+            else
+            {
+                var randValue = Random.Range(0, (int)CurrencyType.Count);
+                char coinCharacter = (char)(randValue + 'a');
+                Debug.Log(coinCharacter);
+                levels.Append(coinCharacter.ToString());
+            }
+            levelCount++;
+        }
+
+        levelString = levels.ToString();
+    }
 
     /// <summary>
     /// 장애물 간격 시간
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    public float GetTime(Define.ObstacleType type)
+    public float GetTime(ObstacleType type)
     {
         return obstacleInfos[(int)type].obstacleTime;
     }
 
-    public float GetTime(Define.CurrencyType type)
+    public float GetTime(CurrencyType type)
     {
         return currencyInfos[(int)type].coinTime;
     }
@@ -38,6 +69,8 @@ public class LevelDesign : MonoBehaviour
 
     public List<char> GetLevels(out List<char> obstacleChars)
     {
+        GenerateRandomLevels(30);
+
         List<char> levels = new List<char>(levelString.Length);
         obstacleChars = new List<char>(levelString.Length);
 
