@@ -9,8 +9,15 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/MentalCare_CNU/[Ll]ibrary/
+/MentalCare_CNU/[Tt]emp/
+/MentalCare_CNU/[Ll]og/
+/MentalCare_CNU/[Bb]uild/
+/MentalCare_CNU/[Bb]uilds/
+/MentalCare_CNU/[Oo]bj/
 
-# Asset meta data should only be ignored when the corresponding asset is also ignored
+
+# Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
@@ -42,6 +49,9 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.txt
+*.pdf
+
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -58,9 +68,88 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-.vscode/settings.json
-Assets/Prefabs/Envrionment/.DS_Store
-UserSettings/Layouts/default-2021.dwlt
-UserSettings/Layouts/default-2021.dwlt
-.DS_Store
-Assets/Firebase/Plugins/x86_64/FirebaseCppApp-10_7_0.bundle
+*.meta
+*.wav
+*.mp3
+*.jpg
+*.FBX
+*.controller
+*.png
+*.jpeg
+*.mat
+*.physicMaterial
+*.lighting
+*.asset
+*.hdr
+*.mp4
+*.renderTexture
+*.terrainlayer
+*.bin
+*.exr
+*.cginc
+*.asmdef
+*.tga
+*.shader
+*.bmp
+*.obj
+*.tif
+*.ptx
+*.dll
+*.exe
+*.pso
+*.lz4
+*.vso
+*.gso
+*.tiff
+*.tiff
+*.psd
+*.flare
+*.compute
+*.guiskin
+*.preset
+*.mask
+*.raw
+*.ttf
+*.anim
+*.properties
+*.jar
+*.so
+*.zip
+*.xml
+*.mixer
+*.mixer
+*.otf
+*.db
+*.spm
+*.json
+*.dat
+*.graph
+*.info
+*.log
+*.resource
+*.resS
+*.sharedAssets
+*.bundle
+*.prefs
+*.dwlt
+*.13f1 (d4ddf0d95db9)
+*.o
+*.buildreport
+*.md
+*.uss
+*.yml
+*.a
+*.hlsl
+*.cube
+*.aar
+*.config
+*.unity3d
+*.yaml
+*.assets
+*.stamp
+*.catalog
+*.cache
+*.force
+*.CopyComplete
+*.pref
+*.pref
