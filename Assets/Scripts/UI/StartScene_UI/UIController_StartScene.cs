@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
+using Define;
 
 public class UIController_StartScene : MonoBehaviour
 {
@@ -16,5 +17,7 @@ public class UIController_StartScene : MonoBehaviour
         currency = transform.GetChild(0).GetComponent<Currency_UI>();
 
         GameManager.Inst.CharManager.GetCurrentCharacter();
+
+        AdManager.Inst.ShowAd(AdType.Banner, null);
     }
 }

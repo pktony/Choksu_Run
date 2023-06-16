@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
@@ -38,11 +37,6 @@ public class GameManager : Singleton<GameManager>
     [Header("게임 속도")]
     public float speed; //Inject on Inspector , Default : speed 5 , gravity 3
     public float gravityScale;
-
-    [Header("광고 관련")]
-    [SerializeField] AdType gameStartAd;
-    [Range(0f, 1f)]
-    [SerializeField] float adExposureProbability;
 
     #region DELEGATE ##########################################################
     public Action<int, int> onGoldChange; // Current Gold, Goal Gold
@@ -110,6 +104,14 @@ public class GameManager : Singleton<GameManager>
 
         if (bootWaitHandler == null)
             StartCoroutine(bootWaitHandler = ChecKBootingComponents());
+    }
+
+    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == (int)SceneIndex.Title)
+        {
+            sound.PlayBGM(BGM.LobbyScene, (int)PlayType.Direct);
+        }
     }
 
     private void InitializeApplicationSettings()
