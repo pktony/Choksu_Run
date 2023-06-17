@@ -9,8 +9,12 @@ namespace UIs
     {
         public override void OnPointerClick(PointerEventData eventData)
         {
-            GameManager.Inst.IsPause = !GameManager.Inst.IsPause;
-            base.OnPointerClick(eventData);
+            if(!GameManager.Inst.IsGameOver)
+            {
+                GameManager.Inst.sound.PlaySFX(Define.SFX.Click);
+                GameManager.Inst.IsPause = !GameManager.Inst.IsPause;
+                base.OnPointerClick(eventData);
+            }
         }
     }
 }

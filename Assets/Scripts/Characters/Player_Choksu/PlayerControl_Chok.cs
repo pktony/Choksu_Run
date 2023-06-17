@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Define;
 
 
 /// <summary>
@@ -89,6 +90,7 @@ public class PlayerControl_Chok : PlayerControl
             return;
         }
         base.Jump();
+        GameManager.Inst.sound.PlaySFX(SFX.Jump);
     }
 
     protected override void GroundTouchAction()
@@ -150,6 +152,7 @@ public class PlayerControl_Chok : PlayerControl
     private void ShootChok()
     {
         Debug.Log("Chok !!!");
+        GameManager.Inst.sound.PlaySFX(SFX.Chok);
         Time.timeScale = 1.0f;
         aimLine.DisableAimLine();
         chokLine.ShootChok(chokDirection);

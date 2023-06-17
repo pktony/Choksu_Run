@@ -31,9 +31,13 @@ public class GameoverPanel : MonoBehaviour
         canvasGroup.blocksRaycasts = isActive;
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
+        GameManager.Inst.sound.PlaySFX(SFX.Click);
+
         GameManager.Inst.IsGameOver = false;
+
+        GameManager.Inst.IsPause = false;
 
         GameManager.Inst.SetSpeed();
 
@@ -51,8 +55,10 @@ public class GameoverPanel : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void ReturnToHome()
+    public void ReturnToHome()
     {
+        GameManager.Inst.sound.PlaySFX(SFX.Click);
+
         GameManager.Inst.Status = GameManager.GameStatus.Stop;
 
         GameManager.Inst.sound.StopBGM();

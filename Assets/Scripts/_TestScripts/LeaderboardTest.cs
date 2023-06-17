@@ -18,6 +18,8 @@ public class LeaderboardTest : MonoBehaviour
 
     private async void UpdateBoard()
     {
+        GameManager.Inst.sound.PlaySFX(Define.SFX.Click);
+
         if (scoreInput.text.Length == 0 || idInput.text.Length == 0) return;
 
 

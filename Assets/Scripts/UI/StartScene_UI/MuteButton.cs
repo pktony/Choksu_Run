@@ -29,6 +29,7 @@ public class MuteButton : MonoBehaviour
         {
             GameManager.Inst.sound.UnMuteAll();
             muteIcon.sprite = muteSprites[1];
+            GameManager.Inst.sound.PlaySFX(Define.SFX.Click);
         }
     }
 }

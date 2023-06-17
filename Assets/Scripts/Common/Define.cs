@@ -61,7 +61,7 @@ namespace Define
 
     public enum SFX
     {
-        Click, Complete, Dead, Jump, Slide, GetCoin, GameOver
+        Click, Dead, Jump, Duck, GetCoin, Chok
     }
 
     public enum BGM
