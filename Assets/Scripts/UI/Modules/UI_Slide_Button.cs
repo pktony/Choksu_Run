@@ -31,6 +31,8 @@ namespace UIs
 
         private void Slide()
         {
+            GameManager.Inst.sound.PlaySFX(Define.SFX.Click);
+
             bool isOpen = slider.Slide();
 
             if (isOpen)

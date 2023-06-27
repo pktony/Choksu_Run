@@ -10,6 +10,7 @@ public class ShopButton : MonoBehaviour
     {
         shopButton.onClick.AddListener(() =>
         {
+            GameManager.Inst.sound.PlaySFX(Define.SFX.Click);
             CommonPopup.Inst.OpenCommonPopup("Notice", "Coin Shop Comming Soon");
         });
     }

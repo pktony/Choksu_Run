@@ -37,8 +37,16 @@ namespace UIs
             panelSize = rect.rect.size;
         }
 
+        public void CalculatePanelSize()
+        {
+            panelSize = rect.rect.size;
+            rect.anchoredPosition = panelSize.y * Vector2.up;
+            //Debug.Log(rect.anchoredPosition.y);
+        }
+
         public bool Slide(Action slideEndAction = null)
         {
+            CalculatePanelSize();
             if (!isMoving)
             {
                 isOpen = !isOpen;

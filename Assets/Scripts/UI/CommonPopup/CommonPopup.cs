@@ -38,6 +38,7 @@ public class CommonPopup : Singleton<CommonPopup>, IBootingComponent
     {
         confirmButton.onClick.AddListener(() =>
         {
+            GameManager.Inst.sound.PlaySFX(Define.SFX.Click);
             anim.Play(animationClipNames[(int)PopupAnimationType.close]);
             completeAction?.Invoke();
         });

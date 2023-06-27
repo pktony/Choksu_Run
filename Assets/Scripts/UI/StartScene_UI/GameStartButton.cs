@@ -19,6 +19,8 @@ public class GameStartButton : MonoBehaviour
 
     public void StartGame()
     {
+        GameManager.Inst.sound.PlaySFX(SFX.Click);
+
         //씬 로드
         Debug.Log("Game Start");
         GameManager.Inst.sound.StopBGM();

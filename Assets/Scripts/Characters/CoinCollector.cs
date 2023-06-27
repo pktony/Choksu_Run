@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Define;
 
 public class CoinCollector : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class CoinCollector : MonoBehaviour
                 UIs.UI_PopupText popupText = GameManager.Inst.PoolManager.GetPooledUIs(Define.UIPoolType.popupText);
                 popupText.ShowText(coin.Worth.ToString(), 0.5f,transform.position, Color.black, 10f);
                 popupText.gameObject.SetActive(true);
+                GameManager.Inst.sound.PlaySFX(SFX.GetCoin);
             }
         }
     }

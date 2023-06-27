@@ -11,6 +11,7 @@ public class CustomizeButton : MonoBehaviour
     {
         customizeButton.onClick.AddListener(() =>
         {
+            GameManager.Inst.sound.PlaySFX(Define.SFX.Click);
             CommonPopup.Inst.OpenCommonPopup("Notice", "Customization Comming Soon...");  
         });
     }

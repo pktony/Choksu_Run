@@ -1,13 +1,38 @@
 {
-    "m_SelectedDeviceId": "",
+    "m_SelectedDeviceId": "R3CR70BK4CR",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "R3CR70BK4CR",
+        "name": "com.illuni.moiitest",
+        "processId": 7341,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [],
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "R3CR70BK4CR",
+            "name": "com.illuni.moiitest",
+            "processId": 8393,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CR70BK4CR",
+            "name": "com.estmob.android.sendanywhere",
+            "processId": 32747,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CR70BK4CR",
+            "name": "com.illuni.moiitest",
+            "processId": 19119,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CR70BK4CR",
+            "name": "com.illuni.moiitest",
+            "processId": 7341,
+            "exited": false
+        }
+    ],
     "m_Tags": {
         "m_Entries": [
             {

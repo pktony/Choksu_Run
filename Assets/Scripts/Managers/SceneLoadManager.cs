@@ -10,11 +10,18 @@ using UIs;
 public class SceneLoadManager : Singleton<SceneLoadManager>
 {
     [SerializeField] private UI_Slide loadingPanel = default;
+    [SerializeField] private RectTransform rectTransform = default;
     private SceneIndex scenes;
 
     private bool isLoadingPending = false;
 
     private IEnumerator loadingHandler = null;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        rectTransform.sizeDelta = Camera.main.pixelHeight * Vector2.up;
+    }
 
     public void LoadScene_Ads(SceneIndex sceneIndex, AdType adType, Action loadSceneAction = null)
     {
