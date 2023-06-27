@@ -480,6 +480,30 @@ PrefabInstance:
       propertyPath: obstaclePrefabs.Array.data[5]
       value: 
       objectReference: {fileID: 5886494540739690399, guid: 4ee7faa394a4d4738b674d56761cee52, type: 3}
+    - target: {fileID: 8997627308996992903, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: SFXClips.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997627308996992903, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: SFXClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2513825ce4c9a4c6180fc22ca7d19ee8, type: 3}
+    - target: {fileID: 8997627308996992903, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: SFXClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: afe84a818fe9e4c9fbbf61ae85ee33b1, type: 3}
+    - target: {fileID: 8997627308996992903, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: SFXClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 12e77bbe7e5e44a3c99a0d31f136762b, type: 3}
+    - target: {fileID: 8997627308996992903, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: SFXClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: c8cf4b644e7da4b2daadb054908f4835, type: 3}
+    - target: {fileID: 8997627308996992903, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
+      propertyPath: SFXClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: dd1c90ed00d854fac96b67844fd4df1c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a64fb70bc924be6a0c73fc6dee17e2, type: 3}
 --- !u!1001 &831183773

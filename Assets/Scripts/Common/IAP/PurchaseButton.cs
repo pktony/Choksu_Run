@@ -19,6 +19,8 @@ public class PurchaseButton : MonoBehaviour
 
     public void HandleClick()
     {
+        GameManager.Inst.sound.PlaySFX(Define.SFX.Click);
+
         if(targetProductId == IAPManager.productIDNonConsumable || targetProductId == IAPManager.productIDSubscription)
         {
            if(IAPManager.Inst.HadPurchased(targetProductId))

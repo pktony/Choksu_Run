@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Define;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -74,6 +75,7 @@ public class PlayerControl : MonoBehaviour
         {
             Vector2 newScale = Vector2.one - Vector2.up * shrinkMagnitude;
             transform.localScale = newScale;
+            GameManager.Inst.sound.PlaySFX(SFX.Duck);
         }
         else if (context.canceled)
         {
@@ -119,6 +121,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.collider.CompareTag("Obstacle"))
         {
+            GameManager.Inst.sound.PlaySFX(SFX.Dead);
             Vector2 forceDir = collision.GetContact(0).normal;
             ExertForce(forceDir);
             GameManager.Inst.IsGameOver = true;

@@ -30,11 +30,14 @@ public class CountUI : MonoBehaviour
 
     public void InitRoutine()
     {
-        if (routine != null)
+        if(!GameManager.Inst.IsGameOver)
         {
-            StopCoroutine(routine);
+            if (routine != null)
+            {
+                StopCoroutine(routine);
+            }
+            routine = StartCoroutine(CountDown(time));
         }
-        routine = StartCoroutine(CountDown(time));
     }
 
     private IEnumerator CountDown(float _time)
