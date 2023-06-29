@@ -145,7 +145,6 @@ crashlytics-build.properties
 *.config
 *.unity3d
 *.yaml
-*.assets
 *.stamp
 *.catalog
 *.cache
